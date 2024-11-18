@@ -32,11 +32,7 @@ displ=0;
 tic
 [model, Mod_Val_dat, iFRO_table_lin, iFRO_table_nl, best_mod_ind_lin, best_mod_ind_nl, val_stats]...
     = sys_ID_NARX(u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,displ,sim,n_inpts,inpt0,RMO);
-```
-
-```matlabTextOutput
-Starting parallel pool (parpool) using the 'Processes' profile ...
-Connected to parallel pool with 12 workers.
+toc
 ```
 
 ![figure_0.png](untitled2_media/figure_0.png)
@@ -47,13 +43,6 @@ MSSE = 3601.6419
 MSkPE = 2017.5142
 MSPE = 66.0511
 --------------------
-```
-
-```matlab
-toc
-```
-
-```matlabTextOutput
 Elapsed time is 38.606243 seconds.
 ```
 
