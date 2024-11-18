@@ -14,7 +14,7 @@ addpath('C:\\Users\\ae4159\\OneDrive - Coventry University\\PhD project\\Matlab 
 %ARX D1\_thresh = 1e-10;
 
 ## Import data
-'''
+```
 u = readmatrix(...
     'C:\\Users\\ae4159\\OneDrive - Coventry University\\PhD project\\Matlab files\\iFROs\_PRESS\\Example\\Electro-mecahnical system\\x\_cc.csv');
 y = readmatrix(...
@@ -24,7 +24,7 @@ y = readmatrix(...
 dwn\_smpl = 100;
 u = u(1:dwn\_smpl:end);
 y = y(1:dwn\_smpl:end);
-'''
+```
 ## System Identification
 
 tt\_splt = 100:350; %Training data %1:10000;%500:1000;
