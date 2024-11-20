@@ -1,8 +1,9 @@
 # NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models  
 *An open-source MATLAB package for system identification of ARX, NARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
 
-[![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-blue)](https://www.mathworks.com/products/matlab.html)  
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2017a-blue)](https://www.mathworks.com/products/matlab.html) 
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-blue)](https://www.mathworks.com/products/matlab.html) 
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 ---
 
@@ -12,7 +13,7 @@
 ### Features  
 - **Iterative OFR (iOFR)**: Improves term selection by iterating through multiple orthogonalisation paths to produce parsimonious models.  
 - **Simulation-based Model Selection**: Ensures simulation stability and enhances long-term prediction accuracy.  
-- **PRESS-statistic Integration**: Includes a PRESS-statistic-based term selection criterion that aims to minimise the leave-one-out cross-validation error. Therefore, the model can be validated without requiring separate validation datasets.  
+- **PRESS-statistic Integration**: Includes a PRESS-statistic based term selection criterion that aims to minimise the leave-one-out cross-validation error. Therefore, the model can be validated without requiring separate validation datasets.  
 - **Reduced Computational Time (RCT)**: Optimized procedures to accelerate model term selection for complex NARX models.  
 
 ---
