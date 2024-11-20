@@ -1,12 +1,10 @@
 clear;clc
-addpath('C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID');
+addpath('\...\NonSysID');
 
 %% Import data 
 
-u = readmatrix(...
-    'C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID\Example\Electro-mecahnical system\x_cc.csv');
-y = readmatrix(...
-    'C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID\Example\Electro-mecahnical system\y_cc.csv');
+u = readmatrix('\...\NonSysID\Data\x_cc.csv');
+y = readmatrix('\...\NonSysID\Data\y_cc.csv');
 
 %--- Down sample data ---%
 dwn_smpl = 100;
