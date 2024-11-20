@@ -36,7 +36,7 @@
     - add the folder 'NonSysId' to the Matlab path permanently using the 'pathtool' (https://uk.mathworks.com/help/matlab/ref/pathtool.html).
     - or use the 'addpath' command in the Matlab script to add the folder 'NonSysId' and use the functions within.   
 
-### References
+## References
 [1] S. B. Yuzhu Guo, L.Z. Guo and H.-L. Wei, “An iterative orthogonal forward regression algorithm,” International Journal of Systems Science, vol. 46, no. 5, pp. 776–789, 2015.
 
 [2] X. Hong, P. Sharkey, and K. Warwick, “Automatic nonlinear predictive model-construction algorithm using forward regression and the press statistic,” IEE Proceedings-Control Theory and Applications, vol. 150, no. 3, pp. 245–254, 2003.
