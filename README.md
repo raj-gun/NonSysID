@@ -37,7 +37,8 @@
     - or use the 'addpath' command in the Matlab script to add the folder 'NonSysId' and use the functions within (https://uk.mathworks.com/help/matlab/ref/addpath.html).
 
 ### Examples
-Basic use
+- Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
+- An example of how to identify a MISO NARX model is show in `xxx`      
 
 ## References
 [1] S. B. Yuzhu Guo, L.Z. Guo and H.-L. Wei, “An iterative orthogonal forward regression algorithm,” International Journal of Systems Science, vol. 46, no. 5, pp. 776–789, 2015.
