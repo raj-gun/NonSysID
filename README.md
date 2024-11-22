@@ -41,18 +41,16 @@
 - An example of how to identify a MISO NARX model is show in `xxx`      
 
 ## References
-[1] S. B. Yuzhu Guo, L.Z. Guo and H.-L. Wei, “An iterative orthogonal forward regression algorithm,” International Journal of Systems Science, vol. 46, no. 5, pp. 776–789, 2015.
+[1] M. Korenberg, S. Billings, Y. Liu, and P. McIlroy, “Orthogonal parameter estimation algorithm for non-linear stochastic systems,” Int. J. Control, vol. 48, no. 1, pp. 193–210„ 1988.
 
-[2] X. Hong, P. Sharkey, and K. Warwick, “Automatic nonlinear predictive model-construction algorithm using forward regression and the press statistic,” IEE Proceedings-Control Theory and Applications, vol. 150, no. 3, pp. 245–254, 2003.
+[2] S. Chen, S. Billings, and W. Luo, “Orthogonal least squares methods and their application to non-linear system identification,” Int. J. Control, vol. 50, no. 5, pp. 1873–1896„ 1989.
 
-[3] L. Ljung, System identification. Springer, 1998.
+[3] S. Billings, Nonlinear System Identification: NARMAX Methods In The Time, Frequency, And Spatio-Temporal Domains, vol. 13. Chichester, UK: John Wiley & Sons, Ltd, 2013.
 
-[4] S. Billings, Nonlinear System Identification: NARMAX Methods In The Time, Frequency, And Spatio-Temporal Domains, vol. 13. Chichester, UK: John Wiley & Sons, Ltd, 2013.
+[4] S. B. Yuzhu Guo, L.Z. Guo and H.-L. Wei, “An iterative orthogonal forward regression algorithm,” International Journal of Systems Science, vol. 46, no. 5, pp. 776–789, 2015.
 
-[5] S. Chen, S. Billings, and W. Luo, “Orthogonal least squares methods and their application to non-linear system identification,” Int. J. Control, vol. 50, no. 5, pp. 1873–1896„ 1989.
+[5] X. Hong, P. Sharkey, and K. Warwick, “Automatic nonlinear predictive model-construction algorithm using forward regression and the press statistic,” IEE Proceedings-Control Theory and Applications, vol. 150, no. 3, pp. 245–254, 2003.
 
-[6] S. Billings, M. Korenberg, and S. Chen, “Identification of non-linear output-affine systems using an orthogonal least squares algorithm,” 1987.
-
-[7] M. Korenberg, S. Billings, Y. Liu, and P. McIlroy, “Orthogonal parameter estimation algorithm for non-linear stochastic systems,” Int. J. Control, vol. 48, no. 1, pp. 193–210„ 1988.
+[6] L. Ljung, System identification. Springer, 1998.
 
 
