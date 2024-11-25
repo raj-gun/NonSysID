@@ -6,7 +6,14 @@ NARX model of a DC motor taken from [1]
 polinomiais autorregressivos e redes neurais artificiais,” in Proc. XIII Simpósio Brasileiro De Automação Inteligente,
 pp. 1–6, 2017.
 
-$$y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2) - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2) + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2$$
+y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2) - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2) + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2
+
+Inputs:
+  u - Input signal
+  e - Noise signal
+  n - Number of time steps
+Outputs:
+  y   - Simulated outpu
 %}
 a1 = 1.7813;
 a2 = -0.7962;
