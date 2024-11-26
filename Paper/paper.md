@@ -217,7 +217,7 @@ The correlation based statistical validation tests for nonlinear models [@Billin
 
 ## Real data example
 
-The real data in this example is obtained from an electromechanical system described in \cite{Lacerda2017b}. The system comprises two 6V DC motors mechanically coupled by a shaft. One motor acts as the driver, transferring mechanical energy, while the other operates as a generator, converting the mechanical energy into electrical energy. The system input is the voltage applied to the DC motor acting as the driver. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The output of the system is the rotational speed (angular velocity) of the generator motor.
+The real data in this example is obtained from an electromechanical system described in [@Lacerda2017b]. The system comprises two 6V DC motors mechanically coupled by a shaft. One motor acts as the driver, transferring mechanical energy, while the other operates as a generator, converting the mechanical energy into electrical energy. The system input is the voltage applied to the DC motor acting as the driver. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The output of the system is the rotational speed (angular velocity) of the generator motor.
 
 ![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg)
 
@@ -236,7 +236,7 @@ The real data in this example is obtained from an electromechanical system descr
 
 # Future Work
 
-Currently, the `NonSysId` package is capable of identifying single-input single-output (SISO) and multi-input single-output (MISO) models. However, the correlation-based residual analysis is limited to handling only SISO models. In the future, we plan to extend the package to identify multi-input multi-output (MIMO) and enable validation for both MISO and MIMO systems. In \cite{CHEN2006}, a local regularisation method for the OFR was introduced. This will be incorporated into $\text{iOFR}_{S}$. While the `NonSysId` package currently supports polynomial NARX models, future versions will broaden its scope to allow  $\text{iOFR}_{S}$ to be applied to a wider range of basis functions. Furthermore, an open-sourced Python version of this package is expected to be released in the future.
+Currently, the `NonSysId` package is capable of identifying single-input single-output (SISO) and multi-input single-output (MISO) models. However, the correlation-based residual analysis is limited to handling only SISO models. In the future, we plan to extend the package to identify multi-input multi-output (MIMO) and enable validation for both MISO and MIMO systems. In [@CHEN2006], a local regularisation method for the OFR was introduced. This will be incorporated into $\text{iOFR}_{S}$. While the `NonSysId` package currently supports polynomial NARX models, future versions will broaden its scope to allow  $\text{iOFR}_{S}$ to be applied to a wider range of basis functions. Furthermore, an open-sourced Python version of this package is expected to be released in the future.
 
 # References
 
