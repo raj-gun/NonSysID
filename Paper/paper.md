@@ -53,7 +53,7 @@ and past output instances (output-lagged terms),
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
 \end{equation}
 
-to the present output instance in time $y(t)$. $t$ here refers to a time index (i.e. $t$\textsuperscript{th} sample). $n_a$ and $n_b$ are the maximum number of past output and input time instances considered and are related to the Lyapunov exponents of the actual system that is being modelled [@mendes1998a]. The functional mapping is described by the following equation:
+to the present output instance in time $y(t)$. $t$ here refers to a time index (i.e. $t$^th^ sample). $n_a$ and $n_b$ are the maximum number of past output and input time instances considered and are related to the Lyapunov exponents of the actual system that is being modelled [@mendes1998a]. The functional mapping is described by the following equation:
 
 \begin{equation}\label{eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
@@ -65,13 +65,13 @@ where $y(t)$ and $u(t)$ refer to the output and input respectively, while $\xi(t
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
 \end{equation}
 
-where $m = 1, \cdots, M$, $M$ being the total number of variables or model terms. $\theta_{m}$ are the model parameters or coefficients and $\phi_{m}(t)$ are the corresponding model terms or variables. $\phi_{m}(t)$ are $n$\textsuperscript{th}-order monomials of the polynomial NARX model $f^{P}( \ )$, where $n = 1, \cdots, N_p$ is the degree of the monomial. $\phi_{m}(t)$ is composed of past output and input time instances from $Y$ and $U$. An example of a polynomial NARX model can be
+where $m = 1, \cdots, M$, $M$ being the total number of variables or model terms. $\theta_{m}$ are the model parameters or coefficients and $\phi_{m}(t)$ are the corresponding model terms or variables. $\phi_{m}(t)$ are $n$^th^-order monomials of the polynomial NARX model $f^{P}( \ )$, where $n = 1, \cdots, N_p$ is the degree of the monomial. $\phi_{m}(t)$ is composed of past output and input time instances from $Y$ and $U$. An example of a polynomial NARX model can be
 
 \begin{equation}\label{eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
 \end{equation}
 
-In this example, $\phi_{1}(t)=y(t-1)$ and $\phi_{2}(t)=u(t-2)$ have a degree of 1 and are the linear terms (1\textsuperscript{st} order monomials or linear monomials) of the model. $\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}$ is a nonlinear term with a degree of $5$ (5\textsuperscript{th} order monomial, more generally a nonlinear monomial). The NARX model given in Eq. \autoref{eq:narx_exmpl} has a polynomial degree $N_p=5$ (highest degree of any monomial). Given that the total number of time samples available is $L$, where $t = 1, \cdots, L$, Eq. \autoref{eq:sys_id_func_summation} can be represented in matrix form as
+In this example, $\phi_{1}(t)=y(t-1)$ and $\phi_{2}(t)=u(t-2)$ have a degree of 1 and are the linear terms (1\textsuperscript{st} order monomials or linear monomials) of the model. $\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}$ is a nonlinear term with a degree of $5$ (5^th^ order monomial, more generally a nonlinear monomial). The NARX model given in Eq. \autoref{eq:narx_exmpl} has a polynomial degree $N_p=5$ (highest degree of any monomial). Given that the total number of time samples available is $L$, where $t = 1, \cdots, L$, Eq. \autoref{eq:sys_id_func_summation} can be represented in matrix form as
 
 \begin{equation}\label{eq:sys_id_func_mat}
 \mathbf{Y} = \mathbf{\Phi} \mathbf{\Theta} + \mathbf{\Xi},
@@ -213,7 +213,7 @@ Fig. \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io} depict the traini
 
 ![Model validation results for input (b). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_b_val}](Figures/ex_dc_motor_b_200_vald.svg)
 
-The correlation based statistical validation tests for nonlinear models [@Billings1983] are presented in Fig. \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. These validation tests are conducted on the training data (yellow region of $y(t)$ in Fig. \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io}). From the auto-correlation function (ACF) of the residuals, it is observed that the model residuals, in both cases (a) and (b), are not entirely white noise. Additionally, in Fig. \autoref{fig:narx_eg_b_val}, the cross-correlation functions (Cross-CF) between the input $u(t)$ and the model residuals are not completely within the tolerance bounds, indicating some bias in the model. However, the variance of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. This shows that the bias of the identified model is minimal. As such, even though the identified terms and parameters (`Tables 1 and 2`) are similar to the actual system (Eq. \eqref{eq:NARX_eg}), the parameters do have differences considering from the 4\textsuperscript{th} decimal place and beyond.
+The correlation based statistical validation tests for nonlinear models [@Billings1983] are presented in Fig. \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. These validation tests are conducted on the training data (yellow region of $y(t)$ in Fig. \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io}). From the auto-correlation function (ACF) of the residuals, it is observed that the model residuals, in both cases (a) and (b), are not entirely white noise. Additionally, in Fig. \autoref{fig:narx_eg_b_val}, the cross-correlation functions (Cross-CF) between the input $u(t)$ and the model residuals are not completely within the tolerance bounds, indicating some bias in the model. However, the variance of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. This shows that the bias of the identified model is minimal. As such, even though the identified terms and parameters (`Tables 1 and 2`) are similar to the actual system (Eq. \eqref{eq:NARX_eg}), the parameters do have differences considering from the 4^th^ decimal place and beyond.
 
 ## Real data example
 
