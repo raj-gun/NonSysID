@@ -38,7 +38,7 @@
 
 ### Examples
 - Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
-- An example of how to identify a MISO NARX model is show in `xxx`      
+- An example of how to identify a MISO NARX model is show in `Examples/Hystersis_model_MISO`.      
 
 ## References
 [1] M. Korenberg, S. Billings, Y. Liu, and P. McIlroy, “Orthogonal parameter estimation algorithm for non-linear stochastic systems,” Int. J. Control, vol. 48, no. 1, pp. 193–210„ 1988.
