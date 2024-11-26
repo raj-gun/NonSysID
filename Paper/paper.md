@@ -234,6 +234,12 @@ The real data in this example is obtained from an electromechanical system descr
 
 ![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg)
 
+# Future Work
+
+Currently, the `NonSysId' package is capable of identifying single-input single-output (SISO) and multi-input single-output (MISO) models. However, the correlation-based residual analysis is limited to handling only SISO models. In the future, we plan to extend the package to identify multi-input multi-output (MIMO) and enable validation for both MISO and MIMO systems. In \cite{CHEN2006}, a local regularisation method for the OFR was introduced. This will be incorporated into $\text{iOFR}_{S}$. While the `NonSysId' package currently supports polynomial NARX models, future versions will broaden its scope to allow  $\text{iOFR}_{S}$ to be applied to a wider range of basis functions. Furthermore, an open-sourced Python version of this package is expected to be released in the future.
+
+# References
+
 
 
 
