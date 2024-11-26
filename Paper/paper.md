@@ -215,6 +215,25 @@ Tables \ref{tbl:inpt_a_param} and \ref{tbl:inpt_b_param} present the identified 
 
 The correlation based statistical validation tests for nonlinear models [@Billings1983] are presented in Fig. \ref{fig:narx_eg_a_val} and \ref{fig:narx_eg_b_val}. These validation tests are conducted on the training data (yellow region of $y(t)$ in Fig. \ref{fig:narx_eg_a_io} and \ref{fig:narx_eg_b_io}). From the auto-correlation function (ACF) of the residuals, it is observed that the model residuals, in both cases (a) and (b), are not entirely white noise. Additionally, in Fig. \ref{fig:narx_eg_b_val}, the cross-correlation functions (Cross-CF) between the input $u(t)$ and the model residuals are not completely within the tolerance bounds, indicating some bias in the model. However, the variance of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. This shows that the bias of the identified model is minimal. As such, even though the identified terms and parameters (Tables \ref{tbl:inpt_a_param} and \ref{tbl:inpt_b_param}) are similar to the actual system (Eq. \eqref{eq:NARX_eg}), the parameters do have differences considering from the 4\textsuperscript{th} decimal place and beyond.
 
+## Real data example
+
+The real data in this example is obtained from an electromechanical system described in \cite{Lacerda2017b}. The system comprises two 6V DC motors mechanically coupled by a shaft. One motor acts as the driver, transferring mechanical energy, while the other operates as a generator, converting the mechanical energy into electrical energy. The system input is the voltage applied to the DC motor acting as the driver. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The output of the system is the rotational speed (angular velocity) of the generator motor.
+
+![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg)
+
+*Table 3: The model identified from the data generated from the system in [@Lacerda2017b]*
+| **Model term**       | **Mean squared PRESS error** | **ERR**                    | **Parameters/Coefficients** |
+|-----------------------|-----------------------------|-----------------------------|-----------------------------|
+| $y(t-1)$             | $8128.5$                   | $0.49526$                  | $1.7844$                   |
+| $y(t-2)$             | $975.85$                   | $0.00028497$               | $-0.79156$                 |
+| $u(t-1)$             | $318.88$                   | $2.6363 \times 10^{-5}$    | $47.205$                   |
+| $y(t-2)u(t-1)$       | $158.23$                   | $6.211 \times 10^{-6}$     | $-0.037612$                |
+| $y(t-3)u(t-1)$       | $1.2306 \times 10^{7}$     | $0.50441$                  | $0.030086$                 |
+| $u(t-2)u(t-2)$       | $91.271$                   | $2.5147 \times 10^{-6}$    | $1.89$                     |
+| $u(t-2)u(t-3)$       | $71.842$                   | $7.2261 \times 10^{-7}$    | $-0.91694$                 |
+
+![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg)
+
 
 
 
