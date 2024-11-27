@@ -1,12 +1,14 @@
 function [theta,X_main,trm_chsn_lin,trm_chsn_lin_org,n_lin_trms_org,trm_lag_char_lin_incld,trm_chsn_nl,trm_lag_char_tot,...
     iOFR_table_lin,iOFR_table_nl,ERR_table_lin,ERR_table_nl,best_mod_ind_lin,best_mod_ind_nl,Mod_Val_dat]...
-    = Sys_ID_iOFRs_PRESS(RCT,mod_type,U_delay_mat,k,X,Y,Y_sim,Sim_ini_val,min_dyn_ord_u,max_dyn_ord_u,min_dyn_ord_y,max_dyn_ord_y,nl_ord_max,is_bias,inpt0,stp_cri,alph,D1_thresh,displ,x_iOFR)
+    = Sys_ID_iOFRs_PRESS(RCT,mod_type,U_delay_mat,k,X,Y,Y_sim,Sim_ini_val,min_dyn_ord_u,max_dyn_ord_u,min_dyn_ord_y,max_dyn_ord_y,nl_ord_max,is_bias,inpt0,stp_cri,alph,D1_thresh,displ,x_iOFR,parall)
 %#codegen
 %% Initialisation
 warning('off');
 size_X = size(X);
-n_terms_y = sum(max_dyn_ord_y);
-n_terms_u = sum(max_dyn_ord_u);
+n_terms_yi = max_dyn_ord_y-min_dyn_ord_y+1; %No. of lagged terms from each output
+n_terms_ui = max_dyn_ord_u-min_dyn_ord_u+1; %No. of lgged terms from each input
+n_terms_y = sum(n_terms_yi);
+n_terms_u = sum(n_terms_ui);
 dat_len = size_X(1); %Data length
 no_outpts = length(max_dyn_ord_y); % No. of outputs
 no_inpts = length(max_dyn_ord_u); % No. of inputs
@@ -21,9 +23,8 @@ else
     y_lag_lin_srt = Sim_ini_val;
 end
 
-n_terms_y = (max_dyn_ord_y - min_dyn_ord_y)+1; % Total number of linear output lagged terms
 % Form the character-based identifiers for model terms
-[trm_lag_char_lin, X] = iOFR_trm_char(no_outpts, max_dyn_ord_y, no_inpts, inpt0, max_dyn_ord_u, n_terms_y, n_terms_u, mod_type, is_bias, min_dyn_ord_y, min_dyn_ord_u, X, dat_len);
+[trm_lag_char_lin, X] = iOFR_trm_char(no_outpts, max_dyn_ord_y, no_inpts, inpt0, max_dyn_ord_u, mod_type, is_bias, min_dyn_ord_y, min_dyn_ord_u, X, dat_len);
 size_X = size(X);
 if is_bias == 1; n_terms = size_X(2)-1; else; n_terms = size_X(2); end
 dat_len = size_X(1);
@@ -42,9 +43,16 @@ best_msse_prev = 1;
 best_press_prev = 1;
 
 %Identify linear model
-[iOFR_table_lin, trm_chsn_lin, best_press, best_msse, theta_lin, ERR_table_lin, best_mod_ind_lin] = iOFRs_lin_SysID...
-    (n_lin_trms_rem, is_bias, trm_chsn_lin, n_terms, k, X_main, Y, Y_sim, n_terms_y, U_delay_mat, n_lin_trms_org,...
-    y_lag_lin_srt, trm_lag_char_lin, stp_cri{1}, D1_thresh(1), alph, displ, dat_len, x_iOFR(1), best_msse_prev, best_press_prev);
+if parall(1) == 0
+    [iOFR_table_lin, trm_chsn_lin, best_press, best_msse, theta_lin, ERR_table_lin, best_mod_ind_lin] = iOFRs_lin_SysID...
+        (n_lin_trms_rem, is_bias, trm_chsn_lin, n_terms, k, X_main, Y, Y_sim, n_terms_y, U_delay_mat, n_lin_trms_org,...
+        y_lag_lin_srt, trm_lag_char_lin, stp_cri{1}, D1_thresh(1), alph, displ, dat_len, x_iOFR(1), best_msse_prev, best_press_prev);
+else
+    [iOFR_table_lin, trm_chsn_lin, best_press, best_msse, theta_lin, ERR_table_lin, best_mod_ind_lin] = iOFRs_lin_SysID_P...
+        (n_lin_trms_rem, is_bias, trm_chsn_lin, n_terms, k, X_main, Y, Y_sim, n_terms_y, U_delay_mat, n_lin_trms_org,...
+        y_lag_lin_srt, trm_lag_char_lin, stp_cri{1}, D1_thresh(1), alph, displ, dat_len, x_iOFR(1), best_msse_prev, best_press_prev);
+end
+    
 
 if is_bias == 0
     X_main = X_main(:,trm_chsn_lin);
@@ -86,9 +94,15 @@ if nl_ord_max >= 2
     if is_bias == 1;bias_trms_ind = n_trms+1;else;bias_trms_ind = 0;end
 
     %Identify nonlinear model
-    [trm_chsn_lin_temp, iOFR_table_nl, trm_chsn_nl, best_mod_ind_nl, ERR_table_nl, trm_lag_char_tot_nl, theta_nl, X_main_nl, Mod_Val_dat_nl] = iOFRs_nl_SysID...
-        (trm_chsn_lin, n_trms_rem, is_bias, trms, bias_trms_ind, k, X, X_main_org, Y, Y_sim, n_terms_y, U_delay_mat, trm_chsn_lin_org,...
-        n_lin_trms_org, n_lin_trms, y_lag_lin_srt, nl_ord_max, trm_chsn_nl, trm_lag_char_tot, stp_cri{2}, alph, D1_thresh(2), displ, dat_len, x_iOFR(2), best_msse_prev, best_press_prev);
+    if parall(2)==0
+        [trm_chsn_lin_temp, iOFR_table_nl, trm_chsn_nl, best_mod_ind_nl, ERR_table_nl, trm_lag_char_tot_nl, theta_nl, X_main_nl, Mod_Val_dat_nl] = iOFRs_nl_SysID...
+            (trm_chsn_lin, n_trms_rem, is_bias, trms, bias_trms_ind, k, X, X_main_org, Y, Y_sim, n_terms_y, U_delay_mat, trm_chsn_lin_org,...
+            n_lin_trms_org, n_lin_trms, y_lag_lin_srt, nl_ord_max, trm_chsn_nl, trm_lag_char_tot, stp_cri{2}, alph, D1_thresh(2), displ, dat_len, x_iOFR(2), best_msse_prev, best_press_prev);
+    else
+        [trm_chsn_lin_temp, iOFR_table_nl, trm_chsn_nl, best_mod_ind_nl, ERR_table_nl, trm_lag_char_tot_nl, theta_nl, X_main_nl, Mod_Val_dat_nl] = iOFRs_nl_SysID_P...
+            (trm_chsn_lin, n_trms_rem, is_bias, trms, bias_trms_ind, k, X, X_main_org, Y, Y_sim, n_terms_y, U_delay_mat, trm_chsn_lin_org,...
+            n_lin_trms_org, n_lin_trms, y_lag_lin_srt, nl_ord_max, trm_chsn_nl, trm_lag_char_tot, stp_cri{2}, alph, D1_thresh(2), displ, dat_len, x_iOFR(2), best_msse_prev, best_press_prev);
+    end
     %-------
     
     if length(theta_nl) ~= 1

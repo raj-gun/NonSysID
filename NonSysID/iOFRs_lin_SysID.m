@@ -4,7 +4,7 @@ function [iOFR_table_lin, trm_chsn_lin, best_press, best_msse, theta_lin, ERR_ta
 cnt = 1;
 while true
     iOFR_table_lin = cell(n_lin_trms_rem,14);
-    parfor j = 1:n_lin_trms_rem
+    for j = 1:n_lin_trms_rem
         if is_bias == 0
             frc_ind_temp = trm_chsn_lin(j);
         else                 % if a bias is needed then the bias term is chosen first followed by other terms
