@@ -1,6 +1,6 @@
 %% Clear workspace and add NonSydID to the search path
 clear;clc
-addpath('C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID-main\NonSysID-main\NonSysID');
+addpath('\...\NonSysID');
 %% Generate inputs and simulate MISO NARX model
 % Parameters
 fs = 500;                 % Sampling frequency (Hz)
