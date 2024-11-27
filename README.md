@@ -39,7 +39,31 @@
 
 ### Examples
 - Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
-- An example of how to identify a MISO NARX model is show in `Examples/Hystersis_model_MISO`.      
+- An example of how to identify a MISO NARX model is show in `Examples/Hystersis_model_MISO`.
+
+## Paper
+
+If you are using NonSysId in academia, please cite our paper:
+
+**NonSysId: A nonlinear system identification package with improved model term selection for NARMAX models**
+
+Rajintha Gunawardena, Zi-Qiang Lang, Fei He
+
+[https://www.biorxiv.org/content/10.1101/769299v1](https://arxiv.org/abs/2411.16475)
+
+DOI: [10.48550/arXiv.2411.16475](https://doi.org/10.48550/arXiv.2411.16475)
+
+```
+@misc{10.48550/arXiv.2411.16475,
+      title={NonSysId: A nonlinear system identification package with improved model term selection for NARMAX models}, 
+      author={Rajintha Gunawardena and Zi-Qiang Lang and Fei He},
+      year={2024},
+      eprint={2411.16475},
+      archivePrefix={arXiv},
+      primaryClass={eess.SY},
+      url={https://arxiv.org/abs/2411.16475}, 
+}
+```      
 
 ## References
 [1] M. Korenberg, S. Billings, Y. Liu, and P. McIlroy, “Orthogonal parameter estimation algorithm for non-linear stochastic systems,” Int. J. Control, vol. 48, no. 1, pp. 193–210„ 1988.
