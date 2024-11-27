@@ -1,6 +1,6 @@
 %% Clear workspace and add NonSydID to the search path
 clear;clc
-addpath('C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID\Github\NonSysID');
+addpath('C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID-main\NonSysID-main\NonSysID');
 %% Generate inputs and simulate MISO NARX model
 % Parameters
 fs = 500;                 % Sampling frequency (Hz)
@@ -52,7 +52,7 @@ x_iOFR = [false,false];
 stp_cri = {'PRESS_thresh', 'PRESS_thresh'}; 
 % Set value for stopping criteria for [linear model ,nonlinear model]
 % The stopping criteria relates to how many terms are added to the model
-D1_thresh = [10^(-4),10^(-4)];
+D1_thresh = [10^(-4),10^(-5)];
 
 % Specify if bias/DC off set is required, 0, or not, 1.
 is_bias=0;
@@ -65,17 +65,19 @@ KSA_h=20;
 
 % Specify which RCT (Reduce Computational Time) method to use, 1-4, 0 for
 % no RCT.
-RCT=4;
+RCT=3;
 
 % Specify whether to simulate model and display results respectively
 sim=[1,1];
 % Set to 1 to display all models generated from iOFRs, 0 otherwise 
 displ=0; 
+% Set 1 or 0 to use parallel processing to accelerate iOFRs, for [linear model ,nonlinear model]
+parall = [1,1];
 
 % Run NonSysID
 tic
 [model, Mod_Val_dat, iOFR_table_lin, iOFR_table_nl, best_mod_ind_lin, best_mod_ind_nl, val_stats] = ...
-    NonSysID(mod_type,u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,n_inpts,KSA_h,RCT,x_iOFR,stp_cri,D1_thresh,displ,sim);
+    NonSysID(mod_type,u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,n_inpts,KSA_h,RCT,x_iOFR,stp_cri,D1_thresh,displ,sim,parall);
 toc
 
 disp('ARX model:'); disp(iOFR_table_lin{best_mod_ind_lin,1});
