@@ -25,7 +25,7 @@
 - MATLAB R2017a or later.  
 - Required MATLAB Toolboxes:  
   - **Signal Processing Toolbox** (required if using earlier than Matlab 2019a, for correlation analysis).
-  - **Parallel Computing Toolbox** (required for accelerating $\mathbf{iOFR}_{S}$).
+  - **Parallel Computing Toolbox** (required for accelerating system identification procedures).
 
 ### Installation  
 1. Clone the repository:  
@@ -40,7 +40,7 @@
 
 ### Examples
 - Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
-- An example of how to identify a MISO NARX model is show in `Examples/Hystersis_model_MISO`.
+- An example of identifying a MISO NARX model is shown in `Examples/Hystersis_model_MISO`.
 
 ## Paper
 
