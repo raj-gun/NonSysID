@@ -9,10 +9,7 @@ addpath('\...\NonSysID');
 n = 1000; % Length of the data series
 Ts = 1/800; tspan = 0:Ts:(n-1)*Ts;
 u = (4.*sin(pi.*tspan) + 1.2.*sin(4.*pi.*tspan) + 1.5.*sin(8.*pi.*tspan) + 0.5.*sin(6.*pi.*tspan))'.*0.2;
-% rng(1165201434);
-rng shuffle; s=rng;
 e = 0 .* randn(n, 1); % Small noise term
-
 y = DC_motor_narx_model(n, u, e); % Simulate the NARX model
 %% System Identification - NonSysID
 tt_splt = 1:200; %Training samples of data
@@ -35,9 +32,9 @@ nl_ord_max=2;
 x_iOFR = [false,false];
 
 % Stoping criteria for [linear model ,nonlinear model]. PRESS_thresh/BIC_thresh
-stp_cri = ['PRESS_thresh', 'PRESS_thresh']; 
+stp_cri = {'PRESS_thresh', 'PRESS_thresh'}; 
 % Set value for stopping criteria for [linear model ,nonlinear model]
-D1_thresh = [1e-4,10^(-4)];
+D1_thresh = [1e-8,10^(-12)];
 
 % Specify if bias/DC off set is required, 0, or not, 1.
 is_bias=0;

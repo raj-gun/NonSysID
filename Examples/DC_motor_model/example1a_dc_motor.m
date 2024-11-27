@@ -1,5 +1,5 @@
 close all;clear;clc
-addpath('\...\NonSysID');
+addpath('C:\Users\ae4159\OneDrive - Coventry University\PhD project\Matlab files\NonSysID-main\NonSysID-main\NonSysID');
 
 %% Generate data from the system
 % Simple MATLAB script to simulate the NARX model
@@ -34,9 +34,9 @@ nl_ord_max=2;
 x_iOFR = [false,false];
 
 % Stoping criteria for [linear model ,nonlinear model]. PRESS_thresh/BIC_thresh
-stp_cri = ['PRESS_thresh', 'PRESS_thresh']; 
+stp_cri = {'PRESS_thresh', 'PRESS_thresh'}; 
 % Set value for stopping criteria for [linear model ,nonlinear model]
-D1_thresh = [1e-4,10^(-4)];
+D1_thresh = [1e-4,10^(-7)];
 
 % Specify if bias/DC off set is required, 0, or not, 1.
 is_bias=0;
