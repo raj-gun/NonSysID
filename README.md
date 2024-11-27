@@ -25,6 +25,7 @@
 - MATLAB R2017a or later.  
 - Required MATLAB Toolboxes:  
   - **Signal Processing Toolbox** (required if using earlier than Matlab 2019a, for correlation analysis).
+  - **Parallel Computing Toolbox** (required for accelerating $\mathbf{iOFR}_{S}$).
 
 ### Installation  
 1. Clone the repository:  
