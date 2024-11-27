@@ -49,8 +49,6 @@ If you are using the NonSysId package for academic purposes, kindly reference ou
 
 Rajintha Gunawardena, Zi-Qiang Lang, Fei He
 
-[https://www.biorxiv.org/content/10.1101/769299v1](https://arxiv.org/abs/2411.16475)
-
 DOI: [10.48550/arXiv.2411.16475](https://doi.org/10.48550/arXiv.2411.16475)
 
 ```
