@@ -179,8 +179,6 @@ In Eq. \eqref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the s
 
 ![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a Gaussian white noise signal $u(t)\sim\mathcal{N}(0,1)$. Only the first 60 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this case is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg)
 
-Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (a), white noise
-
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
 | $y(t-1)$          | $1.342 \times 10^{-3}$       | $0.95001$               | $\ \ 1.7813$            |
@@ -195,11 +193,9 @@ Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 : The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (a), white noise \label{tbl:inpt_a_param}
 
 
-`Tables 1 and 2` present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting `Tables 1 and 2` in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
+\autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} `Tables 1 and 2` present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting `Tables 1 and 2` in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
 
 ![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a multi-tone sinusoidal signal given by $u(t) = 0.2\big( 4\sin{(\pi t)} + 1.2\sin{(4\pi t)} + 1.5\sin{(8\pi t)} + 0.5\sin{(6\pi t)} \big)$. In this case, the portion of $y(t)$ used for identification/training (yellow curve) is less informative compared to input (a), as fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, up to 200 samples are used for identifying the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this scenario is $8.2178e^{-18}$. Using fewer than 200 samples results a sub-optimal model, as insufficient data limits the ability to capture the system's dynamics effectively.\label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg)
-
-Table 2: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
@@ -212,7 +208,7 @@ Table 2: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 | $y(t-2)y(t-2)$    | $3.8123 \times 10^{-9}$      | $4.6086 \times 10^{-8}$ | $0.0085$                |
 | $y(t-2)u(t-1)$    | $1.9182 \times 10^{-25}$     | $6.4198 \times 10^{-12}$| $0.1297$                |
 | $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
-
+: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
 
 
 ![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg)
@@ -227,8 +223,6 @@ The real data in this example is obtained from an electromechanical system descr
 
 ![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg)
 
-Table 3: The model identified from the data generated from the system in [@Lacerda2017b]
-
 | Model term        |  Mean squared PRESS error   | ERR                     | Parameters/Coefficients |
 |-------------------|-----------------------------|-------------------------|-------------------------|
 | $y(t-1)$          | $8128.5$                    | $0.49526$               | $1.7844$                |
@@ -238,7 +232,7 @@ Table 3: The model identified from the data generated from the system in [@Lacer
 | $y(t-3)u(t-1)$    | $1.2306 \times 10^{7}$      | $0.50441$               | $0.030086$              |
 | $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $1.89$                  |
 | $u(t-2)u(t-3)$    | $71.842$                    | $7.2261 \times 10^{-7}$ | $-0.91694$              |
-
+: The model identified from the data generated from the system in [@Lacerda2017b] \label{tbl:narx_eg_rldt_val}
 
 ![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg)
 
