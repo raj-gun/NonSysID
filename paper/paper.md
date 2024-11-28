@@ -192,7 +192,17 @@ Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 | y(t-2)u(t-1)     | 3.7241 x 10<sup>-7</sup>   | 2.9966 x 10<sup>-5</sup>  |  0.1297                 |
 | y(t-2)u(t-2)     | 4.6109 x 10<sup>-5</sup>   | 2.8901 x 10<sup>-5</sup>  |  0.1086                 |
 
-
+| Model term       | Mean squared PRESS error   | ERR                       | Parameters/Coefficients |
+|:----------------:|:--------------------------:|:-------------------------:|:-----------------------:|
+| y(t-1)           | 1.342 x 10^(-3)            | 0.95001                   |  1.7813                 |
+| y(t-2)           | 1.6759 x 10^(-4)           | 2.255 x 10^(-3)           | -0.7962                 |
+| u(t-1)           | 0.47871                    | 4.7434 x 10^(-2)          |  0.0339                 |
+| u(t-2)           | 6.8123 x 10^(-5)           | 1.8925 x 10^(-4)          |  0.0338                 |
+| y(t-1)u(t-1)     | 2.2653 x 10^(-5)           | 3.6489 x 10^(-5)          | -0.1597                 |
+| y(t-1)u(t-2)     | 6.1439 x 10^(-5)           | 1.9004 x 10^(-5)          | -0.1396                 |
+| y(t-2)y(t-2)     | 3.1515 x 10^(-30)          | 5.3837 x 10^(-7)          |  0.0085                 |
+| y(t-2)u(t-1)     | 3.7241 x 10^(-7)           | 2.9966 x 10^(-5)          |  0.1297                 |
+| y(t-2)u(t-2)     | 4.6109 x 10^(-5)           | 2.8901 x 10^(-5)          |  0.1086                 |
 
 `Tables 1 and 2` present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting `Tables 1 and 2` in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
 
