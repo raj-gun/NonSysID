@@ -201,7 +201,7 @@ Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 
 Table 2: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid
 
-| Model term        | Mean squared\nPRESS error    | ERR                     | Parameters/Coefficients |
+| Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
 | $y(t-1)$          | $1.2209 \times 10^{-4}$      | $0.1035$                | $1.7813$                |
 | $y(t-2)$          | $7.0858 \times 10^{-7}$      | $1.7841 \times 10^{-4}$ | $-0.7962$               |
@@ -229,7 +229,7 @@ The real data in this example is obtained from an electromechanical system descr
 
 Table 3: The model identified from the data generated from the system in [@Lacerda2017b]
 
-| Model term        | Mean squared\nPRESS error   | ERR                     | Parameters/Coefficients |
+| Model term        |  Mean squared PRESS error   | ERR                     | Parameters/Coefficients |
 |-------------------|-----------------------------|-------------------------|-------------------------|
 | $y(t-1)$          | $8128.5$                    | $0.49526$               | $1.7844$                |
 | $y(t-2)$          | $975.85$                    | $0.00028497$            | $-0.79156$              |
