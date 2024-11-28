@@ -193,6 +193,19 @@ Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 | y(t-2)u(t-1)     | 3.7241 x 10^(-7)^          | 2.9966 x 10^(-5)^ |  0.1297                 |
 | y(t-2)u(t-2)     | 4.6109 x 10^(-5)^          | 2.8901 x 10^(-5)^ |  0.1086                 |
 
+| Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
+|-------------------|------------------------------|-------------------------|-------------------------|
+| $y(t-1)$          | $1.342 \times 10^{-3}$       | $0.95001$               | $1.7813$                |
+| $y(t-2)$          | $1.6759 \times 10^{-4}$      | $2.255 \times 10^{-3}$  | $-0.7962$               |
+| $u(t-1)$          | $0.47871$                    | $4.7434 \times 10^{-2}$ | $0.0339$                |
+| $u(t-2)$          | $6.8123 \times 10^{-5}$      | $1.8925 \times 10^{-4}$ | $0.0338$                |
+| $y(t-1)u(t-1)$    | $2.2653 \times 10^{-5}$      | $3.6489 \times 10^{-5}$ | $-0.1597$               |
+| $y(t-1)u(t-2)$    | $6.1439 \times 10^{-5}$      | $1.9004e \times 10^{-5}$| $-0.1396$               |
+| $y(t-2)y(t-2)$    | $3.1515 \times 10^{-30}$     | $5.3837e \times 10^{-7}$| $0.0085$                |
+| $y(t-2)u(t-1)$    | $3.7241 \times 10^{-7}$      | $2.9966e \times 10^{-5}$| $0.1297$                |
+| $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $0.1086$                |
+
+
 `Tables 1 and 2` present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting `Tables 1 and 2` in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
 
 ![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a multi-tone sinusoidal signal given by $u(t) = 0.2\big( 4\sin{(\pi t)} + 1.2\sin{(4\pi t)} + 1.5\sin{(8\pi t)} + 0.5\sin{(6\pi t)} \big)$. In this case, the portion of $y(t)$ used for identification/training (yellow curve) is less informative compared to input (a), as fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, up to 200 samples are used for identifying the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this scenario is $8.2178e^{-18}$. Using fewer than 200 samples results a sub-optimal model, as insufficient data limits the ability to capture the system's dynamics effectively.\label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg)
