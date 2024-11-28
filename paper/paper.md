@@ -181,29 +181,17 @@ Fig. \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io} depict the traini
 
 Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (a), white noise
 
-| Model term       | Mean squared PRESS error   | ERR               | Parameters/Coefficients |
-|:----------------:|:--------------------------:|:-----------------:|:-----------------------:|
-| $y(t-1)$           | 1.342 x 10^-3^           | 0.95001           |  1.7813                 |
-| y(t-2)           | 1.6759 x 10^(-4)^          | 2.255 x 10^(-3)^  | -0.7962                 |
-| u(t-1)           | 0.47871                    | 4.7434 x 10^(-2)^ |  0.0339                 |
-| u(t-2)           | 6.8123 x 10^(-5)^          | 1.8925 x 10^(-4)^ |  0.0338                 |
-| y(t-1)u(t-1)     | 2.2653 x 10^(-5)^          | 3.6489 x 10^(-5)^ | -0.1597                 |
-| y(t-1)u(t-2)     | 6.1439 x 10^(-5)^          | 1.9004 x 10^(-5)^ | -0.1396                 |
-| y(t-2)y(t-2)     | 3.1515 x 10^(-30)^         | 5.3837 x 10^(-7)^ |  0.0085                 |
-| y(t-2)u(t-1)     | 3.7241 x 10^(-7)^          | 2.9966 x 10^(-5)^ |  0.1297                 |
-| y(t-2)u(t-2)     | 4.6109 x 10^(-5)^          | 2.8901 x 10^(-5)^ |  0.1086                 |
-
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
-| $y(t-1)$          | $1.342 \times 10^{-3}$       | $0.95001$               | $\ 1.7813$              |
+| $y(t-1)$          | $1.342 \times 10^{-3}$       | $0.95001$               | $\ \ 1.7813$            |
 | $y(t-2)$          | $1.6759 \times 10^{-4}$      | $2.255 \times 10^{-3}$  | $-0.7962$               |
-| $u(t-1)$          | $0.47871$                    | $4.7434 \times 10^{-2}$ | $\ 0.0339$              |
-| $u(t-2)$          | $6.8123 \times 10^{-5}$      | $1.8925 \times 10^{-4}$ | $\ 0.0338$              |
+| $u(t-1)$          | $0.47871$                    | $4.7434 \times 10^{-2}$ | $\ \ 0.0339$            |
+| $u(t-2)$          | $6.8123 \times 10^{-5}$      | $1.8925 \times 10^{-4}$ | $\ \ 0.0338$            |
 | $y(t-1)u(t-1)$    | $2.2653 \times 10^{-5}$      | $3.6489 \times 10^{-5}$ | $-0.1597$               |
 | $y(t-1)u(t-2)$    | $6.1439 \times 10^{-5}$      | $1.9004e \times 10^{-5}$| $-0.1396$               |
-| $y(t-2)y(t-2)$    | $3.1515 \times 10^{-30}$     | $5.3837e \times 10^{-7}$| $\ 0.0085$              |
-| $y(t-2)u(t-1)$    | $3.7241 \times 10^{-7}$      | $2.9966e \times 10^{-5}$| $\ 0.1297$              |
-| $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $\ 0.1086$              |
+| $y(t-2)y(t-2)$    | $3.1515 \times 10^{-30}$     | $5.3837e \times 10^{-7}$| $\ \ 0.0085$            |
+| $y(t-2)u(t-1)$    | $3.7241 \times 10^{-7}$      | $2.9966e \times 10^{-5}$| $\ \ 0.1297$            |
+| $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $\ \ 0.1086$            |
 
 
 `Tables 1 and 2` present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting `Tables 1 and 2` in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
@@ -212,17 +200,18 @@ Table 1: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input 
 
 Table 2: The model identified when Eq. \eqref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid
 
-| Model term     | Mean squared PRESS error  | ERR                | Parameters/Coefficients |
-|:--------------:|:-------------------------:|:------------------:|:-----------------------:|
-| y(t-1)         | 1.2209 x 10^(-4)^         | 0.1035             |  1.7813                 |
-| y(t-2)         | 7.0858 x 10^(-7)^         | 1.7841 x 10^(-4)^  | -0.7962                 |
-| u(t-1)         | 2.8085 x 10^(-9)^         | 2.5768 x 10^(-9)^  |  0.0339                 |
-| u(t-2)         | 3.7183 x 10^(-8)^         | 3.5856 x 10^(-7)^  |  0.0338                 |
-| y(t-1)u(t-1)   | 4.5778 x 10^(-12)^        | 2.7792 x 10^(-9)^  | -0.1597                 |
-| y(t-1)u(t-2)   | 2.9234 x 10^(-7)^         | 6.0493 x 10^(-7)^  | -0.1396                 |
-| y(t-2)y(t-2)   | 3.8123 x 10^(-9)^         | 4.6086 x 10^(-8)^  |  0.0085                 |
-| y(t-2)u(t-1)   | 1.9182 x 10^(-25)^        | 6.4198 x 10^(-12)^ |  0.1297                 |
-| y(t-2)u(t-2)   | 7.0559 x 10^(-2)^         | 0.89632            |  0.1086                 |
+| Model term        | Mean squared\nPRESS error    | ERR                     | Parameters/Coefficients |
+|-------------------|------------------------------|-------------------------|-------------------------|
+| $y(t-1)$          | $1.2209 \times 10^{-4}$      | $0.1035$                | $1.7813$                |
+| $y(t-2)$          | $7.0858 \times 10^{-7}$      | $1.7841 \times 10^{-4}$ | $-0.7962$               |
+| $u(t-1)$          | $2.8085 \times 10^{-9}$      | $2.5768 \times 10^{-9}$ | $0.0339$                |
+| $u(t-2)$          | $3.7183 \times 10^{-8}$      | $3.5856 \times 10^{-7}$ | $0.0338$                |
+| $y(t-1)u(t-1)$    | $4.5778 \times 10^{-12}$     | $2.7792 \times 10^{-9}$ | $-0.1597$               |
+| $y(t-1)u(t-2)$    | $2.9234 \times 10^{-7}$      | $6.0493 \times 10^{-7}$ | $-0.1396$               |
+| $y(t-2)y(t-2)$    | $3.8123 \times 10^{-9}$      | $4.6086 \times 10^{-8}$ | $0.0085$                |
+| $y(t-2)u(t-1)$    | $1.9182 \times 10^{-25}$     | $6.4198 \times 10^{-12}$| $0.1297$                |
+| $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
+
 
 
 ![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg)
@@ -238,15 +227,17 @@ The real data in this example is obtained from an electromechanical system descr
 ![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in Eq. \eqref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg)
 
 Table 3: The model identified from the data generated from the system in [@Lacerda2017b]
-| Model term     | Mean squared PRESS error   | ERR               | Parameters/Coefficients |
-|:--------------:|:--------------------------:|:-----------------:|:-----------------------:|
-| y(t-1)         | 8128.5                     | 0.49526           |   1.7844                |
-| y(t-2)         | 975.85                     | 0.00028497        |  -0.79156               |
-| u(t-1)         | 318.88                     | 2.6363 x 10^(-5)^ |  47.205                 |
-| y(t-2)u(t-1)   | 158.23                     | 6.211 x 10^(-6)^  |  -0.037612              |
-| y(t-3)u(t-1)   | 1.2306 x 10^(7)^           | 0.50441           |   0.030086              |
-| u(t-2)u(t-2)   | 91.271                     | 2.5147 x 10^(-6)^ |   1.89                  |
-| u(t-2)u(t-3)   | 71.842                     | 7.2261 x 10^(-7)^ |  -0.91694               |
+
+| Model term        | Mean squared\nPRESS error   | ERR                     | Parameters/Coefficients |
+|-------------------|-----------------------------|-------------------------|-------------------------|
+| $y(t-1)$          | $8128.5$                    | $0.49526$               | $1.7844$                |
+| $y(t-2)$          | $975.85$                    | $0.00028497$            | $-0.79156$              |
+| $u(t-1)$          | $318.88$                    | $2.6363 \times 10^{-5}$ | $47.205$                |
+| $y(t-2)u(t-1)$    | $158.23$                    | $6.211 \times 10^{-6}$  | $-0.037612$             |
+| $y(t-3)u(t-1)$    | $1.2306 \times 10^{7}$      | $0.50441$               | $0.030086$              |
+| $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $1.89$                  |
+| $u(t-2)u(t-3)$    | $71.842$                    | $7.2261 \times 10^{-7}$ | $-0.91694$              |
+
 
 ![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg)
 
