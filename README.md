@@ -44,7 +44,7 @@
 
 ## Paper
 
-If you are using the NonSysId package for academic purposes, kindly reference our paper as follows:
+If you are using the NonSysId package for academic purposes, kindly reference our pre-print paper as follows:
 
 **NonSysId: A nonlinear system identification package with improved model term selection for NARMAX models**
 
