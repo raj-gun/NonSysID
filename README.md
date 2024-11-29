@@ -33,7 +33,7 @@ Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei H
 ### Installation  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/username/NonSysId.git
+   git clone https://github.com/raj-gun/NonSysId.git
    ```
    or manually download the folder 'NonSysId'.
    
