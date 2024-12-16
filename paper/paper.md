@@ -9,12 +9,12 @@ tags:
   - Nonlinear dynamics
 authors:
   - name: Rajintha Gunawardena
-  - corresponding: false
+    corresponding: false
     orcid: 0000-0003-1192-9125
     equal-contrib: true
     affiliation: 1
   - name: Zi-Qiang Lang
-  - corresponding: false
+    corresponding: false
     equal-contrib: true
     affiliation: 2
   - name: Fei He
@@ -23,10 +23,10 @@ authors:
     equal-contrib: true
     affiliation: 1
 affiliations:
- - name: Centre for Computational Science and Mathematical Modelling, Coventry University, Coventry CV1 5FB, UK
-   index: 1
- - name: School of Electrical and Electronic Engineering, The University of Sheffield, Western Bank, Sheffield S10 2TN, UK
-   index: 2
+  - index: 1
+    name: Centre for Computational Science and Mathematical Modelling, Coventry University, Coventry CV1 5FB, UK
+  - index: 2
+    name: School of Electrical and Electronic Engineering, The University of Sheffield, Western Bank, Sheffield S10 2TN, UK
 date: 26 November 2024
 bibliography: paper.bib
 ---
