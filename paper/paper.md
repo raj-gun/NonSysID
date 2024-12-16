@@ -9,10 +9,12 @@ tags:
   - Nonlinear dynamics
 authors:
   - name: Rajintha Gunawardena
+  - corresponding: false
     orcid: 0000-0003-1192-9125
     equal-contrib: true
     affiliation: 1
   - name: Zi-Qiang Lang
+  - corresponding: false
     equal-contrib: true
     affiliation: 2
   - name: Fei He
