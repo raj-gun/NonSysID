@@ -81,13 +81,13 @@ where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containin
 
 The primary challenge in learning a polynomial NARX model is to identify the polynomial structure of the model, i.e. selecting which terms from a set of candidate model terms (monomials), denoted as $\mathcal{D}$, should be included in the model. For instance, a potential set of candidate terms could be
 
-\begin{equation}\label{eq:exmpl_D}
+\begin{multline}\label{eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
-              y(t-1)u(t-2), y(t-2)u(t-1)^{3}, 
+              y(t-1)u(t-2), y(t-2)u(t-1)^{3}, \\
               y(t-2)^{2}u(t-1), y(t-2)^{2}u(t-1)^{3}
         \Big\} ,
-\end{equation}
+\end{multline}
 
 from which a NARX model structure, such as that in \autoref{eq:narx_exmpl}, can be identified. Once the model structure is identified, the next step is to estimate the model parameters. However, determining the appropriate linear and nonlinear terms to include in the model structure is critical to achieving parsimonious models. This is particularly important in the nonlinear cases (Chapter 1, [@billings2013a]), as the inclusion of  unnecessary model terms, can result in a model that erroneously captures dynamics that do not belong to the underlying system [@AGUIRRE1995;@mendes1998a}.
 
@@ -143,7 +143,7 @@ Let $\mathcal{D'}$ denote the set of candidate linear terms comprising past inpu
 
 A technique for obtaining a reduced set of candidate model terms, $\mathcal{D}''_{R}$, was proposed in [@Wei2004]. This approach is based on the idea that if a lagged term significantly influences the output of a nonlinear system, it will also be significant in a linearised representation of the system. Accordingly, a linear ARX model is identified first, serving as a linearised model of the actual nonlinear system. The terms from this ARX model are then used to construct $\mathcal{D}''_{R}$. This method has been incorporated into the `NonSysId` package. Regarding the set $\mathcal{P}$, an initialisation method for the iOFR algorithm was proposed in [@guo2015a]. In this method, an overfitting NARX model, $\overline{m_{0}''}$, is first identified using the OFR. The terms from $\overline{m_{0}''}$ are then used to construct the initial set $\mathcal{P}$ for the first iteration of the iOFR. While $\overline{m_{0}''}$ may be sub-optimal, it is likely to include some correct terms. Consequently, using the terms of $\overline{m_{0}''}$ to form the initial set $\mathcal{P}$ ensures fewer redundant terms compared to directly setting $\mathcal{P} \subseteq \mathcal{D}$ [@guo2015a]. 
 
-The `NonSysId` package incorporates both aforementioned methods to reduce the computational time of $\text{iOFR}_{S}$. Additionally, the `NonSysId` package implements two new methods, proposed in this paper, to further enhance computational efficiency (referred to as reducing computational time, RCT, methods). Algorithm \autoref{fig:alg} outlines the procedures of the complete system identification methodology, integrating $\text{iOFR}_{S}$ with these four RCT methods. A brief overview of each RCT method is provided below.
+The `NonSysId` package incorporates both aforementioned methods to reduce the computational time of $\text{iOFR}_{S}$. Additionally, the `NonSysId` package implements two new methods, proposed in this paper, to further enhance computational efficiency (referred to as reducing computational time, RCT, methods). \autoref{fig:alg} outlines the procedures of the complete system identification methodology, integrating $\text{iOFR}_{S}$ with these four RCT methods. A brief overview of each RCT method is provided below.
 
 - **RCT Method 1**: This method, as proposed in [@Wei2004], seeks to obtain a reduced set of candidate model terms, enabling $\text{iOFR}_{S}$ to operate within a narrower search space defined by $\mathcal{D}''_{R} \subset \mathcal{D}''$.
 
