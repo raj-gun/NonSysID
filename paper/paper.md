@@ -211,9 +211,9 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the sys
 : The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
 
 
-![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="80%"}
+![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="90%"}
 
-![Model validation results for input (b). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_b_val}](Figures/ex_dc_motor_b_200_vald.svg){width="80%"}
+![Model validation results for input (b). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_b_val}](Figures/ex_dc_motor_b_200_vald.svg){width="90%"}
 
 The correlation based statistical validation tests for nonlinear models [@Billings1983] are presented in \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. These validation tests are conducted on the training data (yellow region of $y(t)$ in \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io}). From the auto-correlation function (ACF) of the residuals, it is observed that the model residuals, in both cases (a) and (b), are not entirely white noise. Additionally, in \autoref{fig:narx_eg_b_val}, the cross-correlation functions (Cross-CF) between the input $u(t)$ and the model residuals are not completely within the tolerance bounds, indicating some bias in the model. However, the variance of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. This shows that the bias of the identified model is minimal. As such, even though the identified terms and parameters (\autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param}) are similar to the actual system (\autoref{eq:NARX_eg}), the parameters do have differences considering from the 4^th^ decimal place and beyond.
 
