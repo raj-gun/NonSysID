@@ -11,7 +11,7 @@ authors:
   - name: Rajintha Gunawardena
     orcid: 0000-0003-1192-9125
     affiliation: 1
-  - name: Zi-Qiang Lang
+  - name: Zi-Qiang Lan
     affiliation: 2
   - name: Fei He
     orcid: 0000-0003-1192-9125
