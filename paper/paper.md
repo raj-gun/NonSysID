@@ -46,7 +46,7 @@ The key challenge in learning a polynomial NARX model is to identify an appropri
 
 3. If the input does not persistently excite the system under consideration (i.e., it lacks the informativeness needed to effectively stimulate the system), the resulting model can be inappropriate. This can result in inaccuracies in long-horizon prediction and, in some cases, even unstable models during simulation (free-run or model-predicted output).
 
-4. The ERR focuses solely on explained variance when selecting terms, which can lead to overfitting
+4. The ERR focuses solely on explained variance when selecting terms, which can lead to overfitting.
 
 Beyond obtaining parsimony, models must generalise well to unseen data--validation data not used during training (model identification). This reflects the bias–variance trade-off, often addressed through suitable cross-validation strategies [@Little2017; @Stone1974]. However, in some applications, such as structural health monitoring or fault diagnosis, obtaining separate validation data may be impractical [@Gharehbaghi2022; @Vamsikrishna2024]. Similarly, in neuroscience, rapidly changing complex dynamics between brain regions can occur within milliseconds, making it difficult to obtain electrophysiological data that precisely capture the same behaviour for validation purposes [@Kunjan2021; @Seedat2024; @Chen2016; @Eichenbaum2021; @Lehnertz2021]. These challenges are critical when applying system identification to specific domains. The following section outlines the features in the `NonSysId` package, designed to address these issues.
 
