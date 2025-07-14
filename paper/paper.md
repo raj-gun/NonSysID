@@ -62,7 +62,7 @@ Let $\mathcal{D'}$ be the set of candidate linear terms from past outputs and in
 
 - **RCT Method 1**: This method, as proposed in [@Wei2004], seeks to obtain a data-driven $\mathcal{D}''_R$, enabling $\text{iOFR}_{S}$ to operate within a narrower search space.
 
-- **RCT Method 2**: This method, as proposed in [@guo2015a], aims to obtain a $\mathcal{P}$ with fewer redundant terms for the first iteration of iOFR/$\text{iOFR}_{S}$. An overfitted NARX model $\overline{m_{0}''}$, likely to contain some correct terms, is identified using OFR. Terms of which are used to form $\mathcal{P}, $\mathcal{P} \subset \mathcal{D}''$--fewer redundant terms than $\mathcal{P} \subseteq \mathcal{D}''$.
+- **RCT Method 2**: This method, as proposed in [@guo2015a], aims to obtain a $\mathcal{P}$ with fewer redundant terms for the first iteration of iOFR/$\text{iOFR}_{S}$. An overfitted NARX model $\overline{m_{0}''}$, likely to contain some correct terms, is identified using OFR. Terms of which are used to form $\mathcal{P}$, $\mathcal{P} \subset \mathcal{D}''$--fewer redundant terms than $\mathcal{P} \subseteq \mathcal{D}''$.
 
 - **RCT Method 3**: This method combines RCT methods 1 and 2, such that $\mathcal{P} \subset \mathcal{D}''_{R}$ and $\text{iOFR}_{S}$ searches through the reduced space defined by $\mathcal{D}''_{R}$. As a result, this approach enables faster convergence of $\text{iOFR}_{S}$ to an optimal model compared to any other RCT method.
 
