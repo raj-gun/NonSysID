@@ -50,17 +50,7 @@ To overcome limitations of the original OFR, the NonSysId package implements the
 
 Using a pre-select term list $\mathcal{P}$, the iFRO algorithm explores several orthogonalization paths (forward selection routes), each producing a candidate model. According to a criterion based on one-step-ahead prediction, the best model $\overline{m}$ is chosen. $\mathcal{P}$ is updated with the terms of $\overline{m}$, and the next iteration begins. Subsequent iterations produce more globally optimal model structures than the previous [@guo2015a]. In `NonSysId', $\text{iOFR}_{S}$ extends the iOFR with simulation-based stability tests (bounded-input bounded-output) and model selection. The candidate models generated at each iteration of iOFR are simulated using a constant input of zeros and ones separately. If the corresponding outputs of a model remain bounded with a small variance, typically less than $10^{-2}$, it is regarded as stable. From the stable set of models, the Bayesian Information Criterion (BIC) [@Schwarz1978; @Stoica2004], based on the mean squared simulated error (MSSE) [@Piroddi2003], selects the best model $\overline{m}$. 
 
-Let $\mathcal{D}$ include both candidate linear and nonlinear terms (monomials) for NARX model identification. As the polynomial nonlinearity, $N_p$, and the number of past outputs and inputs considered increase, $|\mathcal{D}|$ can grow exponentially [@chen1989b; @billings1987a], increasing computational cost for iOFR/$\text{iOFR}_S$. The `NonSysId` package implements strategies for reducing computational time (RCT) as proposed in [@Wei2004] and [@guo2015a] to speed up convergence toward an optimum model. 
-
-- **RCT 1**: As proposed in [@Wei2004], seeks to obtain a data-driven $\mathcal{D}_R \subset \mathcal{D}$, enabling $\text{iOFR}_{S}$ to operate within a narrower search space.
-
-- **RCT 2**: As proposed in [@guo2015a], uses the terms of an overfitted NARX model (using OFR) to obtain an initial $\mathcal{P} \subset \mathcal{D}$ with fewer redundant terms than $\mathcal{P} \subseteq \mathcal{D}$.
-
-- **RCT 3**: Proposed here, this strategy combines RCT methods 1 and 2, such that $\mathcal{P} \subset \mathcal{D}_{R}$ and $\text{iOFR}_{S}$ searches through the reduced space defined by $\mathcal{D}_{R}$.
-
-- **RCT 4**: Proposed here, this strategy combines RCT methods 1 and 2, such that $\mathcal{P} \subset \mathcal{D}_{R}$. However, $\text{iOFR}_{S}$ searches through the full space $\mathcal{D}$ instead of $\mathcal{D}_{R}$. 
-
-RCT 3 is most effective, followed by 1, 4, and 2. However, RCT 1 and 3 may miss important terms, especially in noisy or complex systems, leading to sub-optimal models. These strategies also add overhead; therefore, if $\mathcal{D}$ is already small, using $\text{iOFR}_{S}$ without RCT ($\mathcal{P} \subseteq \mathcal{D}$) may be more efficient. The next section includes examples from the `NonSysId` package.
+Let $\mathcal{D}$ include both candidate linear and nonlinear terms (monomials) for NARX model identification. As the polynomial nonlinearity, $N_p$, and the number of past outputs and inputs considered increase, $|\mathcal{D}|$ can grow exponentially [@chen1989b; @billings1987a], increasing computational cost for iOFR/$\text{iOFR}_S$. The `NonSysId` package implements four strategies for reducing computational time (RCT) based on what is proposed in [@Wei2004] and [@guo2015a] to speed up convergence toward an optimum model. 
 
 # Examples
 
