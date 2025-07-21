@@ -58,7 +58,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 
 \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io} depict the training and testing data alongside the model-simulated output for the inputs (a) and (b), respectively. The term `testing data` is used to refer to data not explicitly included during training, as the model is already validated through leave-one-out cross-validation during the identification/training process.
 
-\autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure. The mean squared PRESS error reflects the predicted cross-validation error after the term is added to the model. Sorting \autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} in descending order of the mean squared PRESS error reveals the sequence of the terms added. The ERR represents the proportion of the actual output variance explained by each corresponding term.
+\autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} list the identified terms and parameter values of the NARX models for inputs (a) and (b), along with the mean squared PRESS error and ERR for each term. These metrics reflect the order of term inclusion during forward selection. The PRESS error estimates the predicted cross-validation error at each step, while sorting the tables by PRESS error reveals the selection sequence. ERR indicates the variance in output explained by each term.
 
 ![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. Only the first 60 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The error variance in this case is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
 
@@ -90,7 +90,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 | $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
 : The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
 
-The correlation-based statistical validation tests for nonlinear models [@Billings1983] are presented in \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. This indicates some bias in the model, however, this is minimal as the variances of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. 
+The correlation-based statistical validation tests for nonlinear models [@Billings1983] are presented in \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. This indicates some bias in the model; however, this is minimal as the variances of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. 
 
 ![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="70%"}
 
