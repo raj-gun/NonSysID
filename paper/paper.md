@@ -96,7 +96,7 @@ The correlation-based statistical validation tests for nonlinear models [@Billin
 
 ## Real data example
 
-The real data in this example is obtained from an electromechanical system described in [@Lacerda2017b]. The system comprises two DC motors, one as a driver and the other as a generator, mechanically coupled by a shaft. The input is the voltage applied to the driver motor. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The output of the system is the rotational speed (angular velocity) of the generator motor.
+The real data in this example is obtained from an electromechanical system described in [@Lacerda2017b]. The system comprises two DC motors, one as a driver and the other as a generator, mechanically coupled by a shaft. The input is the voltage applied to the driver motor. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The system output is the rotational speed (angular velocity) of the generator motor.
 
 ![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg){width="100%"}
 
