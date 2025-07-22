@@ -88,7 +88,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 | $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
 : The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
 
-The correlation-based statistical validation tests for nonlinear models [@Billings1983], shown in \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}, indicate model bias. However, it is minor, the residual variances—$1.6018e^{-25}$ for (a) and $8.2178e^{-18}$ for (b)—are negligible compared to the training data variances of $0.069$ and $0.0581$, respectively.
+The correlation-based statistical validation tests for nonlinear models [@Billings1983], \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}, indicate model bias. However, it is minor, the residual variances, $1.6018e^{-25}$ for (a) and $8.2178e^{-18}$ for (b), are negligible compared to the output variances of $0.069$ and $0.0581$, respectively.
 
 ![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="70%"}
 
