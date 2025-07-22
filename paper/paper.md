@@ -58,7 +58,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 
 \autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} list the identified terms and parameter values of the NARX models for inputs (a) and (b), along with the mean squared PRESS error and ERR for each term. The PRESS error estimates the predicted cross-validation error at each step, while sorting the tables by PRESS error reveals the order of term inclusion during forward selection. ERR indicates the portion of the output variance explained by each term.
 
-![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. Only the first 60 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The error variance in this case is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
+![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. Only the first 60 samples are used for identifying/training the model. The error variance is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
@@ -73,7 +73,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 | $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $\ \ 0.1086$            |
 : The model identified when \autoref{eq:NARX_eg} is excited with input (a), white noise \label{tbl:inpt_a_param}
 
-![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a suboptimal model, up to 200 samples are used to identify the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
+![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a suboptimal model, up to 200 samples are used to identify the model. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
