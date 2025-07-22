@@ -42,7 +42,7 @@ To overcome limitations of the original OFR, the `NonSysId` package implements t
 
 # Examples
 
-This section shows examples from the NonSysID package, implementing $\text{iOFR}_{S}$ with PRESS-based term selection, using synthetic data from a NARX model and real data from an electro-mechanical system.
+This section presents examples from the NonSysID package, which implements $\text{iOFR}_{S}$ with PRESS-based term selection, utilising synthetic data from a NARX model and real data from an electromechanical system.
 
 ## Synthetic data example
 
@@ -73,7 +73,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input at the tim
 | $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $\ \ 0.1086$            |
 : The model identified when \autoref{eq:NARX_eg} is excited with input (a), white noise \label{tbl:inpt_a_param}
 
-![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a sub-optimal model, up to 200 samples are used for identifying the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
+![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a suboptimal model, up to 200 samples are used to identify the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
@@ -114,7 +114,7 @@ The real data in this example is obtained from an electromechanical system descr
 ![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg){width="100%"}
 
 # Future Work
-The NonSysId package currently supports identification of single-input single-output (SISO) and multi-input single-output (MISO) models, with correlation-based residual analysis limited to SISO. Future updates will extend support to multi-input multi-output (MIMO) identification and enable validation for MISO and MIMO systems. While the package now handles polynomial NARX models, upcoming versions will expand $\text{iOFR}_{S}$ to broader basis functions. A Python open-source release is also planned.
+The NonSysId package currently supports the identification of single-input single-output (SISO) and multi-input single-output (MISO) models, with correlation-based residual analysis being limited to SISO models. Future updates will extend support to multi-input multi-output (MIMO) identification and enable validation for MISO and MIMO systems. While the package now handles polynomial NARX models, upcoming versions will expand $\text{iOFR}_{S}$ to broader basis functions. A Python open-source release is also planned.
 
 # Acknowledgements
 RG and FH were supported by EPSRC grant [EP/X020193/1].
