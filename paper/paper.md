@@ -62,7 +62,7 @@ The correlation-based statistical validation tests for nonlinear models [@Billin
 
 ![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. Only the first 60 samples are used for identifying/training the model. The error variance is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
 
-![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a suboptimal model, up to 200 samples are used to identify the model. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
+![**Model identification results under input (b)**. $\hat{y}(t)$, is compared with $y(t)$. In this case, compared to input (a), fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, to avoid a suboptimal model, up to 200 samples are used to identify the model. The error variance is $8.2178e^{-18}$. \label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
