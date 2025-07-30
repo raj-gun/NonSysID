@@ -100,6 +100,8 @@ The real data in this example is obtained from an electromechanical system descr
 
 ![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg){width="100%"}
 
+![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg){width="100%"}
+
 | Model term        |  Mean squared PRESS error   | ERR                     | Parameters/Coefficients |
 |-------------------|-----------------------------|-------------------------|-------------------------|
 | $y(t-1)$          | $8128.5$                    | $0.49526$               | $1.7844$                |
@@ -110,8 +112,6 @@ The real data in this example is obtained from an electromechanical system descr
 | $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $1.89$                  |
 | $u(t-2)u(t-3)$    | $71.842$                    | $7.2261 \times 10^{-7}$ | $-0.91694$              |
 : The model identified from the data generated from the system in [@Lacerda2017b] \label{tbl:narx_eg_rldt_val}
-
-![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg){width="100%"}
 
 # Future Work
 The NonSysId package currently supports the identification of single-input single-output (SISO) and multi-input single-output (MISO) models, with correlation-based residual analysis being limited to SISO models. Future updates will extend support to multi-input multi-output (MIMO) identification and enable validation for MISO and MIMO systems. While the package now handles polynomial NARX models, upcoming versions will expand $\text{iOFR}_{S}$ to broader basis functions. A Python open-source release is also planned.
