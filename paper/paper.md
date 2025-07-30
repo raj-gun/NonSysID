@@ -79,15 +79,15 @@ The correlation-based statistical validation tests for nonlinear models [@Billin
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
-| $y(t-1)$          | $1.2209 \times 10^{-4}$      | $0.1035$                | $1.7813$                |
+| $y(t-1)$          | $1.2209 \times 10^{-4}$      | $0.1035$                | $\ \ 1.7813$            |
 | $y(t-2)$          | $7.0858 \times 10^{-7}$      | $1.7841 \times 10^{-4}$ | $-0.7962$               |
-| $u(t-1)$          | $2.8085 \times 10^{-9}$      | $2.5768 \times 10^{-9}$ | $0.0339$                |
-| $u(t-2)$          | $3.7183 \times 10^{-8}$      | $3.5856 \times 10^{-7}$ | $0.0338$                |
+| $u(t-1)$          | $2.8085 \times 10^{-9}$      | $2.5768 \times 10^{-9}$ | $\ \ 0.0339$            |
+| $u(t-2)$          | $3.7183 \times 10^{-8}$      | $3.5856 \times 10^{-7}$ | $\ \ 0.0338$            |
 | $y(t-1)u(t-1)$    | $4.5778 \times 10^{-12}$     | $2.7792 \times 10^{-9}$ | $-0.1597$               |
 | $y(t-1)u(t-2)$    | $2.9234 \times 10^{-7}$      | $6.0493 \times 10^{-7}$ | $-0.1396$               |
-| $y(t-2)y(t-2)$    | $3.8123 \times 10^{-9}$      | $4.6086 \times 10^{-8}$ | $0.0085$                |
-| $y(t-2)u(t-1)$    | $1.9182 \times 10^{-25}$     | $6.4198 \times 10^{-12}$| $0.1297$                |
-| $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
+| $y(t-2)y(t-2)$    | $3.8123 \times 10^{-9}$      | $4.6086 \times 10^{-8}$ | $\ \ 0.0085$            |
+| $y(t-2)u(t-1)$    | $1.9182 \times 10^{-25}$     | $6.4198 \times 10^{-12}$| $\ \ 0.1297$            |
+| $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $\ \ 0.1086$            |
 : The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
 
 ![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="70%"}
@@ -104,12 +104,12 @@ The real data in this example is obtained from an electromechanical system descr
 
 | Model term        |  Mean squared PRESS error   | ERR                     | Parameters/Coefficients |
 |-------------------|-----------------------------|-------------------------|-------------------------|
-| $y(t-1)$          | $8128.5$                    | $0.49526$               | $1.7844$                |
+| $y(t-1)$          | $8128.5$                    | $0.49526$               | $\ \ 1.7844$            |
 | $y(t-2)$          | $975.85$                    | $0.00028497$            | $-0.79156$              |
-| $u(t-1)$          | $318.88$                    | $2.6363 \times 10^{-5}$ | $47.205$                |
+| $u(t-1)$          | $318.88$                    | $2.6363 \times 10^{-5}$ | $\ \ 47.205$            |
 | $y(t-2)u(t-1)$    | $158.23$                    | $6.211 \times 10^{-6}$  | $-0.037612$             |
-| $y(t-3)u(t-1)$    | $1.2306 \times 10^{7}$      | $0.50441$               | $0.030086$              |
-| $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $1.89$                  |
+| $y(t-3)u(t-1)$    | $1.2306 \times 10^{7}$      | $0.50441$               | $\ \ 0.030086$          |
+| $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $\ \ 1.89$              |
 | $u(t-2)u(t-3)$    | $71.842$                    | $7.2261 \times 10^{-7}$ | $-0.91694$              |
 : The model identified from the data generated from the system in [@Lacerda2017b] \label{tbl:narx_eg_rldt_val}
 
