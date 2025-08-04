@@ -293,9 +293,9 @@ are as follows:
 1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
     term and search through $`p`$ orthogonalization paths using OFR to
     produce a set of $`p`$ candidate models
-    $`\Tilde{\mathcal{M}} = \{ \Tilde{m}_1, \dots, \Tilde{m}_p \}`$.
+    $`\tilde{\mathcal{M}} = \{ \tilde{m}_1, \dots, \tilde{m}_p \}`$.
 
-2.  From $`\Tilde{\mathcal{M}}`$ determine the set of stable candidate
+2.  From $`\tilde{\mathcal{M}}`$ determine the set of stable candidate
     models $`\mathcal{M} = \{ m_1, \dots, m_{\overline{p}} \}`$,
     $`\overline{p} \leq p`$.
 
@@ -308,12 +308,12 @@ are as follows:
 5.  Repeat steps 1-4 and iteratively search through different
     orthogonalization paths.
 
-In step 2, each model $`\Tilde{m}_i \in \Tilde{\mathcal{M}}`$,
+In step 2, each model $`\tilde{m}_i \in \tilde{\mathcal{M}}`$,
 $`i=1,\dots,p`$, is tested using two inputs: (i) a sequence of 0’s,
 $`u^{[0]}(t) = 0 \ \forall t`$, and (ii) a sequence of 1’s,
 $`u^{[1]}(t) = 1 \ \forall t`$. The corresponding simulated outputs,
 $`\hat{y}^{[0]}(t)`$ and $`\hat{y}^{[1]}(t)`$, must meet stability
-conditions for $`\Tilde{m}_i`$ to be included in $`\mathcal{M}`$. In
+conditions for $`\tilde{m}_i`$ to be included in $`\mathcal{M}`$. In
 this context, stability implies that the outputs remain bounded over
 time, i.e. stable around a mean without exhibiting exponential growth.
 Specifically, the responses ($`j = 0 \ \text{or} \ 1`$) should be around
