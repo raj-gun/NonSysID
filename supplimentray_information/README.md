@@ -174,23 +174,21 @@ for example,
 <table>
 <tr>
 <td>
-
-1.  OFR-ERR may select redundant or incorrect model terms, especially in
-    the presence of complex noise structures or certain input signals;
-
-2.  The model structures produced from OFR can be sensitive to the first
-    term selected in the forward selection of model terms;
-
-3.  If the input does not persistently excite the system under
-    consideration (i.e. it lacks the informativeness needed to
-    effectively stimulate the system), the resulting model can be
-    inappropriate. This can result in inaccuracies in long-horizon
-    prediction and, in some cases, even unstable models during
-    simulation (free-run or model-predicted output);
-
-4.  The ERR focuses solely on explained variance when selecting terms,
-    which can lead to overfitting.
-
+  1.  OFR-ERR may select redundant or incorrect model terms, especially in
+      the presence of complex noise structures or certain input signals;
+  
+  2.  The model structures produced from OFR can be sensitive to the first
+      term selected in the forward selection of model terms;
+  
+  3.  If the input does not persistently excite the system under
+      consideration (i.e. it lacks the informativeness needed to
+      effectively stimulate the system), the resulting model can be
+      inappropriate. This can result in inaccuracies in long-horizon
+      prediction and, in some cases, even unstable models during
+      simulation (free-run or model-predicted output);
+  
+  4.  The ERR focuses solely on explained variance when selecting terms,
+      which can lead to overfitting.
 </td>
 </tr>
 </table>
@@ -301,7 +299,6 @@ are as follows:
 <table>
 <tr>
 <td>
-  
   1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
       term and search through $`p`$ orthogonalization paths using OFR to
       produce a set of $`p`$ candidate models
@@ -319,7 +316,6 @@ are as follows:
   
   5.  Repeat steps 1-4 and iteratively search through different
       orthogonalization paths.
-      
 </td>
 </tr>
 </table>
