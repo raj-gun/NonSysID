@@ -77,6 +77,7 @@ where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containin
 
 The primary challenge in learning a polynomial NARX model is to identify the polynomial structure of the model, i.e. selecting which terms from a set of candidate model terms (monomials), denoted as $\mathcal{D}$, should be included in the model. For instance, a potential set of candidate terms could be
 
+```math
 \begin{multline} [comment]:\label{eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
@@ -84,6 +85,7 @@ The primary challenge in learning a polynomial NARX model is to identify the pol
               y(t-2)^{2}u(t-1), y(t-2)^{2}u(t-1)^{3}
         \Big\} ,
 \end{multline}
+```
 
 from which a NARX model structure, such as that in \autoref{eq:narx_exmpl}, can be identified. Once the model structure is identified, the next step is to estimate the model parameters. However, determining the appropriate linear and nonlinear terms to include in the model structure is critical to achieving parsimonious models. This is particularly important in the nonlinear cases (Chapter 1, [@billings2013a]), as the inclusion of  unnecessary model terms, can result in a model that erroneously captures dynamics that do not belong to the underlying system [@AGUIRRE1995;@mendes1998a].
 
