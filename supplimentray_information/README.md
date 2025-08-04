@@ -413,9 +413,7 @@ The ‘NonSysId’ package incorporates both aforementioned methods to
 reduce the computational time of $`\text{iOFR}_{S}`$. Additionally, the
 ‘NonSysId’ package implements two new methods, proposed in this paper,
 to further enhance computational efficiency (referred to as reducing
-computational time, RCT, methods). Fig.
-<a href="#fig:NonSysID" data-reference-type="ref"
-data-reference="fig:NonSysID">1</a> outlines the procedures of the
+computational time, RCT, methods). Figure 1 outlines the procedures of the
 complete system identification methodology, integrating
 $`\text{iOFR}_{S}`$ with these four RCT methods. A brief overview of
 each RCT method is provided below.
@@ -480,21 +478,17 @@ coloured noise in the input-output data, as well as the complexity of
 the original system. It should be noted that RCT methods introduce
 additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
 running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
-figure below summarises Algorithm
-<a href="#fig:NonSysId" data-reference-type="ref"
-data-reference="fig:NonSysId">[fig:NonSysId]</a> in a flowchart. The
+figure below summarises the algorithm in Figure 1 as a flowchart. The
 following section will provide examples from the ‘NonSysId’ package.
 
 <p>&nbsp;</p>
 
 <figure id="fig:flowcharts">
 <img src="Figures/iOFR_S_RCT.svg"
-alt="Figure 2: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in Algorithm [fig:NonSysId]. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures." />
+alt="Figure 2: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in the algorithm given in Figure 1. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures." />
 <figcaption aria-hidden="true">Figure 2: This flowchart summarises the
 procedures for identifying a (N)ARX model using <span
-class="math inline">iOFR<sub><em>S</em></sub></span> as described in
-Algorithm <a href="#fig:NonSysId" data-reference-type="ref"
-data-reference="fig:NonSysId">[fig:NonSysId]</a>. The region shaded in
+class="math inline">iOFR<sub><em>S</em></sub></span> as described in the algorithm given in Figure 1. The region shaded in
 brown represents the ARX model identification process, while the
 blue-shaded region highlights the NARX procedures.</figcaption>
 </figure>
