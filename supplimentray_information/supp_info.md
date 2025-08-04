@@ -45,33 +45,33 @@ In the context of (N)ARX models, system identification is employed to determine 
 
 and past output instances (output-lagged terms),
 
-\begin{equation}\label{eq:Yt_sysid}
+```math\label{eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
-\end{equation}
+```
 
 to the present output instance in time $y(t)$. $t$ here refers to a time index (i.e. $t$^th^ sample). $n_a$ and $n_b$ are the maximum number of past output and input time instances considered and are related to the Lyapunov exponents of the actual system that is being modelled [@mendes1998a]. The functional mapping is described by the following equation:
 
-\begin{equation}\label{eq:sys_id_func}
+```math\label{eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
-\end{equation}
+```
 
 where $y(t)$ and $u(t)$ refer to the output and input respectively, while $\xi(t)$ represents the error between the predicted output $f^{P}\bigl( Y, U \bigr)$ and the actual output $y(t)$ at time instance $t$. $\xi(t)$ will contain noise and unmodeled dynamics. $f^{P}( \ )$ is the functional mapping between the past inputs and outputs to the current output $y(t)$. This mapping can take the form of a polynomial, a neural network, or even a fuzzy logic-based model. Here, we focus on polynomial NARX models with a maximum polynomial degree $N_p \in \mathbb{Z}^{+}$. In this case, \autoref{eq:sys_id_func} can be expressed as
 
-\begin{equation}\label{eq:sys_id_func_summation}
+```math\label{eq:sys_id_func_summation}
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
-\end{equation}
+```
 
 where $m = 1, \cdots, M$, $M$ being the total number of variables or model terms. $\theta_{m}$ are the model parameters or coefficients and $\phi_{m}(t)$ are the corresponding model terms or variables. $\phi_{m}(t)$ are $n$^th^-order monomials of the polynomial NARX model $f^{P}( \ )$, where $n = 1, \cdots, N_p$ is the degree of the monomial. $\phi_{m}(t)$ is composed of past output and input time instances from $Y$ and $U$. An example of a polynomial NARX model can be
 
-\begin{equation}\label{eq:narx_exmpl}
+```math\label{eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
-\end{equation}
+```
 
 In this example, $\phi_{1}(t)=y(t-1)$ and $\phi_{2}(t)=u(t-2)$ have a degree of 1 and are the linear terms (1\textsuperscript{st} order monomials or linear monomials) of the model. $\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}$ is a nonlinear term with a degree of $5$ (5^th^ order monomial, more generally a nonlinear monomial). The NARX model given in \autoref{eq:narx_exmpl} has a polynomial degree $N_p=5$ (highest degree of any monomial). Given that the total number of time samples available is $L$, where $t = 1, \cdots, L$, \autoref{eq:sys_id_func_summation} can be represented in matrix form as
 
-\begin{equation}\label{eq:sys_id_func_mat}
+```math\label{eq:sys_id_func_mat}
 \mathbf{Y} = \Phi \Theta + \Xi,
-\end{equation}
+```
 
 where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containing the output samples $y(t)$. $\Phi = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]$, where $\bar{\phi}_{m} = \left[ \phi_{m}(1), \cdots, \phi_{m}(L) \right]^T$ is the vector containing all time samples of the model term $\phi_{m}(t)$. $\Theta = \left[ \theta_{1}, \cdots, \theta_{M}  \right]^T$  is the parameter vector and $\Xi = \left[ \xi(1), \cdots, \xi(L) \right]$ is the vector containing all the error terms $\xi(t)$ (i.e. model residuals). In the NARMAX model structure, a moving-average (MA) component is added to the NARX (\autoref{eq:sys_id_func_summation}) by incorporating linear and nonlinear lagged error terms (e.g., $\xi(t-2)$, $\xi(t-1)\xi(t-3)$). This noise model accounts for unmodeled dynamics and coloured noise, effectively isolating noise from the deterministic system and thereby reducing model bias (Chapter 3, [@billings2013a]).
 
