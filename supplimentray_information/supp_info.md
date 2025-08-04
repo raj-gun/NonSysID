@@ -357,13 +357,11 @@ determine a specific functional relationship that maps past input
 instances (input-lagged terms),
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
-    \label{eq:Ut_sysid}
-```
+```{#eq:Ut_sysid}
 and past output instances (output-lagged terms),
 ``` math
 Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
-    \label{eq:Yt_sysid}
-```
+```{#eq:Yt_sysid}
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
 time index (i.e. $`t`$<sup>th</sup> sample). $`n_a`$ and $`n_b`$ are the
 maximum number of past output and input time instances considered and
@@ -372,8 +370,7 @@ modelled \[17\]. The functional mapping is described by the following
 equation:
 ``` math
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
-\label{eq:sys_id_func}
-```
+```{#eq:sys_id_func}
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
 while $`\xi(t)`$ represents the error between the predicted output
 $`f^{P}\bigl( Y, U \bigr)`$ and the actual output $`y(t)`$ at time
@@ -387,8 +384,7 @@ degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq.
 data-reference="eq:sys_id_func">[eq:sys_id_func]</a> can be expressed as
 ``` math
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
-\label{eq:sys_id_func_summation}
-```
+```{#eq:sys_id_func_summation}
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
 model terms. $`\theta_{m}`$ are the model parameters or coefficients and
 $`\phi_{m}(t)`$ are the corresponding model terms or variables.
@@ -399,8 +395,7 @@ instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
 ``` math
 y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
-    \label{eq:narx_exmpl}
-```
+```{#eq:narx_exmpl}
 In this example, $`\phi_{1}(t)=y(t-1)`$ and $`\phi_{2}(t)=u(t-2)`$ have
 a degree of 1 and are the linear terms (1<sup>st</sup> order monomials
 or linear monomials) of the model.
@@ -416,8 +411,7 @@ data-reference="eq:sys_id_func_summation">[eq:sys_id_func_summation]</a>
 can be represented in matrix form as
 ``` math
 \mathbf{Y} = \mathbf{\Phi} \mathbf{\Theta} + \mathbf{\Xi},
-\label{eq:sys_id_func_mat}
-```
+```{#eq:sys_id_func_mat}
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
 containing the output samples $`y(t)`$.
 $`\mathbf{\Phi} = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]`$,
@@ -449,8 +443,7 @@ candidate terms could be
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, 
               y(t-2)^{2}u(t-1), y(t-2)^{2}u(t-1)^{3}
         \Big\} ,
-        \label{eq:exmpl_D}
-```
+```{#eq:exmpl_D}
 from which a NARX model structure, such as that in Eq.
 <a href="#eq:narx_exmpl" data-reference-type="ref"
 data-reference="eq:narx_exmpl">[eq:narx_exmpl]</a>, can be identified.
@@ -865,9 +858,8 @@ data-reference="eq:NARX_eg">[eq:NARX_eg]</a>) as described in \[46\].
     y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2)\\
     - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2)\\
     + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2
-    \label{eq:NARX_eg}
 \end{gathered}
-```
+```{#eq:NARX_eg}
 In Eq. <a href="#eq:NARX_eg" data-reference-type="eqref"
 data-reference="eq:NARX_eg">[eq:NARX_eg]</a>, $`y(t)`$ is the output and
 $`u(t)`$ is the input to the system at the time sample $`t`$. The NARX
