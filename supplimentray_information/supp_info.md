@@ -451,6 +451,8 @@ searches through the full space $`\mathcal{D}''`$ instead of
 $`\mathcal{D}''_{R}`$. Therefore, this technique converges the
 $`\text{iOFR}_{S}`$ faster to an optimal model compared to RCT method 2.
 
+<p>&nbsp;</p>
+
 <figure id="fig:NonSysID">
 <img src="Figures/alg.svg"
 alt="Figure 1: Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’" />
@@ -459,6 +461,8 @@ involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
 ‘NonSysID’</figcaption>
 </figure>
+
+<p>&nbsp;</p>
 
 The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
 and reduce the time required to obtain a model. Using
@@ -481,6 +485,8 @@ figure below summarises Algorithm
 data-reference="fig:NonSysId">[fig:NonSysId]</a> in a flowchart. The
 following section will provide examples from the ‘NonSysId’ package.
 
+<p>&nbsp;</p>
+
 <figure id="fig:flowcharts">
 <img src="Figures/iOFR_S_RCT.svg"
 alt="Figure 2: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in Algorithm [fig:NonSysId]. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures." />
@@ -495,7 +501,6 @@ blue-shaded region highlights the NARX procedures.</figcaption>
 
 <p>&nbsp;</p>
 
-\n
 NARX models can be analysed in the frequency domain using Nonlinear
 Output Frequency Response Functions (NOFRFs) \[41\], which extend
 classical frequency response analysis to nonlinear systems \[2, Ch. 6\].
