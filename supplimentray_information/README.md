@@ -298,9 +298,9 @@ extends this by incorporating simulation-based model selection
 long-horizon prediction accuracy. The procedures for $`\text{iOFR}_{S}`$
 are as follows:
 
-<td>
-<tr>
 <table>
+<tr>
+<td>
 
 1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
     term and search through $`p`$ orthogonalization paths using OFR to
