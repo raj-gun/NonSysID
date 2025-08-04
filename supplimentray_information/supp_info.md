@@ -39,9 +39,9 @@ Recently two open-sourced packages have been introduced, `SysIdentPy` [@Lacerda2
 
 In the context of (N)ARX models, system identification is employed to determine a specific functional relationship that maps past input instances (input-lagged terms),
 
-$$
+```math
     U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
-$$
+```
 
 and past output instances (output-lagged terms),
 
