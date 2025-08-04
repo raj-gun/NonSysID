@@ -1,7 +1,317 @@
-# NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models  
-*An open-source MATLAB package for system identification of ARX, NARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
+---
+abstract: |
+  # Summary
 
-Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
+  System identification involves constructing mathematical models of
+  dynamic systems using input-output data, enabling analysis and
+  prediction of system behaviour in both time and frequency domains.
+  This approach can model the entire system or/and capture specific
+  dynamics within it. For meaningful analysis, it is essential for the
+  model to accurately reflect the underlying system’s behaviour. This
+  paper introduces NonSysId, an open-sourced MATLAB software package
+  designed for nonlinear system identification, specifically focusing on
+  NARMAX models. The software incorporates an advanced term selection
+  methodology that prioritises on simulation (free-run) accuracy while
+  preserving model parsimony. A key feature is the integration of
+  iterative Orthogonal Forward Regression (iOFR) with Predicted Residual
+  Sum of Squares (PRESS) statistic-based term selection, facilitating
+  robust model generalisation without the need for a separate validation
+  dataset. Furthermore, techniques for reducing computational overheads
+  are implemented. These features make NonSysId particularly suitable
+  for real-time applications such as structural health monitoring, fault
+  diagnosis, and biomedical signal processing, where it is a challenge
+  to capture the signals under consistent conditions, resulting in
+  limited or no validation data.
+
+  **URL:** [https://github.com/raj-gun/NonSysID](URL)
+author:
+- Rajintha Gunawardena<sup>1</sup>
+- Zi-Qiang Lang<sup>2</sup>
+- Fei He<sup>1</sup>
+autoEqnLabels: false
+autoSectionLabels: false
+bibliography: citations.bib
+ccsDelim: ", "
+ccsLabelSep:  —
+ccsTemplate: |
+  ``` math
+  i
+  ```
+  ``` math
+  ccsLabelSep
+  ```
+  ``` math
+  t
+  ```
+chapDelim: .
+chapters: false
+chaptersDepth: 1
+codeBlockCaptions: false
+cref: false
+crossrefYaml: pandoc-crossref.yaml
+csl: ieee.csl
+eqLabels: arabic
+eqnBlockInlineMath: false
+eqnBlockTemplate: |
+  <table>
+  <colgroup>
+  <col style="width: 90%" />
+  <col style="width: 10%" />
+  </colgroup>
+  <tbody>
+  <tr>
+  <td style="text-align: center;"><span
+  class="math display"><em>t</em></span></td>
+  <td style="text-align: right;"><span
+  class="math display"><em>i</em></span></td>
+  </tr>
+  </tbody>
+  </table>
+eqnDisplayTemplate: |
+  ``` math
+  e
+  ```
+eqnIndexTemplate: |
+  (
+  ``` math
+  i
+  ```
+  )
+eqnInlineTableTemplate: |
+  ``` math
+  e
+  ```
+eqnInlineTemplate: |
+  ``` math
+  e
+  ```
+  ``` math
+  equationNumberTeX
+  ```
+  {
+  ``` math
+  i
+  ```
+  }
+eqnPrefix:
+- eq.
+- eqns.
+eqnPrefixTemplate: |
+  ``` math
+  p
+  ```
+   
+  ``` math
+  i
+  ```
+equationNumberTeX: \qquad
+figLabels: arabic
+figPrefix:
+- fig.
+- figs.
+figPrefixTemplate: |
+  ``` math
+  p
+  ```
+   
+  ``` math
+  i
+  ```
+figureTemplate: |
+  ``` math
+  figureTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  titleDelim
+  ```
+  ``` math
+  t
+  ```
+figureTitle: Figure
+lastDelim: ", "
+linkReferences: false
+listings: false
+listingTemplate: |
+  ``` math
+  listingTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  titleDelim
+  ```
+  ``` math
+  t
+  ```
+listingTitle: Listing
+listItemTitleDelim: .
+listOfMetadata: false
+lofItemTemplate: |
+  ``` math
+  lofItemTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  listItemTitleDelim
+  ```
+  ``` math
+  t
+  ```
+    
+lofTitle: |
+  # List of Figures
+lolItemTemplate: |
+  ``` math
+  lolItemTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  listItemTitleDelim
+  ```
+  ``` math
+  t
+  ```
+    
+lolTitle: |
+  # List of Listings
+lotItemTemplate: |
+  ``` math
+  lotItemTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  listItemTitleDelim
+  ```
+  ``` math
+  t
+  ```
+    
+lotTitle: |
+  # List of Tables
+lstLabels: arabic
+lstPrefix:
+- lst.
+- lsts.
+lstPrefixTemplate: |
+  ``` math
+  p
+  ```
+   
+  ``` math
+  i
+  ```
+nameInLink: false
+numberSections: false
+pairDelim: ", "
+rangeDelim: "-"
+refDelim: ", "
+refIndexTemplate: |
+  ``` math
+  i
+  ```
+  ``` math
+  suf
+  ```
+secHeaderDelim:
+secHeaderTemplate: |
+  ``` math
+  i
+  ```
+  ``` math
+  secHeaderDelim[n]
+  ```
+  ``` math
+  t
+  ```
+secLabels: arabic
+secPrefix:
+- sec.
+- secs.
+secPrefixTemplate: |
+  ``` math
+  p
+  ```
+   
+  ``` math
+  i
+  ```
+sectionsDepth: 0
+subfigGrid: false
+subfigLabels: alpha a
+subfigureChildTemplate: |
+  ``` math
+  i
+  ```
+subfigureRefIndexTemplate: |
+  ``` math
+  i
+  ```
+  ``` math
+  suf
+  ```
+  (
+  ``` math
+  s
+  ```
+  )
+subfigureTemplate: |
+  ``` math
+  figureTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  titleDelim
+  ```
+  ``` math
+  t
+  ```
+  .
+  ``` math
+  ccs
+  ```
+tableEqns: false
+tableTemplate: |
+  ``` math
+  tableTitle
+  ```
+  ``` math
+  i
+  ```
+  ``` math
+  titleDelim
+  ```
+  ``` math
+  t
+  ```
+tableTitle: Table
+tblLabels: arabic
+tblPrefix:
+- tbl.
+- tbls.
+tblPrefixTemplate: |
+  ``` math
+  p
+  ```
+   
+  ``` math
+  i
+  ```
+title: "NonSysId: A nonlinear system identification package with
+  improved model term selection for NARMAX models"
+titleDelim: ":"
+---
 
 # Statement of need
 
@@ -45,11 +355,13 @@ selection process to address these challenges.
 In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
-``` math [comment]:\label{eq:Ut_sysid}
+``` math
+{#eq:Ut_sysid}
     U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
 ```
 and past output instances (output-lagged terms),
-``` math [comment]:\label{eq:Yt_sysid}
+``` math
+{#eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},
 ```
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
@@ -58,7 +370,8 @@ maximum number of past output and input time instances considered and
 are related to the Lyapunov exponents of the actual system that is being
 modelled \[17\]. The functional mapping is described by the following
 equation:
-``` math [comment]:\label{eq:sys_id_func}
+``` math
+{#eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
 ```
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
@@ -72,7 +385,8 @@ Here, we focus on polynomial NARX models with a maximum polynomial
 degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq.
 <a href="#eq:sys_id_func" data-reference-type="eqref"
 data-reference="eq:sys_id_func">[eq:sys_id_func]</a> can be expressed as
-``` math [comment]:\label{eq:sys_id_func_summation}
+``` math
+{#eq:sys_id_func_summation}
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
 ```
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
@@ -83,7 +397,8 @@ NARX model $`f^{P}( \ )`$, where $`n = 1, \cdots, N_p`$ is the degree of
 the monomial. $`\phi_{m}(t)`$ is composed of past output and input time
 instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
-``` math [comment]:\label{eq:narx_exmpl}
+``` math
+{#eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
 ```
 In this example, $`\phi_{1}(t)=y(t-1)`$ and $`\phi_{2}(t)=u(t-2)`$ have
@@ -99,7 +414,8 @@ number of time samples available is $`L`$, where $`t = 1, \cdots, L`$,
 Eq. <a href="#eq:sys_id_func_summation" data-reference-type="ref"
 data-reference="eq:sys_id_func_summation">[eq:sys_id_func_summation]</a>
 can be represented in matrix form as
-``` math [comment]:\label{eq:sys_id_func_mat}
+``` math
+{#eq:sys_id_func_mat}
 \mathbf{Y} = \mathbf{\Phi} \mathbf{\Theta} + \mathbf{\Xi},
 ```
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
@@ -127,7 +443,8 @@ the polynomial structure of the model, i.e. selecting which terms from a
 set of candidate model terms (monomials), denoted as $`\mathcal{D}`$,
 should be included in the model. For instance, a potential set of
 candidate terms could be
-``` math [comment]:\label{eq:exmpl_D}
+``` math
+{#eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, 
@@ -545,7 +862,7 @@ DC motor (Eq. <a href="#eq:NARX_eg" data-reference-type="eqref"
 data-reference="eq:NARX_eg">[eq:NARX_eg]</a>) as described in \[46\].
 ``` math
 \begin{gathered}
- \label{eq:NARX_eg}
+ {#eq:NARX_eg}
     y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2)\\
     - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2)\\
     + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2
