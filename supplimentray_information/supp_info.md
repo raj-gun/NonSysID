@@ -493,7 +493,9 @@ brown represents the ARX model identification process, while the
 blue-shaded region highlights the NARX procedures.</figcaption>
 </figure>
 
+<p>&nbsp;</p>
 
+\n
 NARX models can be analysed in the frequency domain using Nonlinear
 Output Frequency Response Functions (NOFRFs) \[41\], which extend
 classical frequency response analysis to nonlinear systems \[2, Ch. 6\].
