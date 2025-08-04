@@ -451,39 +451,14 @@ searches through the full space $`\mathcal{D}''`$ instead of
 $`\mathcal{D}''_{R}`$. Therefore, this technique converges the
 $`\text{iOFR}_{S}`$ faster to an optimal model compared to RCT method 2.
 
-<div class="algorithm">
-
-<div class="algorithmic">
-
-**Input:** $`U`$, $`Y`$, $`\mathbf{Y}`$ Compose the set of candidate
-linear terms $`\mathcal{D'} = Y \cup U`$ $`\mathcal{P} = \mathcal{D'}`$
-$`( \mathcal{M}', \overline{m}' ) = \text{iOFR}_{S}( \mathcal{D}', \mathcal{P}, \mathbf{Y})`$
-$`\mathcal{D}'' = \mathcal{D}' \cup f(\mathcal{D}')`$
-$`\mathcal{D}'_{m}`$ = terms of $`\overline{m'}`$
-$`\mathcal{D}''_{R} = \mathcal{D}'_{m} \cup f( \mathcal{D}'_{m} )`$
-$`\mathcal{P} = \mathcal{D}''`$
-$`( \mathcal{M}'', \overline{m''} ) = \text{iOFR}_{S}( \mathcal{D}'', \mathcal{P}, \mathbf{Y})`$
-$`\mathcal{P} = \mathcal{D}''_{R}`$
-$`( \mathcal{M}'', \overline{m''} ) = \text{iOFR}_{S}( \mathcal{D}''_{R}, \mathcal{P}, \mathbf{Y})`$
-Apply the OFR algorithm on $`\mathcal{D''}`$ to obtain an overfitting
-NARX model $`\overline{m_{0}''}`$. $`\mathcal{P}`$ = terms of
-$`\overline{m_{0}''}`$
-$`( \mathcal{M}'', \overline{m''} ) = \text{iOFR}_{S}( \mathcal{D}'', \mathcal{P}, \mathbf{Y})`$
-Apply the OFR algorithm on $`\mathcal{D''}_{R}`$ to obtain an
-overfitting NARX model $`\overline{m_{0}''}`$. $`\mathcal{P}`$ = terms
-of $`\overline{m_{0}''}`$
-$`( \mathcal{M}'', \overline{m''} ) = \text{iOFR}_{S}( \mathcal{D}''_{R}, \mathcal{P}, \mathbf{Y})`$
-Apply the OFR algorithm on $`\mathcal{D''}_{R}`$ to obtain an
-overfitting NARX model $`\overline{m_{0}''}`$. $`\mathcal{P}`$ = terms
-of $`\overline{m_{0}''}`$
-$`( \mathcal{M}'', \overline{m''} ) = \text{iOFR}_{S}( \mathcal{D}'', \mathcal{P}, \mathbf{Y})`$
-**Output:** $`\mathcal{M}'`$, $`\overline{m}'`$ **Output:**
-$`\mathcal{M}'`$, $`\overline{m}'`$, $`\mathcal{M}''`$,
-$`\overline{m}''`$ **Output:** $`\mathcal{M}'`$, $`\overline{m}'`$
-
-</div>
-
-</div>
+<figure id="fig:NonSysID">
+<img src="Figures/alg.svg"
+alt="Figure 1: Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’" />
+<figcaption aria-hidden="true">Figure 1: Pseudo code of the procedures
+involved in implementing <span
+class="math inline">iOFR<sub><em>S</em></sub></span> in
+‘NonSysID’</figcaption>
+</figure>
 
 The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
 and reduce the time required to obtain a model. Using
@@ -502,18 +477,18 @@ the original system. It should be noted that RCT methods introduce
 additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
 running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
 figure below summarises Algorithm
-<a href="#alg:NonSysId" data-reference-type="ref"
-data-reference="alg:NonSysId">[alg:NonSysId]</a> in a flowchart. The
+<a href="#fig:NonSysId" data-reference-type="ref"
+data-reference="fig:NonSysId">[fig:NonSysId]</a> in a flowchart. The
 following section will provide examples from the ‘NonSysId’ package.
 
 <figure id="fig:flowcharts">
 <img src="Figures/iOFR_S_RCT.svg"
-alt="Figure 1: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in Algorithm [alg:NonSysId]. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures." />
-<figcaption aria-hidden="true">Figure 1: This flowchart summarises the
+alt="Figure 2: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in Algorithm [fig:NonSysId]. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures." />
+<figcaption aria-hidden="true">Figure 2: This flowchart summarises the
 procedures for identifying a (N)ARX model using <span
 class="math inline">iOFR<sub><em>S</em></sub></span> as described in
-Algorithm <a href="#alg:NonSysId" data-reference-type="ref"
-data-reference="alg:NonSysId">[alg:NonSysId]</a>. The region shaded in
+Algorithm <a href="#fig:NonSysId" data-reference-type="ref"
+data-reference="fig:NonSysId">[fig:NonSysId]</a>. The region shaded in
 brown represents the ARX model identification process, while the
 blue-shaded region highlights the NARX procedures.</figcaption>
 </figure>
