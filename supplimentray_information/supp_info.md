@@ -455,7 +455,7 @@ $`\text{iOFR}_{S}`$ faster to an optimal model compared to RCT method 2.
 
 <figure id="fig:NonSysID">
 <img src="Figures/alg.svg"
-alt="**Figure 1:** Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’" />
+alt="<b>Figure 1:</b> Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’" />
 <figcaption aria-hidden="true">Figure 1: Pseudo code of the procedures
 involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
