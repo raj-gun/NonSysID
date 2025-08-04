@@ -174,6 +174,7 @@ for example,
 <table>
 <tr>
 <td>
+  
   1.  OFR-ERR may select redundant or incorrect model terms, especially in
       the presence of complex noise structures or certain input signals;
   
@@ -189,6 +190,7 @@ for example,
   
   4.  The ERR focuses solely on explained variance when selecting terms,
       which can lead to overfitting.
+      
 </td>
 </tr>
 </table>
@@ -299,6 +301,7 @@ are as follows:
 <table>
 <tr>
 <td>
+  
   1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
       term and search through $`p`$ orthogonalization paths using OFR to
       produce a set of $`p`$ candidate models
@@ -316,6 +319,7 @@ are as follows:
   
   5.  Repeat steps 1-4 and iteratively search through different
       orthogonalization paths.
+      
 </td>
 </tr>
 </table>
