@@ -49,23 +49,24 @@ instances (input-lagged terms),
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (1)
 ```
-{#eq:Ut_sysid}
 
 and past output instances (output-lagged terms),
+
 ``` math
 Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (2) 
 ```
-{#eq:Yt_sysid}
+
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
 time index (i.e. $`t`$<sup>th</sup> sample). $`n_a`$ and $`n_b`$ are the
 maximum number of past output and input time instances considered and
 are related to the Lyapunov exponents of the actual system that is being
 modelled \[17\]. The functional mapping is described by the following
 equation:
+
 ``` math
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (3)
 ```
-{#eq:sys_id_func}
+
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
 while $`\xi(t)`$ represents the error between the predicted output
 $`f^{P}\bigl( Y, U \bigr)`$ and the actual output $`y(t)`$ at time
@@ -74,13 +75,12 @@ $`f^{P}( \ )`$ is the functional mapping between the past inputs and
 outputs to the current output $`y(t)`$. This mapping can take the form
 of a polynomial, a neural network, or even a fuzzy logic-based model.
 Here, we focus on polynomial NARX models with a maximum polynomial
-degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq.
-<a href="#eq:sys_id_func" data-reference-type="eqref"
-data-reference="eq:sys_id_func">[eq:sys_id_func]</a> can be expressed as
+degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq. (3) can be expressed as
+
 ``` math
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (4)
 ```
-{#eq:sys_id_func_summation}
+
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
 model terms. $`\theta_{m}`$ are the model parameters or coefficients and
 $`\phi_{m}(t)`$ are the corresponding model terms or variables.
@@ -89,27 +89,27 @@ NARX model $`f^{P}( \ )`$, where $`n = 1, \cdots, N_p`$ is the degree of
 the monomial. $`\phi_{m}(t)`$ is composed of past output and input time
 instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
+
 ``` math
 y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (5)
 ```
-{#eq:narx_exmpl}
+
+
 In this example, $`\phi_{1}(t)=y(t-1)`$ and $`\phi_{2}(t)=u(t-2)`$ have
 a degree of 1 and are the linear terms (1<sup>st</sup> order monomials
 or linear monomials) of the model.
 $`\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}`$ is a nonlinear term with a degree
 of $`5`$ (5<sup>th</sup> order monomial, more generally a nonlinear
-monomial). The NARX model given in Eq.
-<a href="#eq:narx_exmpl" data-reference-type="ref"
-data-reference="eq:narx_exmpl">[eq:narx_exmpl]</a> has a polynomial
+monomial). The NARX model given in Eq. (5) has a polynomial
 degree $`N_p=5`$ (highest degree of any monomial). Given that the total
 number of time samples available is $`L`$, where $`t = 1, \cdots, L`$,
-Eq. <a href="#eq:sys_id_func_summation" data-reference-type="ref"
-data-reference="eq:sys_id_func_summation">[eq:sys_id_func_summation]</a>
+Eq. (4)
 can be represented in matrix form as
+
 ``` math
 \mathbf{Y} = \mathbf{\Phi} \mathbf{\Theta} + \mathbf{\Xi},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
 ```
-{#eq:sys_id_func_mat}
+
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
 containing the output samples $`y(t)`$.
 $`\mathbf{\Phi} = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]`$,
@@ -122,9 +122,7 @@ is the parameter vector and
 $`\mathbf{\Xi} = \left[ \xi(1), \cdots, \xi(L) \right]`$ is the vector
 containing all the error terms $`\xi(t)`$ (i.e. model residuals). In the
 NARMAX model structure, a moving-average (MA) component is added to the
-NARX (Eq.
-<a href="#eq:sys_id_func_summation" data-reference-type="eqref"
-data-reference="eq:sys_id_func_summation">[eq:sys_id_func_summation]</a>)
+NARX (Eq. (4))
 by incorporating linear and nonlinear lagged error terms (e.g.,
 $`\xi(t-2)`$, $`\xi(t-1)\xi(t-3)`$). This noise model accounts for
 unmodeled dynamics and coloured noise, effectively isolating noise from
@@ -135,6 +133,7 @@ the polynomial structure of the model, i.e. selecting which terms from a
 set of candidate model terms (monomials), denoted as $`\mathcal{D}`$,
 should be included in the model. For instance, a potential set of
 candidate terms could be
+
 ``` math
 \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
@@ -142,10 +141,8 @@ candidate terms could be
               y(t-2)^{2}u(t-1), y(t-2)^{2}u(t-1)^{3}
         \Big\} ,    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (7)
 ```
-{#eq:exmpl_D}
-from which a NARX model structure, such as that in Eq.
-<a href="#eq:narx_exmpl" data-reference-type="ref"
-data-reference="eq:narx_exmpl">[eq:narx_exmpl]</a>, can be identified.
+
+from which a NARX model structure, such as that in Eq. (5), can be identified.
 Once the model structure is identified, the next step is to estimate the
 model parameters. However, determining the appropriate linear and
 nonlinear terms to include in the model structure is critical to
@@ -365,11 +362,7 @@ techniques focus on efficiently reducing the number of candidate terms,
 pre-select terms, or both.
 
 Let $`\mathcal{D'}`$ denote the set of candidate linear terms comprising
-past inputs $`U`$ and outputs $`Y`$ (as defined in Eq.
-<a href="#eq:Ut_sysid" data-reference-type="eqref"
-data-reference="eq:Ut_sysid">[eq:Ut_sysid]</a> and
-<a href="#eq:Yt_sysid" data-reference-type="eqref"
-data-reference="eq:Yt_sysid">[eq:Yt_sysid]</a>, respectively), such that
+past inputs $`U`$ and outputs $`Y`$ (as defined in Eq. (1) and (2), respectively), such that
 $`\mathcal{D'} = Y \cup U`$. This set is used to identify or learn an
 ARX model. Similarly, let $`\mathcal{D}''`$ represent the set of
 candidate terms that includes both linear and nonlinear terms, enabling
