@@ -413,10 +413,10 @@ The ‘NonSysId’ package incorporates both aforementioned methods to
 reduce the computational time of $`\text{iOFR}_{S}`$. Additionally, the
 ‘NonSysId’ package implements two new methods, proposed in this paper,
 to further enhance computational efficiency (referred to as reducing
-computational time, RCT, methods). Algorithm
-<a href="#alg:NonSysId" data-reference-type="ref"
-data-reference="alg:NonSysId">[alg:NonSysId]</a> outlines the procedures
-of the complete system identification methodology, integrating
+computational time, RCT, methods). Fig.
+<a href="#fig:NonSysID" data-reference-type="ref"
+data-reference="fig:NonSysID">1</a> outlines the procedures of the
+complete system identification methodology, integrating
 $`\text{iOFR}_{S}`$ with these four RCT methods. A brief overview of
 each RCT method is provided below.
 
@@ -459,7 +459,6 @@ involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
 ‘NonSysID’</figcaption>
 </figure>
-\n
 
 The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
 and reduce the time required to obtain a model. Using
@@ -493,7 +492,6 @@ data-reference="fig:NonSysId">[fig:NonSysId]</a>. The region shaded in
 brown represents the ARX model identification process, while the
 blue-shaded region highlights the NARX procedures.</figcaption>
 </figure>
-\n
 
 NARX models can be analysed in the frequency domain using Nonlinear
 Output Frequency Response Functions (NOFRFs) \[41\], which extend
