@@ -39,51 +39,51 @@ Recently two open-sourced packages have been introduced, `SysIdentPy` [@Lacerda2
 
 In the context of (N)ARX models, system identification is employed to determine a specific functional relationship that maps past input instances (input-lagged terms),
 
-$$
+\begin{equation}\label{eq:Ut_sysid}
     U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
-$$
+\end{equation}
 
 and past output instances (output-lagged terms),
 
-$$
+\begin{equation}\label{eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
-$$
+\end{equation}
 
 to the present output instance in time $y(t)$. $t$ here refers to a time index (i.e. $t$^th^ sample). $n_a$ and $n_b$ are the maximum number of past output and input time instances considered and are related to the Lyapunov exponents of the actual system that is being modelled [@mendes1998a]. The functional mapping is described by the following equation:
 
-$$
+\begin{equation}\label{eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
-$$
+\end{equation}
 
 where $y(t)$ and $u(t)$ refer to the output and input respectively, while $\xi(t)$ represents the error between the predicted output $f^{P}\bigl( Y, U \bigr)$ and the actual output $y(t)$ at time instance $t$. $\xi(t)$ will contain noise and unmodeled dynamics. $f^{P}( \ )$ is the functional mapping between the past inputs and outputs to the current output $y(t)$. This mapping can take the form of a polynomial, a neural network, or even a fuzzy logic-based model. Here, we focus on polynomial NARX models with a maximum polynomial degree $N_p \in \mathbb{Z}^{+}$. In this case, \autoref{eq:sys_id_func} can be expressed as
 
-$$
+\begin{equation}\label{eq:sys_id_func_summation}
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
-$$
+\end{equation}
 
 where $m = 1, \cdots, M$, $M$ being the total number of variables or model terms. $\theta_{m}$ are the model parameters or coefficients and $\phi_{m}(t)$ are the corresponding model terms or variables. $\phi_{m}(t)$ are $n$^th^-order monomials of the polynomial NARX model $f^{P}( \ )$, where $n = 1, \cdots, N_p$ is the degree of the monomial. $\phi_{m}(t)$ is composed of past output and input time instances from $Y$ and $U$. An example of a polynomial NARX model can be
 
-$$
+\begin{equation}\label{eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
-$$
+\end{equation}
 
 In this example, $\phi_{1}(t)=y(t-1)$ and $\phi_{2}(t)=u(t-2)$ have a degree of 1 and are the linear terms (1\textsuperscript{st} order monomials or linear monomials) of the model. $\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}$ is a nonlinear term with a degree of $5$ (5^th^ order monomial, more generally a nonlinear monomial). The NARX model given in \autoref{eq:narx_exmpl} has a polynomial degree $N_p=5$ (highest degree of any monomial). Given that the total number of time samples available is $L$, where $t = 1, \cdots, L$, \autoref{eq:sys_id_func_summation} can be represented in matrix form as
 
-$$
+\begin{equation}\label{eq:sys_id_func_mat}
 \mathbf{Y} = \Phi \Theta + \Xi,
-$$
+\end{equation}
 
 where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containing the output samples $y(t)$. $\Phi = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]$, where $\bar{\phi}_{m} = \left[ \phi_{m}(1), \cdots, \phi_{m}(L) \right]^T$ is the vector containing all time samples of the model term $\phi_{m}(t)$. $\Theta = \left[ \theta_{1}, \cdots, \theta_{M}  \right]^T$  is the parameter vector and $\Xi = \left[ \xi(1), \cdots, \xi(L) \right]$ is the vector containing all the error terms $\xi(t)$ (i.e. model residuals). In the NARMAX model structure, a moving-average (MA) component is added to the NARX (\autoref{eq:sys_id_func_summation}) by incorporating linear and nonlinear lagged error terms (e.g., $\xi(t-2)$, $\xi(t-1)\xi(t-3)$). This noise model accounts for unmodeled dynamics and coloured noise, effectively isolating noise from the deterministic system and thereby reducing model bias (Chapter 3, [@billings2013a]).
 
 The primary challenge in learning a polynomial NARX model is to identify the polynomial structure of the model, i.e. selecting which terms from a set of candidate model terms (monomials), denoted as $\mathcal{D}$, should be included in the model. For instance, a potential set of candidate terms could be
 
-$$
+\begin{multline}\label{eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, \\
               y(t-2)^{2}u(t-1), y(t-2)^{2}u(t-1)^{3}
         \Big\} ,
-$$
+\end{multline}
 
 from which a NARX model structure, such as that in \autoref{eq:narx_exmpl}, can be identified. Once the model structure is identified, the next step is to estimate the model parameters. However, determining the appropriate linear and nonlinear terms to include in the model structure is critical to achieving parsimonious models. This is particularly important in the nonlinear cases (Chapter 1, [@billings2013a]), as the inclusion of  unnecessary model terms, can result in a model that erroneously captures dynamics that do not belong to the underlying system [@AGUIRRE1995;@mendes1998a].
 
@@ -164,11 +164,11 @@ This section presents two examples showcasing the use of the NonSysID package, w
 ## Synthetic data example
 
 The following example demonstrates how to identify a NARX model using the `NonSysId` package. In this example, we consider a NARX model of a DC motor (\autoref{eq:NARX_eg}) as described in [@Lacerda2017].
-$$
+\begin{multline} \label{eq:NARX_eg}
     y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2)\\
     - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2)\\
     + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2
-$$
+\end{multline}
 In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the system at the time sample $t$. The NARX model is separately excited using two inputs: (a) White noise, where $u(t)\sim\mathcal{N}(0,1)$, and (b) a multi-tone sinusoidal wave defined as $u(t) = 0.2\big( 4\sin{(\pi t)} + 1.2\sin{(4\pi t)} + 1.5\sin{(8\pi t)} + 0.5\sin{(6\pi t)} \big)$. The model was simulated for 1000 time samples. Identification results for both input cases are presented below. Matlab scripts for this example are available in the code repository, along with documentation in the code repository provides a straightforward guide for using $\text{iOFR}_{S}$ in the `NonSysId` package.
 
 \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io} depict the training and testing data alongside the model simulated output for the inputs (a) and (b), respectively. The term `testing data` is used to refer to data not explicitly included during training, as the model is already validated through leave-one-out cross-validation during the identification/training process (see sub-section `PRESS-statistic-based term selection`).
