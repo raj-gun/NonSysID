@@ -355,13 +355,11 @@ selection process to address these challenges.
 In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
-``` math
-\label{eq:Ut_sysid}
+``` math [comment]:\label{eq:Ut_sysid}
     U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
 ```
 and past output instances (output-lagged terms),
-``` math
-\label{eq:Yt_sysid}
+``` math [comment]:\label{eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},
 ```
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
@@ -370,8 +368,7 @@ maximum number of past output and input time instances considered and
 are related to the Lyapunov exponents of the actual system that is being
 modelled \[17\]. The functional mapping is described by the following
 equation:
-``` math
-\label{eq:sys_id_func}
+``` math [comment]:\label{eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
 ```
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
@@ -385,8 +382,7 @@ Here, we focus on polynomial NARX models with a maximum polynomial
 degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq.
 <a href="#eq:sys_id_func" data-reference-type="eqref"
 data-reference="eq:sys_id_func">[eq:sys_id_func]</a> can be expressed as
-``` math
-\label{eq:sys_id_func_summation}
+``` math [comment]:\label{eq:sys_id_func_summation}
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
 ```
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
@@ -397,8 +393,7 @@ NARX model $`f^{P}( \ )`$, where $`n = 1, \cdots, N_p`$ is the degree of
 the monomial. $`\phi_{m}(t)`$ is composed of past output and input time
 instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
-``` math
-\label{eq:narx_exmpl}
+``` math [comment]:\label{eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
 ```
 In this example, $`\phi_{1}(t)=y(t-1)`$ and $`\phi_{2}(t)=u(t-2)`$ have
@@ -414,8 +409,7 @@ number of time samples available is $`L`$, where $`t = 1, \cdots, L`$,
 Eq. <a href="#eq:sys_id_func_summation" data-reference-type="ref"
 data-reference="eq:sys_id_func_summation">[eq:sys_id_func_summation]</a>
 can be represented in matrix form as
-``` math
-\label{eq:sys_id_func_mat}
+``` math [comment]:\label{eq:sys_id_func_mat}
 \mathbf{Y} = \mathbf{\Phi} \mathbf{\Theta} + \mathbf{\Xi},
 ```
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
@@ -443,8 +437,7 @@ the polynomial structure of the model, i.e. selecting which terms from a
 set of candidate model terms (monomials), denoted as $`\mathcal{D}`$,
 should be included in the model. For instance, a potential set of
 candidate terms could be
-``` math
-\label{eq:exmpl_D}
+``` math [comment]:\label{eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, 
