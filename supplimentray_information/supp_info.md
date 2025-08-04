@@ -63,7 +63,7 @@ are related to the Lyapunov exponents of the actual system that is being
 modelled \[17\]. The functional mapping is described by the following
 equation:
 ``` math
-y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (3)
+y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (3)
 ```
 {#eq:sys_id_func}
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
