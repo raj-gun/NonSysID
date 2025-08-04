@@ -301,23 +301,25 @@ are as follows:
 <table>
 <tr>
 <td>
-1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
-    term and search through $`p`$ orthogonalization paths using OFR to
-    produce a set of $`p`$ candidate models
-    $`\tilde{\mathcal{M}} = \{ \tilde{m}_1, \dots, \tilde{m}_p \}`$.
-
-2.  From $`\tilde{\mathcal{M}}`$ determine the set of stable candidate
-    models $`\mathcal{M} = \{ m_1, \dots, m_{\overline{p}} \}`$,
-    $`\overline{p} \leq p`$.
-
-3.  From $`\mathcal{M}`$, based on the simulation error choose the best
-    model $`\overline{m}`$.
-
-4.  Use the terms in $`\overline{m}`$ to form the new set of pre-select
-    terms $`\mathcal{P}`$.
-
-5.  Repeat steps 1-4 and iteratively search through different
-    orthogonalization paths.
+  
+  1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
+      term and search through $`p`$ orthogonalization paths using OFR to
+      produce a set of $`p`$ candidate models
+      $`\tilde{\mathcal{M}} = \{ \tilde{m}_1, \dots, \tilde{m}_p \}`$.
+  
+  2.  From $`\tilde{\mathcal{M}}`$ determine the set of stable candidate
+      models $`\mathcal{M} = \{ m_1, \dots, m_{\overline{p}} \}`$,
+      $`\overline{p} \leq p`$.
+  
+  3.  From $`\mathcal{M}`$, based on the simulation error choose the best
+      model $`\overline{m}`$.
+  
+  4.  Use the terms in $`\overline{m}`$ to form the new set of pre-select
+      terms $`\mathcal{P}`$.
+  
+  5.  Repeat steps 1-4 and iteratively search through different
+      orthogonalization paths.
+      
 </td>
 </tr>
 </table>
