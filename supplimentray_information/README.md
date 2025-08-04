@@ -46,15 +46,9 @@ In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
 
-<table>
-<tr>
-<td>
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (1)
 ```
-</td>
-</tr>
-</table>
 
 and past output instances (output-lagged terms),
 
@@ -177,6 +171,9 @@ proposed. However, concerns persist regarding the original OFR algorithm
 (OFR-ERR), which relies on the ERR for term selection \[15\], \[16\],
 for example,
 
+<table>
+<tr>
+<td>
 1.  OFR-ERR may select redundant or incorrect model terms, especially in
     the presence of complex noise structures or certain input signals;
 
@@ -192,6 +189,9 @@ for example,
 
 4.  The ERR focuses solely on explained variance when selecting terms,
     which can lead to overfitting.
+</td>
+</tr>
+</table>
 
 Beyond obtaining parsimonious models, the model should generalise well
 to unseen data (validation) that is not used during the
@@ -296,6 +296,9 @@ extends this by incorporating simulation-based model selection
 long-horizon prediction accuracy. The procedures for $`\text{iOFR}_{S}`$
 are as follows:
 
+<td>
+<tr>
+<table>
 1.  Pre-select each term given in $`\mathcal{P}`$ as the first model
     term and search through $`p`$ orthogonalization paths using OFR to
     produce a set of $`p`$ candidate models
@@ -313,6 +316,9 @@ are as follows:
 
 5.  Repeat steps 1-4 and iteratively search through different
     orthogonalization paths.
+</td>
+</tr>
+</table>
 
 In step 2, each model $`\tilde{m}_i \in \tilde{\mathcal{M}}`$,
 $`i=1,\dots,p`$, is tested using two inputs: (i) a sequence of 0’s,
