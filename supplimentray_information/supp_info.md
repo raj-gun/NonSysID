@@ -77,8 +77,8 @@ where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containin
 
 The primary challenge in learning a polynomial NARX model is to identify the polynomial structure of the model, i.e. selecting which terms from a set of candidate model terms (monomials), denoted as $\mathcal{D}$, should be included in the model. For instance, a potential set of candidate terms could be
 
-```math
-\begin{multline} [comment]:\label{eq:exmpl_D}
+```math [comment]:\label{eq:exmpl_D}
+\begin{multline} 
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, \\
