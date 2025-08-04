@@ -459,6 +459,7 @@ involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
 ‘NonSysID’</figcaption>
 </figure>
+\n
 
 The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
 and reduce the time required to obtain a model. Using
@@ -492,6 +493,7 @@ data-reference="fig:NonSysId">[fig:NonSysId]</a>. The region shaded in
 brown represents the ARX model identification process, while the
 blue-shaded region highlights the NARX procedures.</figcaption>
 </figure>
+\n
 
 NARX models can be analysed in the frequency domain using Nonlinear
 Output Frequency Response Functions (NOFRFs) \[41\], which extend
