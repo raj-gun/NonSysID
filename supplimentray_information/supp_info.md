@@ -45,31 +45,31 @@ In the context of (N)ARX models, system identification is employed to determine 
 
 and past output instances (output-lagged terms),
 
-```math [comment]:\label{eq:Yt_sysid}
+```math [comment]: [comment]:\label{eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
 ```
 
 to the present output instance in time $y(t)$. $t$ here refers to a time index (i.e. $t$^th^ sample). $n_a$ and $n_b$ are the maximum number of past output and input time instances considered and are related to the Lyapunov exponents of the actual system that is being modelled [@mendes1998a]. The functional mapping is described by the following equation:
 
-```math\label{eq:sys_id_func}
+```math [comment]:\label{eq:sys_id_func}
 y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),
 ```
 
 where $y(t)$ and $u(t)$ refer to the output and input respectively, while $\xi(t)$ represents the error between the predicted output $f^{P}\bigl( Y, U \bigr)$ and the actual output $y(t)$ at time instance $t$. $\xi(t)$ will contain noise and unmodeled dynamics. $f^{P}( \ )$ is the functional mapping between the past inputs and outputs to the current output $y(t)$. This mapping can take the form of a polynomial, a neural network, or even a fuzzy logic-based model. Here, we focus on polynomial NARX models with a maximum polynomial degree $N_p \in \mathbb{Z}^{+}$. In this case, \autoref{eq:sys_id_func} can be expressed as
 
-```math\label{eq:sys_id_func_summation}
+```math [comment]:\label{eq:sys_id_func_summation}
 y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),
 ```
 
 where $m = 1, \cdots, M$, $M$ being the total number of variables or model terms. $\theta_{m}$ are the model parameters or coefficients and $\phi_{m}(t)$ are the corresponding model terms or variables. $\phi_{m}(t)$ are $n$^th^-order monomials of the polynomial NARX model $f^{P}( \ )$, where $n = 1, \cdots, N_p$ is the degree of the monomial. $\phi_{m}(t)$ is composed of past output and input time instances from $Y$ and $U$. An example of a polynomial NARX model can be
 
-```math\label{eq:narx_exmpl}
+```math [comment]:\label{eq:narx_exmpl}
     y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).
 ```
 
 In this example, $\phi_{1}(t)=y(t-1)$ and $\phi_{2}(t)=u(t-2)$ have a degree of 1 and are the linear terms (1\textsuperscript{st} order monomials or linear monomials) of the model. $\phi_{3}(t) = y(t-2)^{2}u(t-1)^{3}$ is a nonlinear term with a degree of $5$ (5^th^ order monomial, more generally a nonlinear monomial). The NARX model given in \autoref{eq:narx_exmpl} has a polynomial degree $N_p=5$ (highest degree of any monomial). Given that the total number of time samples available is $L$, where $t = 1, \cdots, L$, \autoref{eq:sys_id_func_summation} can be represented in matrix form as
 
-```math\label{eq:sys_id_func_mat}
+```math [comment]:\label{eq:sys_id_func_mat}
 \mathbf{Y} = \Phi \Theta + \Xi,
 ```
 
@@ -77,7 +77,7 @@ where $\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T$ is the vector containin
 
 The primary challenge in learning a polynomial NARX model is to identify the polynomial structure of the model, i.e. selecting which terms from a set of candidate model terms (monomials), denoted as $\mathcal{D}$, should be included in the model. For instance, a potential set of candidate terms could be
 
-\begin{multline}\label{eq:exmpl_D}
+\begin{multline} [comment]:\label{eq:exmpl_D}
     \mathcal{D} = \Big\{ 
               y(t-1), y(t-2), u(t-1), u(t-2), 
               y(t-1)u(t-2), y(t-2)u(t-1)^{3}, \\
@@ -145,7 +145,7 @@ The `NonSysId` package incorporates both aforementioned methods to reduce the co
 
 - **RCT Method 2**: This method, as proposed in [@guo2015a], identifies an appropriate initial set of pre-select terms, $\mathcal{P}$, for the first iteration of the iOFR algorithm. By ensuring that $\mathcal{P} \subset \mathcal{D}''$ (containing fewer redundant terms compared to $\mathcal{P} \subseteq \mathcal{D}$), the first iteration of iOFR/$\text{iOFR}_{S}$ involves fewer orthogonalization paths originating from redundant terms. This accelerates convergence towards an optimal model [@guo2015a].
 
-![Pseudo code summarising the model identification algorithm implementing $\text{iOFR}_{S}$ in `NonSysId`. \label{fig:alg}](Figures/alg.svg){width="100%"}
+![Pseudo code summarising the model identification algorithm implementing $\text{iOFR}_{S}$ in `NonSysId`.  [comment]:\label{fig:alg}](Figures/alg.svg){width="100%"}
 
 - **RCT Method 3**: This method combines RCT methods 1 and 2, such that $\mathcal{P} \subset \mathcal{D}''_{R}$ and $\text{iOFR}_{S}$ searches through an appropriately reduced space defined by $\mathcal{D}''_{R}$. As a result, this approach enables faster convergence of $\text{iOFR}_{S}$ to an optimal model compared to any other RCT method.
 
@@ -153,7 +153,7 @@ The `NonSysId` package incorporates both aforementioned methods to reduce the co
 
 The RCT methods aim to accelerate the convergence of $\text{iOFR}_{S}$ and reduce the time required to obtain a model. Using $\mathcal{D}''_{R}$ reduces the computational time for the OFR algorithm within $\text{iOFR}_{S}$, by shortening the time needed to follow a given orthogonalization path. Additionally, fewer redundant terms in $\mathcal{P}$ lead to faster convergence of $\text{iOFR}_{S}$ and contribute to reducing time by minimizing the number of orthogonalization paths [@guo2015a]. Therefore, the most effective RCT method is 3, followed by methods 1,4 and 2. However, when reducing the search space (determining $\mathcal{D}''_{R}$), RCT methods 1 and 3 may miss some correct terms, potentially resulting in convergence to a sub-optimal model. This outcome depends on the level of white and coloured noise in the input-output data, as well as the complexity of the original system. It should be noted that RCT methods introduce additional procedures. Therefore, if $\mathcal{D}''$ is small enough, running $\text{iOFR}_{S}$ without any RCT methods may be faster. The figure below summarises Algorithm \autoref{fig:alg} in a flowchart. The following section will provide examples from the `NonSysId` package. 
 
-![This flowchart summarises the procedures for identifying a (N)ARX model using $\text{iOFR}_{S}$ as described in Algorithm \autoref{fig:alg}. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures.\label{fig:flowcharts}](Figures/iOFR_S_RCT.svg){width="100%"}
+![This flowchart summarises the procedures for identifying a (N)ARX model using $\text{iOFR}_{S}$ as described in Algorithm \autoref{fig:alg}. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures. [comment]:\label{fig:flowcharts}](Figures/iOFR_S_RCT.svg){width="100%"}
 
 NARX models can be analysed in the frequency domain using Nonlinear Output Frequency Response Functions (NOFRFs) [@Lang2005], which extend classical frequency response analysis to nonlinear systems (Chapter 6, [@billings2013a]). The NOFRF concept is an essential tool for system identification, describing how input frequencies interact nonlinearly to generate output frequencies that are harmonics and intermodulation effects. This facilitates a detailed understanding of how nonlinearities affect input-output dynamics [@Lang2005;@BAYMA2018]. NOFRFs can be evaluated using various methods [@Gunawardena2018;@ZHU2022], providing enhanced insights into the frequency-domain behaviour of complex nonlinear systems. Consequently, NOFRFs enhance the utility of NARX models by offering a comprehensive framework for analysing and interpreting nonlinear system [@Zhu2021].
 
@@ -164,7 +164,7 @@ This section presents two examples showcasing the use of the NonSysID package, w
 ## Synthetic data example
 
 The following example demonstrates how to identify a NARX model using the `NonSysId` package. In this example, we consider a NARX model of a DC motor (\autoref{eq:NARX_eg}) as described in [@Lacerda2017].
-\begin{multline} \label{eq:NARX_eg}
+\begin{multline}  [comment]:\label{eq:NARX_eg}
     y(t) = 1.7813y(t-1) - 0.7962y(t-2) + 0.0339u(t-1) + 0.0338u(t-2)\\
     - 0.1597y(t-1)u(t-1) - 0.1396y(t-1)u(t-2)\\
     + 0.1297y(t-2)u(t-1) + 0.1086y(t-2)u(t-2) + 0.0085y(t-2)^2
@@ -173,7 +173,7 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the sys
 
 \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io} depict the training and testing data alongside the model simulated output for the inputs (a) and (b), respectively. The term `testing data` is used to refer to data not explicitly included during training, as the model is already validated through leave-one-out cross-validation during the identification/training process (see sub-section `PRESS-statistic-based term selection`).
 
-![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a Gaussian white noise signal $u(t)\sim\mathcal{N}(0,1)$. Only the first 60 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this case is $1.6018e^{-25}$.\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
+![**Model identification results under input (a)**. The model simulation output $\hat{y}(t)$ is shown against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a Gaussian white noise signal $u(t)\sim\mathcal{N}(0,1)$. Only the first 60 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this case is $1.6018e^{-25}$. [comment]:\label{fig:narx_eg_a_io}](Figures/ex_dc_motor_a_60.svg){width="80%"}
 
 \autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} present the identified terms and parameter values of the corresponding NARX models under inputs (a) and (b), respectively. These tables also include the mean squared PRESS error and the ERR metrics for each term. The values of these metrics depend on the order in which the terms were added to the model during the forward selection procedure, determined by the orthogonalization path taken by the OFR algorithm (sub-section `Iterative OFR`). The mean squared PRESS error reflects the one-step-ahead leave-one-out cross-validation error after the term is added to the model. Sorting \autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param} in descending order of the mean squared PRESS error reveals the sequence of the terms added. For example, in `Table 1`, the term $u(t-1)$ was added first (indicating the orthogonalization path starts with this term) followed by $y(t-1)$, $y(t-2)$, and so on. The ERR represents the proportion of the actual output variance (variance of $y(t)$) explained by each corresponding term.
 
@@ -188,9 +188,9 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the sys
 | $y(t-2)y(t-2)$    | $3.1515 \times 10^{-30}$     | $5.3837e \times 10^{-7}$| $\ \ 0.0085$            |
 | $y(t-2)u(t-1)$    | $3.7241 \times 10^{-7}$      | $2.9966e \times 10^{-5}$| $\ \ 0.1297$            |
 | $y(t-2)u(t-2)$    | $4.6109 \times 10^{-5}$      | $2.8901e \times 10^{-5}$| $\ \ 0.1086$            |
-: The model identified when \autoref{eq:NARX_eg} is excited with input (a), white noise \label{tbl:inpt_a_param}
+: The model identified when \autoref{eq:NARX_eg} is excited with input (a), white noise  [comment]:\label{tbl:inpt_a_param}
 
-![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a multi-tone sinusoidal signal given by $u(t) = 0.2\big( 4\sin{(\pi t)} + 1.2\sin{(4\pi t)} + 1.5\sin{(8\pi t)} + 0.5\sin{(6\pi t)} \big)$. In this case, the portion of $y(t)$ used for identification/training (yellow curve) is less informative compared to input (a), as fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, up to 200 samples are used for identifying the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this scenario is $8.2178e^{-18}$. Using fewer than 200 samples results a sub-optimal model, as insufficient data limits the ability to capture the system's dynamics effectively.\label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
+![**Model identification results under input (b)**. The model simulated output, $\hat{y}(t)$, is compared with the actual output, $y(t)$, as defined in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a multi-tone sinusoidal signal given by $u(t) = 0.2\big( 4\sin{(\pi t)} + 1.2\sin{(4\pi t)} + 1.5\sin{(8\pi t)} + 0.5\sin{(6\pi t)} \big)$. In this case, the portion of $y(t)$ used for identification/training (yellow curve) is less informative compared to input (a), as fewer system dynamics are excited due to the limited frequency components in the input signal. Therefore, up to 200 samples are used for identifying the model using $\text{iOFR}_{S}$ in the `NonSysId` package. The variance of the error or model residuals in this scenario is $8.2178e^{-18}$. Using fewer than 200 samples results a sub-optimal model, as insufficient data limits the ability to capture the system's dynamics effectively. [comment]:\label{fig:narx_eg_b_io}](Figures/ex_dc_motor_b_200.svg){width="80%"}
 
 | Model term        |  Mean squared PRESS error    | ERR                     | Parameters/Coefficients |
 |-------------------|------------------------------|-------------------------|-------------------------|
@@ -203,19 +203,19 @@ In \autoref{eq:NARX_eg}, $y(t)$ is the output and $u(t)$ is the input to the sys
 | $y(t-2)y(t-2)$    | $3.8123 \times 10^{-9}$      | $4.6086 \times 10^{-8}$ | $0.0085$                |
 | $y(t-2)u(t-1)$    | $1.9182 \times 10^{-25}$     | $6.4198 \times 10^{-12}$| $0.1297$                |
 | $y(t-2)u(t-2)$    | $7.0559 \times 10^{-2}$      | $0.89632$               | $0.1086$                |
-: The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid \label{tbl:inpt_b_param}
+: The model identified when \autoref{eq:NARX_eg} is excited with input (b), a multi-tone sinusoid  [comment]:\label{tbl:inpt_b_param}
 
 The correlation based statistical validation tests for nonlinear models [@Billings1983] are presented in \autoref{fig:narx_eg_a_val} and \autoref{fig:narx_eg_b_val}. These validation tests are conducted on the training data (yellow region of $y(t)$ in \autoref{fig:narx_eg_a_io} and \autoref{fig:narx_eg_b_io}). From the auto-correlation function (ACF) of the residuals, it is observed that the model residuals, in both cases (a) and (b), are not entirely white noise. Additionally, in \autoref{fig:narx_eg_b_val}, the cross-correlation functions (Cross-CF) between the input $u(t)$ and the model residuals are not completely within the tolerance bounds, indicating some bias in the model. However, the variance of the model residuals are $1.6018e^{-25}$ and $8.2178e^{-18}$, respectively, for (a) and (b), compared to the training data variances of $0.069$ and $0.0581$. This shows that the bias of the identified model is minimal. As such, even though the identified terms and parameters (\autoref{tbl:inpt_a_param} and \autoref{tbl:inpt_b_param}) are similar to the actual system (\autoref{eq:NARX_eg}), the parameters do have differences considering from the 4^th^ decimal place and beyond.
 
-![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="70%"}
+![Model validation results for input (a). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased. [comment]:\label{fig:narx_eg_a_val}](Figures/ex_dc_motor_a_60_vald.svg){width="70%"}
 
-![Model validation results for input (b). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_b_val}](Figures/ex_dc_motor_b_200_vald.svg){width="70%"}
+![Model validation results for input (b). The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased. [comment]:\label{fig:narx_eg_b_val}](Figures/ex_dc_motor_b_200_vald.svg){width="70%"}
 
 ## Real data example
 
 The real data in this example is obtained from an electromechanical system described in [@Lacerda2017b]. The system comprises two 6V DC motors mechanically coupled by a shaft. One motor acts as the driver, transferring mechanical energy, while the other operates as a generator, converting the mechanical energy into electrical energy. The system input is the voltage applied to the DC motor acting as the driver. This input is a pseudo-random binary signal (PRBS) designed to excite the system over a range of dynamics. The output of the system is the rotational speed (angular velocity) of the generator motor.
 
-![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package.\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg){width="100%"}
+![**Model identification results from the electro-mechanical system**. The model simulation output $\hat{y}(t)$ is presented against the actual output $y(t)$ of the system given in \autoref{eq:NARX_eg}. The input $u(t)$ to the system is a PRBS. Only 250 samples are used for identifying/training the model using $\text{iOFR}_{S}$ in the `NonSysId' package. [comment]:\label{fig:narx_eg_rldt_sys}](Figures/ele_mech_sysId.svg){width="100%"}
 
 | Model term        |  Mean squared PRESS error   | ERR                     | Parameters/Coefficients |
 |-------------------|-----------------------------|-------------------------|-------------------------|
@@ -226,9 +226,9 @@ The real data in this example is obtained from an electromechanical system descr
 | $y(t-3)u(t-1)$    | $1.2306 \times 10^{7}$      | $0.50441$               | $0.030086$              |
 | $u(t-2)u(t-2)$    | $91.271$                    | $2.5147 \times 10^{-6}$ | $1.89$                  |
 | $u(t-2)u(t-3)$    | $71.842$                    | $7.2261 \times 10^{-7}$ | $-0.91694$              |
-: The model identified from the data generated from the system in [@Lacerda2017b] \label{tbl:narx_eg_rldt_val}
+: The model identified from the data generated from the system in [@Lacerda2017b]  [comment]:\label{tbl:narx_eg_rldt_val}
 
-![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased.\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg){width="100%"}
+![**Model validation results for the system in [@Lacerda2017b]**. The red bounds indicate the tolerances the correlation function should stay within for the identified model to be unbiased. [comment]:\label{fig:narx_eg_rldt_val}](Figures/ele_mech_sysId_vald_mpo.svg){width="100%"}
 
 # Future Work
 
