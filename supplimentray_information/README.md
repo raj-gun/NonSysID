@@ -56,7 +56,7 @@ and past output instances (output-lagged terms),
 Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (2) 
 ```
 
-to the present output instance in time $`y(t)`$. $`t`$ here refers to a
+to the present output instance in time `$`y(t)`$`. $`t`$ here refers to a
 time index (i.e. $`t`$<sup>th</sup> sample). $`n_a`$ and $`n_b`$ are the
 maximum number of past output and input time instances considered and
 are related to the Lyapunov exponents of the actual system that is being
