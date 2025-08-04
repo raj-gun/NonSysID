@@ -45,7 +45,7 @@ In the context of (N)ARX models, system identification is employed to determine 
 
 and past output instances (output-lagged terms),
 
-```math[comment]:\label{eq:Yt_sysid}
+```math [comment]:\label{eq:Yt_sysid}
     Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\}, 
 ```
 
