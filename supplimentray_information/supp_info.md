@@ -45,6 +45,14 @@ selection process to address these challenges.
 In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
+
+<div id="eq:quadratic">
+  $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+</div>
+
+See equation <a href="#eq:quadratic">1</a>.
+
+
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},
 ```
