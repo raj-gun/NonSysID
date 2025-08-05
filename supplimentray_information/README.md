@@ -13,6 +13,7 @@ primary objectives \[1\], \[2\]:
 <table border="3">
 <tr>
 <td>
+  
    * Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
   
    * Faithfully capture the underlying dynamics of the system within the model.
