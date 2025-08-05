@@ -67,7 +67,7 @@ modelled \[17\]. The functional mapping is described by the following
 equation:
 
 ``` math
-y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \hskip22em    (3)
+y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \hskip19em    (3)
 ```
 
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
@@ -81,7 +81,7 @@ Here, we focus on polynomial NARX models with a maximum polynomial
 degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq. (3) can be expressed as
 
 ``` math
-y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \hskip18em   (4)
+y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \hskip17em   (4)
 ```
 
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
