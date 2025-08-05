@@ -50,13 +50,13 @@ determine a specific functional relationship that maps past input
 instances (input-lagged terms),
 
 ``` math
-U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (1)
+U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \   (1)
 ```
 
 and past output instances (output-lagged terms),
 
 ``` math
-Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (2) 
+Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (2) 
 ```
 
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
@@ -67,7 +67,7 @@ modelled \[17\]. The functional mapping is described by the following
 equation:
 
 ``` math
-y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (3)
+y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (3)
 ```
 
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
@@ -81,7 +81,7 @@ Here, we focus on polynomial NARX models with a maximum polynomial
 degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq. (3) can be expressed as
 
 ``` math
-y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (4)
+y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (4)
 ```
 
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
@@ -110,7 +110,7 @@ Eq. (4)
 can be represented in matrix form as
 
 ``` math
-\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
+\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
 ```
 
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
