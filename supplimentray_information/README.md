@@ -519,8 +519,8 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
   follow a given orthogonalization path. Additionally, fewer redundant
   terms in $`\mathcal{P}`$ lead to faster convergence of
   $`\text{iOFR}_{S}`$ and contribute to reducing time by minimizing the
-  number of orthogonalization paths \[33\]. Therefore, the most effective
-  RCT method is 3, followed by methods 1,4 and 2. However, when reducing
+  number of orthogonalization paths \[33\]. Therefore, **the most effective
+  RCT method is 3, followed by methods 1,4 and 2.** However, when reducing
   the search space (determining $`\mathcal{D}''_{R}`$), RCT methods 1 and
   3 may miss some correct terms, potentially resulting in convergence to a
   sub-optimal model. This outcome depends on the level of white and
