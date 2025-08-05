@@ -4,7 +4,6 @@ Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei H
 
 # System identification
 
-<div style="text-align: justify;">
 System identification is a field at the intersection of control theory,
 dynamic systems theory and machine learning that seeks to derive
 mathematical models of dynamic linear or nonlinear systems based on
@@ -39,7 +38,7 @@ original forward regression orthogonal least squares (OFR) algorithm,
 which has been noted to have several limitations, as discussed in
 \[15\], \[16\]. These concerns primarily involve over-fitting and
 inaccurate long-horizon predictions, particularly when the input fails
-to sufficiently excite the actual system. Additionally, in some
+to excite the actual system sufficiently. Additionally, in some
 applications, acquiring extra data for cross-validation may be
 infeasible. As a result, developing parsimonious models that can
 generalise well to unseen data becomes crucial in such cases. This paper
@@ -49,7 +48,6 @@ selection process to address these challenges.
 In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
-</div>
 
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (1)
