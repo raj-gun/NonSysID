@@ -155,12 +155,12 @@ from which a NARX model structure, such as that in Eq. (5), can be identified.
 Once the model structure is identified, the next step is to estimate the
 model parameters. 
 
-> However, determining the appropriate linear and
+> **Determining the appropriate linear and
 nonlinear terms to include in the model structure is critical to
 achieving parsimonious models. This is particularly important in the
 nonlinear cases \[2, Ch. 1\], as the inclusion of unnecessary model
 terms, can result in a model that erroneously captures dynamics that do
-not belong to the underlying system \[17\], \[18\].
+not belong to the underlying system \[17\], \[18\].**
 
 The Orthogonal Forward Regression (OFR) algorithm, also known as Forward
 Regression OLS (FROLS) \[19\], \[20\], is based on the Orthogonal Least
