@@ -495,7 +495,7 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
 
 <p>&nbsp;</p>
 
-The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
+> The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
 and reduce the time required to obtain a model. Using
 $`\mathcal{D}''_{R}`$ reduces the computational time for the OFR
 algorithm within $`\text{iOFR}_{S}`$, by shortening the time needed to
