@@ -245,13 +245,13 @@ simulation-based model selection procedure.
 <td>
   
   > **A notable feature of
-  `NonSysId` is the implementation of the iterative-OFR (iFRO) variant
-  \[33\] of the OFR algorithm. Additionally, the PRESS-statistic-based
-  term selection \[22\], \[23\] is integrated with the iOFR, complemented
-  by simulation-based model selection. These enhancements enable robust
-  term selection (compared to the ERR), built-in cross-validation, and the
-  ability to produce models with long-horizon prediction capabilities and
-  simulation stability \[34\].** 
+  `NonSysId` is the implementation of the `iterative-OFR (iFRO)` variant
+  \[33\] of the OFR algorithm. Additionally, the `PRESS-statistic-based
+  term selection` \[22\], \[23\] is integrated with the iOFR, complemented
+  by `simulation-based model selection`. These enhancements enable robust
+  term selection (compared to the ERR), `built-in cross-validation`, and the
+  ability to `produce models with long-horizon prediction capabilities and
+  simulation stability` \[34\].** 
   
   > **With these features, the `NonSysId` package
   makes system identification feasible for real-time applications, such as
