@@ -262,8 +262,7 @@ techniques for nonlinear model validation \[35\].
 
 ## Iterative OFR
 
-To address the concerns associated with the original OFR, the
-iterative-OFR (iOFR) algorithm was introduced in \[33\]. To the best of
+To address the concerns associated with the original OFR, the iOFR algorithm was introduced in \[33\]. To the best of
 our knowledge, no open-source software implementing this variant
 currently exist. In the original OFR, the term selection is heavily
 influenced by the order of orthogonalization, which can often result in
