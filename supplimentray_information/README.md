@@ -10,16 +10,16 @@ mathematical models of dynamic linear or nonlinear systems based on
 experimental input-output data. Generally, system identification has two
 primary objectives \[1\], \[2\]: 
 
-<table>
-<tr>
-<td>
-  
-  * Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr>
+    <td align="center">
 
-  * Faithfully capture the underlying dynamics of the system within the model.
-  
-</td>
-</tr>
+    * Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
+    
+    * Faithfully capture the underlying dynamics of the system within the model.
+      
+    </td>
+  </tr>
 </table>
 
 The dynamic models generated through system identification can be either
