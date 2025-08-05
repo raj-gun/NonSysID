@@ -10,9 +10,17 @@ mathematical models of dynamic linear or nonlinear systems based on
 experimental input-output data. Generally, system identification has two
 primary objectives \[1\], \[2\]: 
 
->  (i) Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
+<table>
+<tr>
+<td>
+  
+   (i) Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
 
-> (ii) Faithfully capture the underlying dynamics of the system within the model.
+  (ii) Faithfully capture the underlying dynamics of the system within the model.
+  
+</td>
+</tr>
+</table>
 
 The dynamic models generated through system identification can be either
 discrete or continuous time models \[3\]. This package centres on
