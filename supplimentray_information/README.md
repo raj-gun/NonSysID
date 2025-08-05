@@ -540,7 +540,7 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
 <figure id="fig:flowcharts">
 <img src="Figures/iOFR_S_RCT.svg"
 alt="Figure 2: This flowchart summarises the procedures for identifying a (N)ARX model using \text{iOFR}_{S} as described in the algorithm given in Figure 1. The region shaded in brown represents the ARX model identification process, while the blue-shaded region highlights the NARX procedures."
-width="100%" height="100%" />
+width="90%" height="90%" />
 <figcaption aria-hidden="true">Figure 2: This flowchart summarises the
 procedures for identifying a (N)ARX model using <span
 class="math inline">iOFR<sub><em>S</em></sub></span> as described in the algorithm given in Figure 1. The region shaded in
