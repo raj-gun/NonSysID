@@ -110,19 +110,19 @@ Eq. (4)
 can be represented in matrix form as
 
 ``` math
-\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi} \unicode[Times]{x3BC},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
+\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
 ```
 
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
 containing the output samples $`y(t)`$.
-$`\mathbf{\Phi} = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]`$,
+$`\boldsymbol{\Phi} = \left[ \bar{\phi}_{1}, \cdots, \bar{\phi}_{M} \right]`$,
 where
 $`\bar{\phi}_{m} = \left[ \phi_{m}(1), \cdots, \phi_{m}(L) \right]^T`$
 is the vector containing all time samples of the model term
 $`\phi_{m}(t)`$.
-$`\mathbf{\Theta} = \left[ \theta_{1}, \cdots, \theta_{M}  \right]^T`$
+$`\boldsymbol{\Theta} = \left[ \theta_{1}, \cdots, \theta_{M}  \right]^T`$
 is the parameter vector and
-$`\mathbf{\Xi} = \left[ \xi(1), \cdots, \xi(L) \right]`$ is the vector
+$`\boldsymbol{\Xi} = \left[ \xi(1), \cdots, \xi(L) \right]`$ is the vector
 containing all the error terms $`\xi(t)`$ (i.e. model residuals). In the
 NARMAX model structure, a moving-average (MA) component is added to the
 NARX (Eq. (4))
