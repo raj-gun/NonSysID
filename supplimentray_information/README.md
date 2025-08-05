@@ -2,12 +2,6 @@
 
 Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
 
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    CommonHTML: { scale: 130 }
-  });
-</script>
-
 # System identification
 
 System identification is a field at the intersection of control theory,
@@ -116,7 +110,7 @@ Eq. (4)
 can be represented in matrix form as
 
 ``` math
-\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},   \hskip25em    (6)
+\Large \mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},   \hskip25em    (6)
 ```
 
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
