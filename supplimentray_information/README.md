@@ -499,7 +499,7 @@ each RCT method is provided below.
 <figure id="fig:NonSysID">
 <img src="Figures/alg.svg"
 alt="Figure 1: Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’"
-width="100%" height="100%" />
+width="70%" height="70%" />
 <figcaption aria-hidden="true">Figure 1: Pseudo code of the procedures
 involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
