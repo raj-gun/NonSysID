@@ -26,7 +26,7 @@ The dynamic models generated through system identification can be either
 discrete or continuous time models \[3\]. This package centres on
 widely-used discrete-time models, specifically, nonlinear auto-regressive
 models with exogenous inputs (NARX), where the ARX model is a linear
-variant of the NARX framework. These input-output time-series models
+variant of the NARX structure. These input-output time-series models
 predict future outputs of a system based on its historical input and
 output instances. NARX models have been applied extensively to model and
 analyse complex systems in fields such as control, condition monitoring,
