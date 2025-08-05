@@ -12,7 +12,7 @@ primary objectives \[1\], \[2\]:
 
 <table border="2">
 <tr>
-<td align="left">
+<td>
 
     * Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
     
