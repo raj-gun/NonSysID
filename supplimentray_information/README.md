@@ -2,10 +2,11 @@
 
 Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
 
-MathJax = {
-  chtml: { scale: 1.3 },
-  svg:   { scale: 1.3 }
-};
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    CommonHTML: { scale: 130 }
+  });
+</script>
 
 # System identification
 
