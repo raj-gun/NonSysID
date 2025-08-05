@@ -50,7 +50,7 @@ determine a specific functional relationship that maps past input
 instances (input-lagged terms),
 
 ``` math
-U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \hspace{150pt}  (1)
+U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \hskip1em  (1)
 ```
 
 and past output instances (output-lagged terms),
