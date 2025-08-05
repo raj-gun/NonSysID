@@ -16,8 +16,8 @@ inputs and outputs, allowing for the prediction of new, unseen data, and
 (ii) to capture the underlying dynamics of the system within the model.
 
 The dynamic models generated through system identification can be either
-discrete or continuous time models \[3\]. This paper centres on
-widely-used discrete-time models, specifically nonlinear auto-regressive
+discrete or continuous time models \[3\]. This package centres on
+widely-used discrete-time models, specifically, nonlinear auto-regressive
 models with exogenous inputs (NARX), where the ARX model is a linear
 variant of the NARX framework. These input-output time-series models
 predict future outputs of a system based on its historical input and
@@ -25,12 +25,12 @@ output instances. NARX models have been applied extensively to model and
 analyse complex systems in fields such as control, condition monitoring,
 advanced manufacturing and the modelling and analysis of physiological
 and biological systems \[4\]–\[11\]. Moreover, it has been demonstrated
-that the NARX model has equivalence to a recurrent neural network (RNN)
+that the NARX model is equivalent to a recurrent neural network (RNN)
 \[12\]. Extending the NARX model to incorporate a noise model, we obtain
 the nonlinear auto-regressive moving average with exogenous inputs
 (NARMAX) model.
 
-Recently two open-sourced packages have been introduced, ‘SysIdentPy’
+Recently, two open-sourced packages have been introduced, `SysIdentPy`
 \[13\] for Python and the ‘narmax’ package \[14\] for R. Both packages
 are well-developed and comprehensive. However, they are based on the
 original forward regression orthogonal least squares (OFR) algorithm,
