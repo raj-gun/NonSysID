@@ -67,7 +67,7 @@ modelled \[17\]. The functional mapping is described by the following
 equation:
 
 ``` math
-y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \hskip19em    (3)
+y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \hskip20em    (3)
 ```
 
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
