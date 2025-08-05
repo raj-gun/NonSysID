@@ -180,7 +180,7 @@ proposed. However, concerns persist regarding the original OFR algorithm
 (OFR-ERR), which relies on the ERR for term selection \[15\], \[16\],
 for example,
 
-<table>
+<table border="3">
 <tr>
 <td>
   
@@ -307,7 +307,7 @@ extends this by incorporating simulation-based model selection
 long-horizon prediction accuracy. The procedures for $`\text{iOFR}_{S}`$
 are as follows:
 
-<table>
+<table border="3">
 <tr>
 <td>
   
@@ -443,7 +443,7 @@ complete system identification methodology, integrating
 $`\text{iOFR}_{S}`$ with these four RCT methods. A brief overview of
 each RCT method is provided below.
 
-<table>
+<table border="3">
 <tr>
 <td>
 
