@@ -10,7 +10,7 @@ mathematical models of dynamic linear or nonlinear systems based on
 experimental input-output data. Generally, system identification has two
 primary objectives \[1\], \[2\]: 
 
-<table>
+<table border="1">
 <tr>
 <td>
 
