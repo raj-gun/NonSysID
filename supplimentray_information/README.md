@@ -110,7 +110,7 @@ Eq. (4)
 can be represented in matrix form as
 
 ``` math
-\normalsize{ \mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi} },   \hskip25em    (6)
+\large{ \mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi} },   \hskip25em    (6)
 ```
 
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
