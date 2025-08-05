@@ -50,13 +50,13 @@ determine a specific functional relationship that maps past input
 instances (input-lagged terms),
 
 ``` math
-U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \qquad \qquad \qquad  (1)
+U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \qquad \qquad \qquad \qquad \qquad \qquad  (1)
 ```
 
 and past output instances (output-lagged terms),
 
 ``` math
-Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \   (2) 
+Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \qquad \qquad \qquad \qquad \qquad \qquad   (2) 
 ```
 
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
