@@ -42,7 +42,7 @@ to excite the actual system sufficiently. Additionally, in some
 applications, acquiring extra data for cross-validation may be
 infeasible. As a result, developing parsimonious models that can
 generalise well to unseen data becomes crucial in such cases. This paper
-introduces the ‘NonSysId’ package, which incorporates an enhanced model
+introduces the `NonSysId` package, which incorporates an enhanced model
 selection process to address these challenges.
 
 In the context of (N)ARX models, system identification is employed to
@@ -212,32 +212,32 @@ within milliseconds. As a result, obtaining electrophysiological data
 that precisely captures such behaviour is often challenging, if not
 impossible \[28\]–\[32\]. These challenges are critical when applying
 system identification to specific domains. The following section
-outlines the features in the ‘NonSysId’ package, designed to address
+outlines the features in the `NonSysId` package, designed to address
 these issues.
 
 # Features in NonSysId
 
-The ‘NonSysId’ package introduced in this paper implements an OFR-based
+The `NonSysId` package introduced in this paper implements an OFR-based
 system identification methodology designed to address the key issues
 mentioned in the latter part of the previous section. This is achieved
 by integrating and extending several OFR variants already available in
 the literature \[22\], \[23\], \[33\], along with a proposed
 simulation-based model selection procedure. A notable feature of
-‘NonSysId’ is the implementation of the iterative-OFR (iFRO) variant
+`NonSysId` is the implementation of the iterative-OFR (iFRO) variant
 \[33\] of the OFR algorithm. Additionally, the PRESS-statistic-based
 term selection \[22\], \[23\] is integrated with the iOFR, complemented
 by simulation-based model selection. These enhancements enable robust
 term selection (compared to the ERR), built-in cross-validation, and the
 ability to produce models with long-horizon prediction capabilities and
-simulation stability \[34\]. With these features, the ‘NonSysId’ package
+simulation stability \[34\]. With these features, the `NonSysId` package
 makes system identification feasible for real-time applications, such as
 fault diagnosis in engineering or the analysis of electrophysiology
 activity in medical settings, where inputs may not be persistently
 exciting and separate datasets for validation may be unavailable.
-‘NonSysId’ is the only open-sourced package that directly address the
+`NonSysId` is the only open-sourced package that directly address the
 limitations of the original OFR algorithm. For NARX models, where the
 candidate term set can be extensive and computationally demanding in the
-iFRO algorithm, ‘NonSysId’ incorporates methods to reduce the candidate
+iFRO algorithm, `NonSysId` incorporates methods to reduce the candidate
 term set, significantly speeding up the forward selection process.
 Moreover, the package includes correlation-based residual analysis
 techniques for nonlinear model validation \[35\].
@@ -295,7 +295,7 @@ iOFR converge faster towards an optimum while improving computational
 efficiency.
 
 In the original iOFR algorithm \[33\], model selection was based on the
-one-step-ahead prediction. The implementation of iOFR in the ‘NonSysId’
+one-step-ahead prediction. The implementation of iOFR in the `NonSysId`
 extends this by incorporating simulation-based model selection
 ($`\text{iOFR}_{S}`$) to ensure simulation stability and improve
 long-horizon prediction accuracy. The procedures for $`\text{iOFR}_{S}`$
@@ -373,7 +373,7 @@ models.
 ## $`\text{iOFR}_{S}`$ with reduced computational time
 
 This section outlines the comprehensive procedures implemented in the
-‘NonSysId’ package for identifying (N)ARX models from system
+`NonSysId` package for identifying (N)ARX models from system
 input-output data using $`\text{iOFR}_{S}`$ algorithm combined with
 PRESS-statistic-based term selection. Additionally, techniques for
 reducing computational time in $`\text{iOFR}_{S}`$ are discussed. These
@@ -417,7 +417,7 @@ representation of the system. Accordingly, a linear ARX model is
 identified first, serving as a linearised model of the actual nonlinear
 system. The terms from this ARX model are then used to construct
 $`\mathcal{D}''_{R}`$. This method has been incorporated into the
-‘NonSysId’ package. Regarding the set $`\mathcal{P}`$, an initialisation
+`NonSysId` package. Regarding the set $`\mathcal{P}`$, an initialisation
 method for the iOFR algorithm was proposed in \[33\]. In this method, an
 overfitting NARX model, $`\overline{m_{0}''}`$, is first identified
 using the OFR. The terms from $`\overline{m_{0}''}`$ are then used to
@@ -428,9 +428,9 @@ $`\overline{m_{0}''}`$ to form the initial set $`\mathcal{P}`$ ensures
 fewer redundant terms compared to directly setting
 $`\mathcal{P} \subseteq \mathcal{D}`$ \[33\].
 
-The ‘NonSysId’ package incorporates both aforementioned methods to
+The `NonSysId` package incorporates both aforementioned methods to
 reduce the computational time of $`\text{iOFR}_{S}`$. Additionally, the
-‘NonSysId’ package implements two new methods, proposed in this paper,
+`NonSysId` package implements two new methods, proposed in this paper,
 to further enhance computational efficiency (referred to as reducing
 computational time, RCT, methods). Figure 1 outlines the procedures of the
 complete system identification methodology, integrating
@@ -506,7 +506,7 @@ the original system. It should be noted that RCT methods introduce
 additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
 running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
 figure below summarises the algorithm in Figure 1 as a flowchart. The
-following section will provide examples from the ‘NonSysId’ package.
+following section will provide examples from the `NonSysId` package.
 
 <p>&nbsp;</p>
 
