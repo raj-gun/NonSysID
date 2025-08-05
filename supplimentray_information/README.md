@@ -11,15 +11,15 @@ experimental input-output data. Generally, system identification has two
 primary objectives \[1\], \[2\]: 
 
 <table border="1" cellpadding="6" cellspacing="0">
-  <tr>
-    <td align="left">
+<tr>
+<td align="left">
 
     * Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
     
     * Faithfully capture the underlying dynamics of the system within the model.
       
-    </td>
-  </tr>
+</td>
+</tr>
 </table>
 
 The dynamic models generated through system identification can be either
