@@ -4,6 +4,7 @@ Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei H
 
 # System identification
 
+<div style="text-align: justify;">
 System identification is a field at the intersection of control theory,
 dynamic systems theory and machine learning that seeks to derive
 mathematical models of dynamic linear or nonlinear systems based on
@@ -48,6 +49,7 @@ selection process to address these challenges.
 In the context of (N)ARX models, system identification is employed to
 determine a specific functional relationship that maps past input
 instances (input-lagged terms),
+</div>
 
 ``` math
 U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (1)
