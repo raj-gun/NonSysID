@@ -471,8 +471,8 @@ $`\mathcal{D}''_{R}`$. As a result, this approach enables faster
 convergence of $`\text{iOFR}_{S}`$ to an optimal model compared to any
 other RCT method.
 
-**RCT Method 4**  
-> This method combines RCT methods 1 and 2, such that
+> **RCT Method 4**  
+This method combines RCT methods 1 and 2, such that
 $`\mathcal{P} \subset \mathcal{D}''_{R}`$. However, $`\text{iOFR}_{S}`$
 searches through the full space $`\mathcal{D}''`$ instead of
 $`\mathcal{D}''_{R}`$. Therefore, this technique converges the
