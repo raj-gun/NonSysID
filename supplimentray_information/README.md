@@ -94,7 +94,7 @@ instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
 
 ``` math
-y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (5)
+y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).    \qquad    (5)
 ```
 
 
