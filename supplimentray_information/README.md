@@ -499,7 +499,7 @@ each RCT method is provided below.
 <figure id="fig:NonSysID">
 <img src="Figures/alg.svg"
 alt="Figure 1: Pseudo code of the procedures involved in implementing \text{iOFR}_{S} in ‘NonSysID’"
-width="70%" height="70%" />
+width="80%" height="80%" />
 <figcaption aria-hidden="true">Figure 1: Pseudo code of the procedures
 involved in implementing <span
 class="math inline">iOFR<sub><em>S</em></sub></span> in
@@ -508,24 +508,32 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
 
 <p>&nbsp;</p>
 
-> The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
-and reduce the time required to obtain a model. Using
-$`\mathcal{D}''_{R}`$ reduces the computational time for the OFR
-algorithm within $`\text{iOFR}_{S}`$, by shortening the time needed to
-follow a given orthogonalization path. Additionally, fewer redundant
-terms in $`\mathcal{P}`$ lead to faster convergence of
-$`\text{iOFR}_{S}`$ and contribute to reducing time by minimizing the
-number of orthogonalization paths \[33\]. Therefore, the most effective
-RCT method is 3, followed by methods 1,4 and 2. However, when reducing
-the search space (determining $`\mathcal{D}''_{R}`$), RCT methods 1 and
-3 may miss some correct terms, potentially resulting in convergence to a
-sub-optimal model. This outcome depends on the level of white and
-coloured noise in the input-output data, as well as the complexity of
-the original system. It should be noted that RCT methods introduce
-additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
-running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
-figure below summarises the algorithm in Figure 1 as a flowchart. The
-following section will provide examples from the `NonSysId` package.
+<table border="3">
+<tr>
+<td>
+  
+  > The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
+  and reduce the time required to obtain a model. Using
+  $`\mathcal{D}''_{R}`$ reduces the computational time for the OFR
+  algorithm within $`\text{iOFR}_{S}`$, by shortening the time needed to
+  follow a given orthogonalization path. Additionally, fewer redundant
+  terms in $`\mathcal{P}`$ lead to faster convergence of
+  $`\text{iOFR}_{S}`$ and contribute to reducing time by minimizing the
+  number of orthogonalization paths \[33\]. Therefore, the most effective
+  RCT method is 3, followed by methods 1,4 and 2. However, when reducing
+  the search space (determining $`\mathcal{D}''_{R}`$), RCT methods 1 and
+  3 may miss some correct terms, potentially resulting in convergence to a
+  sub-optimal model. This outcome depends on the level of white and
+  coloured noise in the input-output data, as well as the complexity of
+  the original system. It should be noted that RCT methods introduce
+  additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
+  running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
+  figure below summarises the algorithm in Figure 1 as a flowchart. The
+  following section will provide examples from the `NonSysId` package.
+
+</td>
+</tr>
+</table>
 
 <p>&nbsp;</p>
 
