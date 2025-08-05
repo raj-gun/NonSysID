@@ -8,13 +8,13 @@ System identification is a field at the intersection of control theory,
 dynamic systems theory and machine learning that seeks to derive
 mathematical models of dynamic linear or nonlinear systems based on
 experimental input-output data. Generally, system identification has two
-primary objectives \[1\], \[2\], 
+primary objectives \[1\], \[2\]: 
 
 ```
-(i) to accurately map the system’s
-inputs and outputs, allowing for the prediction of new, unseen data, and
+ (i) Accurately map the system’s
+     inputs and outputs, allowing for the prediction of new, unseen data, and
 
-(ii) to capture the underlying dynamics of the system within the model.
+(ii) Faithfully capture the underlying dynamics of the system within the model.
 ```
 
 The dynamic models generated through system identification can be either
