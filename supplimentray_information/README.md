@@ -310,6 +310,8 @@ $`\mathcal{P}`$ will be discussed in later sections. This will make the
 iOFR converge faster towards an optimum while improving computational
 efficiency.
 
+## $`\text{iOFR}_{S}`$: iOFR with simultion-based model selection
+
 In the original iOFR algorithm \[33\], model selection was based on the
 one-step-ahead prediction. The implementation of iOFR in the `NonSysId`
 extends this by incorporating simulation-based model selection
