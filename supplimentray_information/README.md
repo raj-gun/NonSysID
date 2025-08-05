@@ -1,5 +1,4 @@
-# NonSysID: System identification basics and detailed information regarding the procedures used in the NonSysID package
-*NonSysID is an open-source MATLAB package for system identification of (N)ARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
+# System identification basics and detailed information regarding the procedures used in the NonSysID package
 
 Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
 
