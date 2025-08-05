@@ -443,10 +443,6 @@ complete system identification methodology, integrating
 $`\text{iOFR}_{S}`$ with these four RCT methods. A brief overview of
 each RCT method is provided below.
 
-<table border="3">
-<tr>
-<td>
-
 > **RCT Method 1**  
 This method, as proposed in \[40\], seeks to obtain a reduced set of
 candidate model terms, enabling $`\text{iOFR}_{S}`$ to operate within a
@@ -477,10 +473,6 @@ $`\mathcal{P} \subset \mathcal{D}''_{R}`$. However, $`\text{iOFR}_{S}`$
 searches through the full space $`\mathcal{D}''`$ instead of
 $`\mathcal{D}''_{R}`$. Therefore, this technique converges the
 $`\text{iOFR}_{S}`$ faster to an optimal model compared to RCT method 2.
-
-</td>
-</tr>
-</table>
 
 <p>&nbsp;</p>
 
