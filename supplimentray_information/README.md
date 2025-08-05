@@ -291,15 +291,15 @@ terms $`\mathcal{P}`$ with the terms in $`\overline{m}`$. The process is
 repeated iteratively with the updated $`\mathcal{P}`$ to search through
 different orthogonalization paths.
 
-As shown in \[33\], the iOFR can iteratively produce more globally
-optimal model structures. This is because optimal solutions are only
+**As shown in \[33\], the iOFR can iteratively produce more globally
+optimal model structures.** This is because optimal solutions are only
 found along orthogonalization paths that begin with a correct term
 \[16\], \[33\] (candidate terms essential for accurately reconstructing
 dynamics of the original system \[17\], \[36\]). Although the best model
 $`\overline{m}`$ obtained in each iteration may be sub-optimal, it will
 include certain correct terms \[33\]. Consequently, in subsequent
 iterations, $`\mathcal{P}`$ will contain fewer redundant model terms.
-This refinement ensures that, in the next iteration, relatively greater
+This refinement ensures that, in the next iteration, a relatively greater
 proportion of the orthogonalization paths explored by the OFR will start
 from better initial terms, leading to a more robust set of models
 $`\mathcal{M}`$ \[33\]. For the first iOFR iteration, the pre-select
