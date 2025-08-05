@@ -2,6 +2,11 @@
 
 Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
 
+MathJax = {
+  chtml: { scale: 1.3 },
+  svg:   { scale: 1.3 }
+};
+
 # System identification
 
 System identification is a field at the intersection of control theory,
