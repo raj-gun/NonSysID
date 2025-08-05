@@ -512,8 +512,8 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
 <tr>
 <td>
   
-  > The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
-  and reduce the time required to obtain a model. Using
+  > **The RCT methods aim to accelerate the convergence of $`\text{iOFR}_{S}`$
+  and reduce the time required to obtain a model.** Using
   $`\mathcal{D}''_{R}`$ reduces the computational time for the OFR
   algorithm within $`\text{iOFR}_{S}`$, by shortening the time needed to
   follow a given orthogonalization path. Additionally, fewer redundant
@@ -525,9 +525,9 @@ class="math inline">iOFR<sub><em>S</em></sub></span> in
   3 may miss some correct terms, potentially resulting in convergence to a
   sub-optimal model. This outcome depends on the level of white and
   coloured noise in the input-output data, as well as the complexity of
-  the original system. It should be noted that RCT methods introduce
+  the original system. **It should be noted that RCT methods introduce
   additional procedures. Therefore, if $`\mathcal{D}''`$ is small enough,
-  running $`\text{iOFR}_{S}`$ without any RCT methods may be faster. The
+  running $`\text{iOFR}_{S}`$ without any RCT methods may be faster.** The
   figure below summarises the algorithm in Figure 1 as a flowchart. The
   following section will provide examples from the `NonSysId` package.
 
