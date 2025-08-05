@@ -448,13 +448,13 @@ each RCT method is provided below.
 <td>
 
 **RCT Method 1**  
-This method, as proposed in \[40\], seeks to obtain a reduced set of
+> This method, as proposed in \[40\], seeks to obtain a reduced set of
 candidate model terms, enabling $`\text{iOFR}_{S}`$ to operate within a
 narrower search space defined by
 $`\mathcal{D}''_{R} \subset \mathcal{D}''`$.
 
 **RCT Method 2**  
-This method, as proposed in \[33\], identifies an appropriate initial
+> This method, as proposed in \[33\], identifies an appropriate initial
 set of pre-select terms, $`\mathcal{P}`$, for the first iteration of the
 iOFR algorithm. By ensuring that $`\mathcal{P} \subset \mathcal{D}''`$
 (contains fewer redundant terms compared to
@@ -464,7 +464,7 @@ originating from redundant terms. This accelerates convergence towards
 an optimal model \[33\].
 
 **RCT Method 3**  
-This method combines RCT methods 1 and 2, such that
+> This method combines RCT methods 1 and 2, such that
 $`\mathcal{P} \subset \mathcal{D}''_{R}`$ and $`\text{iOFR}_{S}`$
 searches through an appropriately reduced space defined by
 $`\mathcal{D}''_{R}`$. As a result, this approach enables faster
@@ -472,7 +472,7 @@ convergence of $`\text{iOFR}_{S}`$ to an optimal model compared to any
 other RCT method.
 
 **RCT Method 4**  
-This method combines RCT methods 1 and 2, such that
+> This method combines RCT methods 1 and 2, such that
 $`\mathcal{P} \subset \mathcal{D}''_{R}`$. However, $`\text{iOFR}_{S}`$
 searches through the full space $`\mathcal{D}''`$ instead of
 $`\mathcal{D}''_{R}`$. Therefore, this technique converges the
