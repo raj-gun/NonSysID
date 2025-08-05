@@ -238,19 +238,24 @@ system identification methodology designed to address the key issues
 mentioned in the latter part of the previous section. This is achieved
 by integrating and extending several OFR variants already available in
 the literature \[22\], \[23\], \[33\], along with a proposed
-simulation-based model selection procedure. A notable feature of
+simulation-based model selection procedure. 
+
+> A notable feature of
 `NonSysId` is the implementation of the iterative-OFR (iFRO) variant
 \[33\] of the OFR algorithm. Additionally, the PRESS-statistic-based
 term selection \[22\], \[23\] is integrated with the iOFR, complemented
 by simulation-based model selection. These enhancements enable robust
 term selection (compared to the ERR), built-in cross-validation, and the
 ability to produce models with long-horizon prediction capabilities and
-simulation stability \[34\]. With these features, the `NonSysId` package
+simulation stability \[34\]. 
+
+> With these features, the `NonSysId` package
 makes system identification feasible for real-time applications, such as
 fault diagnosis in engineering or the analysis of electrophysiology
 activity in medical settings, where inputs may not be persistently
 exciting and separate datasets for validation may be unavailable.
-`NonSysId` is the only open-sourced package that directly address the
+
+`NonSysId` is the only open-sourced package that directly addresses the
 limitations of the original OFR algorithm. For NARX models, where the
 candidate term set can be extensive and computationally demanding in the
 iFRO algorithm, `NonSysId` incorporates methods to reduce the candidate
