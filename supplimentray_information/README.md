@@ -56,7 +56,7 @@ U = \Big\{ u(t-1)\ ,\ u(t-2)\ ,\ \cdots,\ u(t-n_b) \Big\},    \hskip12em  (1)
 and past output instances (output-lagged terms),
 
 ``` math
-Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \qquad \qquad \qquad \qquad \qquad \qquad   (2) 
+Y = \Big\{ y(t-1)\ ,\ y(t-2)\ ,\ \cdots,\ y(t-n_a) \Big\},    \hskip12em  (2) 
 ```
 
 to the present output instance in time $`y(t)`$. $`t`$ here refers to a
@@ -67,7 +67,7 @@ modelled \[17\]. The functional mapping is described by the following
 equation:
 
 ``` math
-y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad    (3)
+y(t) = f^{P}\bigl( Y, U \bigr) + \xi(t),   \hskip12em    (3)
 ```
 
 where $`y(t)`$ and $`u(t)`$ refer to the output and input respectively,
@@ -81,7 +81,7 @@ Here, we focus on polynomial NARX models with a maximum polynomial
 degree $`N_p \in \mathbb{Z}^{+}`$. In this case, Eq. (3) can be expressed as
 
 ``` math
-y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \ \ \   (4)
+y(t) = \sum_{m=1}^{M} \theta_{m} \times \phi_{m}(t) + \xi(t),   \hskip12em   (4)
 ```
 
 where $`m = 1, \cdots, M`$, $`M`$ being the total number of variables or
@@ -94,7 +94,7 @@ instances from $`Y`$ and $`U`$. An example of a polynomial NARX model
 can be
 
 ``` math
-y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).    \qquad \qquad	   (5)
+y(t) = \theta_{1}y(t-1) + \theta_{2}u(t-2) + \theta_{3}y(t-2)^{2}u(t-1)^{3} + \xi(t).    \hskip8em   (5)
 ```
 
 
@@ -110,7 +110,7 @@ Eq. (4)
 can be represented in matrix form as
 
 ``` math
-\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},    \ \ \ \ \ \ \ \ \ \ \ \  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \    (6)
+\mathbf{Y} = \boldsymbol{\Phi} \boldsymbol{\Theta} + \boldsymbol{\Xi},   \hskip20em    (6)
 ```
 
 where $`\mathbf{Y} = \left[ y(1), \cdots, y(L) \right]^T`$ is the vector
