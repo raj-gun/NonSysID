@@ -11,8 +11,7 @@ experimental input-output data. Generally, system identification has two
 primary objectives \[1\], \[2\]: 
 
 ```
- (i) Accurately map the system’s
-     inputs and outputs, allowing for the prediction of new, unseen data, and
+ (i) Accurately map the system’s inputs and outputs, allowing for the prediction of new, unseen data, and
 
 (ii) Faithfully capture the underlying dynamics of the system within the model.
 ```
