@@ -55,10 +55,13 @@ nl_ord_max=2;
 % If set 'true', the algorithm will automatically stop when a convergence to a certain model is reached. 
 x_iOFR = [true,true];
 
-% Stoping criteria for [linear model ,nonlinear model]. PRESS_thresh/BIC_thresh
+% Stopping criteria for the OFR identification algorithm.
+% Select which stopping criteria ('PRESS_thresh' or 'BIC_thresh') to use for deciding when to stop adding terms to a candidate model.
+% 'stp_cri(1)' for linear model identification and 'stp_cri(2)' for nonlinear model identification.
 stp_cri = {'PRESS_thresh', 'PRESS_thresh'};
-% Set value for stopping criteria for [linear model ,nonlinear model]
-% The stopping criteria relates to how many terms are added to the model
+
+% Set the terminating value ('D1_thresh') for the selected stopping criteria ('stp_cri').
+% 'D1_thresh(1)' for linear model identification and 'D1_thresh(2)' for nonlinear model identification
 D1_thresh = [10^(-10),10^(0.9)];
 
 % Specify if bias/DC off set is required, 0, or not, 1.
