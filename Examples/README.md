@@ -56,15 +56,17 @@ nl_ord_max=2;
 x_iOFR = [true,true];
 
 % Stopping criteria for the OFR identification algorithm.
-% Select which stopping criteria ('PRESS_thresh' or 'BIC_thresh') to use for deciding when to stop adding terms to a candidate model.
-% 'stp_cri(1)' for linear model identification and 'stp_cri(2)' for nonlinear model identification.
+% Select which stopping criteria ('PRESS_thresh' or 'BIC_thresh')
+% to use for deciding when to stop adding terms to a candidate model.
+% 'stp_cri(1)' for linear model identification and
+% 'stp_cri(2)' for nonlinear model identification.
 stp_cri = {'PRESS_thresh', 'PRESS_thresh'};
 
 % Set the terminating value ('D1_thresh') for the selected stopping criteria ('stp_cri').
 % 'D1_thresh(1)' for linear model identification and 'D1_thresh(2)' for nonlinear model identification
 D1_thresh = [10^(-10),10^(0.9)];
 
-% Specify if bias/DC off set is required, 0, or not, 1.
+% Specify if bias/DC offset is required, 0, or not, 1.
 is_bias=0;
 
 % Specify number of inputs
@@ -73,15 +75,18 @@ n_inpts=1;
 % Specify the number of steps for k-steps ahead prediction
 KSA_h=20;
 
-% Specify which RCT (Reduce Computational Time) method to use, 1-4, 0 for
-% no RCT.
+% Specify which RCT (Reduce Computational Time) method to use, 1-4, 0 for no RCT.
 RCT=4;
 
-% Specify whether to simulate model and display results respectively
+% Specify whether to simulate the identified model and display the results, respectively.
+% Set 'sim(1)' and 'sim(2)', with 0 for no and 1 for yes, for linear model and nonlinear models, respectively. 
 sim=[1,1];
+
 % Set to 1 to display all models generated from iOFRs, 0 otherwise
 displ=0;
-% Set 1 or 0 to use parallel processing to accelerate iOFRs, for [linear model ,nonlinear model]
+
+% Set 'parall(1)' and 'parall(2)', for linear model and nonlinear models respectively,
+% with 1 or 0 to use parallel processing to accelerate iOFRs.
 parall = [1,1];
 ```
 
