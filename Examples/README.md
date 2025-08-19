@@ -51,7 +51,8 @@ nl_ord_max=2;
 
 % Run more than one iteration of iOFR.
 % Set 'true' or 'false' in 'x_iOFR(1)' for the linear model and 'x_iOFR(2)' for the nonlinear model.
-% Generally, one iteration of iOFR is enough. If set 'true', the algorithm will automatically stop when a convergence to a certain model is reached. 
+% Generally, one iteration of iOFR is enough.
+% If set 'true', the algorithm will automatically stop when a convergence to a certain model is reached. 
 x_iOFR = [true,true];
 
 % Stoping criteria for [linear model ,nonlinear model]. PRESS_thresh/BIC_thresh
