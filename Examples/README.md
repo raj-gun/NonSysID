@@ -90,3 +90,10 @@ displ=0;
 parall = [1,1];
 ```
 
+(4) Run system identification using the `NonSysID` function
+
+```matlab
+[model, Mod_Val_dat, iOFR_table_lin, iOFR_table_nl, best_mod_ind_lin, best_mod_ind_nl, val_stats] = ...
+    NonSysID(mod_type,u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,n_inpts,KSA_h,RCT,x_iOFR,stp_cri,D1_thresh,displ,sim,parall);
+```
+
