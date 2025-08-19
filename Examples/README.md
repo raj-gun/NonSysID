@@ -1,6 +1,7 @@
 # Example code structure to use the NonSysID package
-This document provides a code structure to do system identification using the NonSysID package. The examples shown here follow the same structure.
+This document provides a code structure to do system identification using the NonSysID package. The examples shown follow the same structure.
 
+## Identify (N)ARX model using NonSysID
 (1) In MATLAB, first clear the workspace and add the folder containing the `NonSydID` code to the search path
 
 ```matlab
@@ -90,10 +91,48 @@ displ=0;
 parall = [1,1];
 ```
 
-(4) Run system identification using the `NonSysID` function
+(4) Run system identification using the `NonSysID` function. Here, the output variable 'model' contains the best (N)ARX model identified. 
 
 ```matlab
 [model, Mod_Val_dat, iOFR_table_lin, iOFR_table_nl, best_mod_ind_lin, best_mod_ind_nl, val_stats] = ...
     NonSysID(mod_type,u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,n_inpts,KSA_h,RCT,x_iOFR,stp_cri,D1_thresh,displ,sim,parall);
 ```
+
+(5) Display the identified model
+
+```matlab
+disp('ARX model:'); disp(iOFR_table_lin{best_mod_ind_lin,1}); % Print the best ARX model that fits the data
+if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NARX model that fits the data
+    disp('NARX model:'); 
+    tbl_NARX = join(iOFR_table_nl{best_mod_ind_nl,10},iOFR_table_nl{best_mod_ind_nl,1});disp(tbl_NARX);
+end
+```
+
+## Simulate an identify (N)ARX model using NonSysID
+
+(1) Simulate the identified model ('model').
+
+```matlab
+[sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
+```
+
+(2) Plot the simulation results
+```matlab
+%----------
+figure;
+subplot(2,1,1); plot(u, 'Color', '#0072BD');
+ylabel('$u(t)$','Interpreter','latex','FontSize',12);
+%----------
+n = length(y);
+subplot(2,1,2);
+plot(1:n, y,'Color', '#77AC30', 'LineWidth', 1.5); hold on;
+plot(tt_splt, y_ID, 'Color', '#EDB120','LineWidth', 1.5); hold on;
+plot((length(y)-length(y_hat)+1:n), y_hat(:,3), 'k-.', 'LineWidth',1.25);
+legend('$y(t)$ -- testing', '$y(t)$ -- training','$\hat{y}(t)$ -- model simulation','Interpreter','latex','FontSize',12);
+xlabel('Time Samples');
+ylabel('$y(t)/\hat{y}(t)$','Interpreter','latex','FontSize',12);
+%----------
+```
+
+
 
