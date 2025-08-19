@@ -31,19 +31,21 @@ y_ID=y(tt_splt);
 (3) Set up the options for the `NonSysID` system identification function. 
 
 ```matlab
-% Model type ARX/AR
+% Model type ARX/AR. For linear/nonlinear input-output type models 'ARX', otherwise for linear/nonlinear autoregressive models use 'AR'
 mod_type = 'ARX';
 
-% Maximum and minimum output lags
-na1=1;na2=3;
+% Maximum ('na2') and minimum ('na1') output lags. This option specifies that the lagged-output terms (past outputs considered) will be between y(t-na1) upto y(t-na2)
+na1=1;
+na2=3;
 
-% Maximum and minimum input lags
-nb1=1;nb2=3;
+% Maximum ('nb2') and minimum ('nb1') input lags. This option specifies that the lagged-input terms (past inputs considered) will be between u(t-nb1) upto u(t-nb2)
+nb1=1;
+nb2=3;
 
-% Maximum order of polynomial nonlinearity considered
+% Maximum order of polynomial nonlinearity considered 'nl_ord_max'. This sets the degree of polynomial nonlinearity; nl_ord_max=1 means linear.  
 nl_ord_max=2;
 
-% Run more than one iteration of iOFR for [linear model ,nonlinear model]
+% Run more than one iteration of iOFR. Set 'true' or 'false' in 'x_iOFR(1)' for the linear model and 'x_iOFR(2)' for the nonlinear model. Generally, one iteration of iOFR is enough. If set 'true', the algorithm will automatically stop when a convergence to a certain model is reached. 
 x_iOFR = [true,true];
 
 % Stoping criteria for [linear model ,nonlinear model]. PRESS_thresh/BIC_thresh
