@@ -158,7 +158,7 @@ e_ct = e_ct ./ std(e_ct);
 ```
 
 (4) Correlation-based validation; 
-Here, the variable `max_lag` is the maximum lag used for correlation. This is usually set to the length of the residuals. Set the function variable `plt` to `1` to enable plots or `0` otherwise.   
+Here, the variable `max_lag` is the maximum lag used for correlation. This is usually set to the length of the residuals. Set the function variable `plt` to `1` for enabling plots or `0` otherwise.   
     * For NARX models
     ```matlab
     [dat,conf_inv] = ac_cc_model_valid_nl(e_ct,u_ct,max_lag,plt);
