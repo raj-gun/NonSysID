@@ -5,5 +5,26 @@ In MATLAB, first clear the workspace and add the folder containing the `NonSydID
 
 ```matlab
 close all;clear;clc
-addpath('\<add-path-to-NonSysID>\NonSysID');
+addpath('<add-path-to-NonSysID-folder>');
 ```
+
+Generate or import input-output data, and then, if required, process the data, such as downsampling, test-train data splitting. 
+Note: When downsampling data, filtering up to the Nyquist frequency might be required to avoid anti-aliasing 
+
+```matlab
+% Import/generate input-output data
+u = <input data>;
+y = <output data>;
+
+%--- Down sample data ---%
+dwn_smpl = 100; % Downsampling factor
+u = u(1:dwn_smpl:end);
+y = y(1:dwn_smpl:end);
+
+%--- Data splitting ---%
+tt_splt = 100:350; %Training samples of data
+u_ID=u(tt_splt);
+y_ID=y(tt_splt);
+```
+
+
