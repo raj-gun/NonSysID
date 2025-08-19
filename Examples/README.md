@@ -110,7 +110,7 @@ end
 
 ## Simulate an identify (N)ARX model using NonSysID
 
-(1) Simulate the identified model ('model').
+(1) Simulate the identified model ('model'). 'u' is the input and 'y' is the actual output from the real system. If there is no actual output, initialise 'u' first and then set 'y = 0.*u'.
 
 ```matlab
 [sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
@@ -133,6 +133,49 @@ xlabel('Time Samples');
 ylabel('$y(t)/\hat{y}(t)$','Interpreter','latex','FontSize',12);
 %----------
 ```
+
+## Validate an identified (N)ARX model using correlation-based validation techniques 
+
+(1) Simulate the identified model ('model'). 'u' is the input and 'y' is the actual output from the real system.
+
+```matlab
+[sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
+```
+
+(2) Specify residual type: simulation, one-step ahead or k-steps ahead (1,2,3 respectively) 
+```matlab
+err_typ = 1;
+```
+
+(3) Normalise the residuals ('error') and input ('U_delay_mat_sim').
+```matlab
+e_ct = error(tt_splt,err_typ); % 'err_typ': simulation, one-step ahead or k-steps ahead (1,2,3 respectively)
+u_ct = U_delay_mat_sim(tt_splt,1);
+u_ct = u_ct - mean(u_ct);
+u_ct = u_ct ./ std(u_ct);
+e_ct = e_ct - mean(e_ct);
+e_ct = e_ct ./ std(e_ct);
+```
+
+(4) Correlation-based validation; 
+Here, the variable `max_lag` is the maximum lag used for correlation. This is usually set to the length of the residuals. Set the function variable `plt` to `1` to enable plots or `0` otherwise.   
+    * For NARX models
+    ```matlab
+    [dat,conf_inv] = ac_cc_model_valid_nl(e_ct,u_ct,max_lag,plt);
+    
+    disp(['RMSE = ',num2str( sqrt(mean(error(:,1).^2)) )]);
+    disp(['Error variance = ',num2str( var(error(:,1)) )]);
+    ```
+    
+    * For ARX models
+    ```matlab
+    [dat,conf_inv] = ac_cc_model_valid(e_ct, u_ct, max_lag,plt)
+    ac_cc_model_valid_nl(e_ct,u_ct,length(tt_splt),1);
+    
+    disp(['RMSE = ',num2str( sqrt(mean(error(:,1).^2)) )]);
+    disp(['Error variance = ',num2str( var(error(:,1)) )]);
+    ```
+
 
 
 
