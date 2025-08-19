@@ -5,5 +5,5 @@ In MATLAB, first clear the workspace and add the folder containing the `NonSydID
 
 ```
 close all;clear;clc
-addpath('\...\NonSysID');
+addpath('\<add-path-to-NonSysID>\NonSysID');
 ```
