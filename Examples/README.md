@@ -13,8 +13,8 @@ Note: When downsampling data, filtering up to the Nyquist frequency might be req
 
 ```matlab
 % Import/generate input-output data
-u = <input data>;
-y = <output data>;
+u = < input data >;
+y = < output data >;
 
 %--- Down sample data ---%
 dwn_smpl = 100; % Downsampling factor
