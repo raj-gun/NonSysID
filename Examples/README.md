@@ -3,7 +3,7 @@ This document provides a code structure to do system identification using the No
 
 In MATLAB, first clear the workspace and add the folder containing the `NonSydID` code to the search path
 
-```
+```matlab
 close all;clear;clc
 addpath('\<add-path-to-NonSysID>\NonSysID');
 ```
