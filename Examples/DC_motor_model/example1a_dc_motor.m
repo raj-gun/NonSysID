@@ -64,6 +64,7 @@ tic
     NonSysID(mod_type,u_ID,y_ID,na1,na2,nb1,nb2,nl_ord_max,is_bias,n_inpts,KSA_h,RCT,x_iOFR,stp_cri,D1_thresh,displ,sim,parall);
 toc
 
+% Print ARX/NARX models
 disp('ARX model:'); disp(iOFR_table_lin{best_mod_ind_lin,1}); % Print the best ARX model that fits the data
 if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NARX model that fits the data
     disp('NARX model:'); 
