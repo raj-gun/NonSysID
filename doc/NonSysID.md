@@ -104,7 +104,7 @@ parall = [1,1];
 ## Notes
 
 - `nl_ord_max = 1` yields purely **linear** models. Higher orders allow polynomial nonlinearities.  
-- Stopping criteria (`PRESS_thresh` or `BIC_thresh`) strongly affect model complexity.  
+- Stopping criteria (`PRESS_thresh` or `BIC_thresh`) can affect model complexity, where `BIC_thresh` is more conservative. Default is `PRESS_thresh`.  
 - Use parallel processing (`parall`) for large datasets to significantly speed up iOFR iterations.  
 - Setting `sim = [1,1]` will run and display simulations for both linear and nonlinear models.  
 
