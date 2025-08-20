@@ -108,7 +108,7 @@ if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NA
 end
 ```
 
-## Simulate an identify (N)ARX model using NonSysID
+## Simulate an identified (N)ARX model using NonSysID
 
 (1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system. If there is no actual output, initialise `u` first and then set `y = 0.*u`.
 
