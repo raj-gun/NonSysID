@@ -1,8 +1,6 @@
 # `NonSysID`
 
-`NonSysID` performs system identification for **linear/nonlinear ARX** (input–output) and **AR** (autoregressive) models using an iterative Orthogonal Forward Regression (iOFR) algorithm.  
-It supports polynomial nonlinearities, multiple stopping criteria, k-step-ahead prediction, and optional parallelization.
-
+`NonSysID` performs system identification for **linear/nonlinear ARX** (input–output) and **AR** (autoregressive) models using an iterative Orthogonal Forward Regression (iOFR) algorithm.
 ---
 
 ## Signature
