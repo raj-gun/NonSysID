@@ -41,6 +41,9 @@ Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei H
     - add the folder 'NonSysId' to the Matlab path permanently using the 'pathtool' (https://uk.mathworks.com/help/matlab/ref/pathtool.html).
     - or use the 'addpath' command in the Matlab script to add the folder 'NonSysId' and use the functions within (https://uk.mathworks.com/help/matlab/ref/addpath.html).
 
+### Documentation
+Brief documentation explaining the main function and a code structure for identifying a model, simulating and validating an identified model is given in [`doc`]([https://pages.github.com/](https://github.com/raj-gun/NonSysID/tree/main/doc))
+
 ### Examples
 - Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
 - An example of identifying a MISO NARX model is shown in `Examples/Hystersis_model_MISO`.
