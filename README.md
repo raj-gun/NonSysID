@@ -45,8 +45,8 @@ Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei H
 Brief documentation explaining the main function and a code structure for identifying a model, simulating and validating an identified model is given in the [`doc`](https://github.com/raj-gun/NonSysID/tree/main/doc) folder.
 
 ### Examples
-- Basic use of identifying a SISO NARX model from real data, see the example in `Examples/Electro-mecahnical system`.
-- An example of identifying a MISO NARX model is shown in `Examples/Hystersis_model_MISO`.
+- Basic use of identifying a SISO NARX model from real data, see the example in [`Examples/Electro-mecahnical system`](https://github.com/raj-gun/NonSysID/tree/main/Examples/Electro-mecahnical%20system).
+- An example of identifying a MISO NARX model is shown in [`Examples/Hystersis_model_MISO`](https://github.com/raj-gun/NonSysID/tree/main/Examples/Hystersis_model_MISO).
 
 ## Paper
 
