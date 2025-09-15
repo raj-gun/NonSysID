@@ -3,9 +3,9 @@ clear;clc
 addpath('\...\NonSysID');
 %% Import data 
 % The real data in this example is obtained from an electromechanical system described in [1].
-% Replace '\...' below with the path to the Examples folder
-u = readmatrix('\...\Examples\Electro-mecahnical system\Data\x_cc.csv'); 
-y = readmatrix('\...\Examples\Electro-mecahnical system\Data\y_cc.csv');
+% Replace '...' below with the path to the Examples folder
+u = readmatrix('...\Examples\Electro-mecahnical system\Data\x_cc.csv'); 
+y = readmatrix('...\Examples\Electro-mecahnical system\Data\y_cc.csv');
 
 %--- Down sample data ---%
 dwn_smpl = 100;
@@ -110,4 +110,5 @@ u_ct = u_ct - mean(u_ct);
 u_ct = u_ct ./ std(u_ct);
 e_ct = e_ct - mean(e_ct);
 e_ct = e_ct ./ std(e_ct);
+
 [~,~] = ac_cc_model_valid_nl(e_ct,u_ct,100,1);
