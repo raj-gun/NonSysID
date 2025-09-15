@@ -5,7 +5,7 @@ NARX model of a DC motor taken from [1]
 [1] S. A. M. Martins and L. A. Aguirre, ‘Sufficient conditions for rate-independent hysteresis in autoregressive identified models’, 
 Mechanical Systems and Signal Processing, vol. 75, pp. 607–617, 2016.
 
-y(t) =0.8536y(k−1) + 0.0388u3(k−1) + 0.6143u2(k−1)u1(k−1) − 0.4407u3(k−1)u2(k−1)y(k−1)
+y(k) =0.8536y(k−1) + 0.0388u3(k−1) + 0.6143u2(k−1)u1(k−1) − 0.4407u3(k−1)u2(k−1)y(k−1)
 
 Inputs:
   u1, u2, u3 - Input signals
