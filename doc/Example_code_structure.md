@@ -29,7 +29,7 @@ u_ID=u(tt_splt);
 y_ID=y(tt_splt);
 ```
 
-(3) Set up the options for the `NonSysID` system identification function. Please refer to "https://github.com/raj-gun/NonSysID/blob/main/doc/NonSysID.md" for more details on these
+(3) Set up the options for the `NonSysID` system identification function. Please refer to "https://github.com/raj-gun/NonSysID/blob/main/doc/NonSysID.md" for more details on these.
 
 ```matlab
 % Model type ARX/AR. For linear/nonlinear input-output type models 'ARX',
