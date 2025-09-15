@@ -2,7 +2,11 @@
 clear;clc
 addpath('\...\NonSysID');
 %% Import data 
-% The real data in this example is obtained from an electromechanical system described in [1].
+% The real data in this example is obtained from an electromechanical
+% system described in [1]. The data is available in [2].
+%[1]. W. R. L. Junior, V. M. Almeida, and S. A. Milani, “Identifica¸cao de um motor/gerador cc por meio de modelos polinomiais autorregressivos e redes neurais artificiais,” in Proc. XIII Simp´osio Brasileiro De Automa¸c˜ao Inteligente, pp. 1–6, 2017.
+%[2]. wilsonrljr, “sysidentpy/examples/datasets at main · wilsonrljr/sysidentpy,” GitHub, 2019. https://github.com/wilsonrljr/sysidentpy/tree/main/examples/datasets (accessed Dec. 04, 2024).
+
 % Replace '...' below with the path to the Examples folder
 u = readmatrix('...\Examples\Electro-mecahnical system\Data\x_cc.csv'); 
 y = readmatrix('...\Examples\Electro-mecahnical system\Data\y_cc.csv');
