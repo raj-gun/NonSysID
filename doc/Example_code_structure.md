@@ -147,7 +147,7 @@ ylabel('$y(t)/\hat{y}(t)$','Interpreter','latex','FontSize',12);
 err_typ = 1;
 ```
 
-(3) Normalise the residuals (`error`) and input (`U_delay_mat_sim`, output variable from function `model_simulation` in step (1)).
+(3) Normalise the residuals (`error`) and input (`U_delay_mat_sim`, output variable from function `model_simulation` in step (1)). Here, the data points used for training (`tt_splt`) are used to validate whether the model can explain the training data well. Similarly, testing data can be used as well. Since (N)ARX is a time-series model, use one continuous batch of data at a time to validate.   
 ```matlab
 e_ct = error(tt_splt,err_typ); % 'err_typ': simulation, one-step ahead or k-steps ahead (1,2,3 respectively)
 u_ct = U_delay_mat_sim(tt_splt,1);
