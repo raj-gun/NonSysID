@@ -1,11 +1,7 @@
 # NonSysID Package Documentation
 
-This repository provides MATLAB functions and examples for **system identification** of linear and nonlinear ARX/AR models using the `NonSysID` package.  
+This provides documentation for system identification of (N)ARX/(N)AR models using the `NonSysID` package.  
 The workflow includes identifying a model, simulating it, and validating the results.
-
----
-
-## Documentation
 
 - [**NonSysID**](./NonSysID.md)  
   Main function for identifying ARX/NARX or AR/NAR models using iterative Orthogonal Forward Regression (iOFR).  
