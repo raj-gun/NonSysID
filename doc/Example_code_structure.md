@@ -166,6 +166,7 @@ Here, the variable `max_lag` is the maximum lag used for correlation. This is us
 disp(['RMSE = ',num2str( sqrt(mean(error(:,1).^2)) )]);
 disp(['Error variance = ',num2str( var(error(:,1)) )]);
 ```
+For NAR models, set `u_ct=[]`. 
     
 + For ARX models
 ```matlab
@@ -175,6 +176,7 @@ ac_cc_model_valid_nl(e_ct,u_ct,length(tt_splt),1);
 disp(['RMSE = ',num2str( sqrt(mean(error(:,1).^2)) )]);
 disp(['Error variance = ',num2str( var(error(:,1)) )]);
 ```
+For AR models, set `u_ct=[]`.
 
 
 
