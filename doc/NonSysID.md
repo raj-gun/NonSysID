@@ -64,7 +64,7 @@
 5. **Performance enhancements**: RCT acceleration and parallelisation options.
 
 
-For more details, please refer to the [`supplementary information`](/NonSysID/supplimentray_information/README.md).
+For more details, please refer to the [`supplementary information`](/supplimentray_information/README.md).
 
 ---
 
