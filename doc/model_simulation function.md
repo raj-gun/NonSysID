@@ -57,13 +57,12 @@ plot(u, 'Color', '#0072BD');
 ylabel('$u(t)$','Interpreter','latex','FontSize',12);
 
 n = length(y);
+n_yhat = size(y_hat,2);
 subplot(2,1,2);
 plot(1:n, y, 'Color', '#77AC30', 'LineWidth', 1.5); hold on;
-plot(tt_splt, y_ID, 'Color', '#EDB120', 'LineWidth', 1.5); hold on;
-plot((length(y)-length(y_hat)+1:n), y_hat(:,3), 'k-.', 'LineWidth', 1.25);
+plot((n-n_yhat+1:n), y_hat(:,3), 'k-.', 'LineWidth', 1.25); % in 'y_hat(:,L)' multi-step-ahead (simulation), one-step-ahead or k-steps-ahead (L = 1,2,3 respectively)
 
-legend('$y(t)$ -- testing', ...
-       '$y(t)$ -- training', ...
+legend('$y(t)$', ...
        '$\\hat{y}(t)$ -- model simulation', ...
        'Interpreter','latex','FontSize',12);
 xlabel('Time Samples');
