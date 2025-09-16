@@ -111,3 +111,6 @@ parall = [1,1];
 
 ---
 
+## See Also
+
+- To simulate a NARX model identified using `NonSysID`, refer to [`NonSysID`](./model_simulation function.md)  
