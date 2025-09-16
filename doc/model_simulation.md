@@ -1,6 +1,6 @@
 # `model_simulation`
 
-`model_simulation` simulates the output of an identified NARX (Nonlinear AutoRegressive with eXogenous input) model using given input/output data and a specified k-step-ahead horizon.  
+`model_simulation` simulates the output of an identified (N)ARX/(N)AR (Nonlinear AutoRegressive with eXogenous input/Nonlinear AutoRegressive) model using given input/output data and a specified k-step-ahead horizon.  
 It returns the simulated output, error, and delay matrix, and is typically used after identifying a model with [`NonSysID`](./NonSysID.md).
 
 ---
