@@ -73,7 +73,6 @@ ylabel('$y(t)/\\hat{y}(t)$','Interpreter','latex','FontSize',12);
 
 ## Notes
 
-- The third column of `y_hat` (`y_hat(:,3)`) is often used to represent the k-step-ahead simulated output.  
 - Ensure that the horizon `KSA_h` matches the one used during model identification.  
 - The function is designed for NARX models identified via `NonSysID`, but can be adapted for other compatible model structures.  
 
