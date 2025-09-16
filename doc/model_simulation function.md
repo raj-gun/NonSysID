@@ -28,7 +28,7 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 
 | Output             | Type     | Description |
 |--------------------|----------|-------------|
-| `sse`              | double   | Sum of squared errors between measured and simulated output. |
+| `sse`              | double   | Sum of squared errors (SSE) between measured and forecasted output. Columns represent SSE for multi-step-ahead (simulation/model predicted output), one-step-ahead and k-step-ahead predictions, respectively. |
 | `y_hat`            | matrix   | Model output. Columns represent multi-step-ahead (simulation/model predicted output), one-step-ahead and k-step-ahead predictions, respectively. |
 | `error`            | vector   | Model errors against the actual output `y`. Columns represent the errors between `y` and the corresponding model outputs in `y_hat`|
 | `U_delay_mat_sim`  | matrix   | Delay matrix for input(s) used in the simulation (aligned with model regressors). |
@@ -37,8 +37,8 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 
 ## Algorithm (High-Level)
 
-1. **Input delay construction**: Builds delayed input matrix according to model order.  
-2. **Simulation loop**: Uses the identified model to predict outputs over the horizon `KSA_h`.  
+1. **Input delay construction**: Builds a delayed input matrix according to the model order.  
+2. **Simulation loop**: Uses the identified model to forecast outputs.  
 3. **Error computation**: Compares predicted outputs with measured data (`y`).  
 4. **Performance measure**: Computes `sse` and optionally other error statistics.  
 
