@@ -19,7 +19,7 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 |---------|----------|----------|-------------|
 | `model` | struct   | Yes | Identified NARX model structure, e.g. returned by `NonSysID`. |
 | `u`     | vector / matrix | Yes | Input signal(s) used for simulation. The number of columns depends on the number of inputs in the model. |
-| `y`     | column vector   | Yes | Actual measured output signal (for comparison with simulated output and for one-step-ahead predictions). |
+| `y`     | column vector   | Yes | Actual measured output signal (for comparison with simulated output and for one-step-ahead/k-step-ahead predictions). If only model simulation is required, then set `y` to a column vector of zeros with the same length as `u` (`y=u(:,1).*0`)|
 | `KSA_h` | int      | Yes | Horizon for **k-step-ahead prediction** in the simulation. |
 
 ---
@@ -29,7 +29,7 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 | Output             | Type     | Description |
 |--------------------|----------|-------------|
 | `sse`              | double   | Sum of squared errors between measured and simulated output. |
-| `y_hat`            | matrix   | Model output. Columns represent multi-step-ahead (simulation/model predicted output), one-step-ahead and k-step-ahead predictions, respectivley. |
+| `y_hat`            | matrix   | Model output. Columns represent multi-step-ahead (simulation/model predicted output), one-step-ahead and k-step-ahead predictions, respectively. |
 | `error`            | vector   | Simulation error signal (`y - y_hat`). |
 | `U_delay_mat_sim`  | matrix   | Delay matrix for input(s) used in the simulation (aligned with model regressors). |
 
