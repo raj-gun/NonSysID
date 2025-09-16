@@ -110,11 +110,12 @@ end
 
 ## Simulate the identified (N)ARX model using NonSysID
 
-(1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system. For details, please refer to [`model_simulation`](./model_simulation.md). 
+(1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system.  
 
 ```matlab
 [sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
 ```
+For details, please refer to [`model_simulation`](./model_simulation.md).
 
 (2) Plot the simulation results
 ```matlab
