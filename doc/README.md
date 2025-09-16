@@ -23,10 +23,3 @@ The workflow includes identifying a model, simulating it, and validating the res
 2. Use [`NonSysID`](./NonSysID.md) to identify an appropriate ARX or NARX model.  
 3. Run [`model_simulation`](./model_simulation.md) to simulate and evaluate model performance.  
 4. Follow the workflow in the [Example Code Structure](./Example_code_structure.md) for a complete system identification pipeline.  
-
----
-
-## See Also
-
-- MATLAB System Identification Toolbox (`arx`, `nlarx`, `compare`)  
-- Correlation-based validation functions for residual analysis.  
