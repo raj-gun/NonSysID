@@ -30,7 +30,7 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 |--------------------|----------|-------------|
 | `sse`              | double   | Sum of squared errors between measured and simulated output. |
 | `y_hat`            | matrix   | Model output. Columns represent multi-step-ahead (simulation/model predicted output), one-step-ahead and k-step-ahead predictions, respectively. |
-| `error`            | vector   | Simulation error signal (`y - y_hat`). |
+| `error`            | vector   | Model errors against the actual output `y`. Columns represent the errors between `y` and the corresponding model outputs in `y_hat`|
 | `U_delay_mat_sim`  | matrix   | Delay matrix for input(s) used in the simulation (aligned with model regressors). |
 
 ---
