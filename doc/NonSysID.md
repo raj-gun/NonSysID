@@ -60,9 +60,8 @@
 1. **Model candidate generation**: Constructs ARX or AR regressors based on specified input/output lags and nonlinearity order.  
 2. **Orthogonal Forward Regression (OFR)**: Iteratively adds terms, evaluating contribution at each step.  
 3. **Stopping criteria**: Uses PRESS (Prediction Error Sum of Squares) or BIC (Bayesian Information Criterion), with thresholds in `D1_thresh`.  
-4. **Iteration control**: Optional multiple iterations until convergence (`x_iOFR`).  
-5. **Performance enhancements**: Bias term, RCT acceleration, and parallelization options.  
-6. **Validation**: Performs k-step-ahead prediction and/or simulation as configured.  
+4. **Iteration control**: Optional multiple iOFR iterations until convergence (`x_iOFR`).  
+5. **Performance enhancements**: RCT acceleration and parallelisation options.
 
 ---
 
