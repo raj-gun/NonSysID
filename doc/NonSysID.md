@@ -63,6 +63,8 @@
 4. **Iteration control**: Optional multiple iOFR iterations until convergence (`x_iOFR`).  
 5. **Performance enhancements**: RCT acceleration and parallelisation options.
 
+For more details, please refer to the supplementary information (NonSysID
+/supplimentray_information/README.md)
 ---
 
 ## Example Usage
