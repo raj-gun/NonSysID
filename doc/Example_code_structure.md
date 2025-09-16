@@ -19,7 +19,7 @@ y = <output data>;
 
 %--- Down sample data ---%
 % Filter if required
-dwn_smpl = 100; % Downsampling factor
+dwn_smpl = 2; % Downsampling factor
 u = u(1:dwn_smpl:end);
 y = y(1:dwn_smpl:end);
 
