@@ -108,9 +108,9 @@ if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NA
 end
 ```
 
-## Simulate an identified (N)ARX model using NonSysID
+## Simulate the identified (N)ARX model using NonSysID
 
-(1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system. 
+(1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system. For details, please refer to [`model_simulation`](./model_simulation.md). 
 
 ```matlab
 [sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
