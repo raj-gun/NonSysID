@@ -1,5 +1,5 @@
 # Example code structure to use the NonSysID package
-This document provides a code structure to do system identification using the NonSysID package. The examples shown here in the repository follow the same structure.
+This document provides a code structure to do system identification using the NonSysID package. The examples shown [`here`](/Examples/) in the repository follow the same structure.
 
 ## Identify (N)ARX model using NonSysID
 (1) In MATLAB, first clear the workspace and add the folder containing the `NonSydID` code to the search path
