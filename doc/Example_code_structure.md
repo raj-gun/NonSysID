@@ -1,5 +1,8 @@
 # Example code structure to use the NonSysID package
-This document provides a code structure to do system identification using the NonSysID package. The examples shown [`here`](/Examples/) in the repository follow the same structure.
+This document provides a code structure to do system identification using the NonSysID package. The examples shown [`here`](/Examples/) in the repository follow the same structure. The main steps are;
+- Identify (N)ARX model using NonSysID.
+- Simulate the identified (N)ARX model.
+- Validate the identified (N)ARX model using correlation-based validation techniques.
 
 ## Identify (N)ARX model using NonSysID
 (1) In MATLAB, first clear the workspace and add the folder containing the `NonSydID` code to the search path
@@ -108,7 +111,7 @@ if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NA
 end
 ```
 
-## Simulate the identified (N)ARX model using NonSysID
+## Simulate the identified (N)ARX model
 
 (1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system.  
 
