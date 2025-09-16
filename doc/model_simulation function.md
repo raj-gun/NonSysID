@@ -80,6 +80,4 @@ ylabel('$y(t)/\\hat{y}(t)$','Interpreter','latex','FontSize',12);
 
 ## See Also
 
-- [`NonSysID`](./NonSysID_Documentation.md)  
-- [`compare`](https://www.mathworks.com/help/ident/ref/compare.html)  
-- [`forecast`](https://www.mathworks.com/help/ident/ref/forecast.html)  
+- [`NonSysID`](./NonSysID.md)  
