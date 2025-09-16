@@ -135,13 +135,9 @@ ylabel('$y(t)/\hat{y}(t)$','Interpreter','latex','FontSize',12);
 %----------
 ```
 
-## Validate an identified (N)ARX model using correlation-based validation techniques 
+## Validate the identified (N)ARX model using correlation-based validation techniques 
 
-(1) Simulate the identified model (`model`). `u` is the input and `y` is the actual output from the real system.
-
-```matlab
-[sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
-```
+(1) After simulating the identified model (`model`) as shown above.
 
 (2) Specify residual type: `simulation`, `one-step ahead` or `k-steps ahead` (`1`,`2` or `3` respectively) 
 ```matlab
