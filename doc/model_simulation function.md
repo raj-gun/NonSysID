@@ -18,7 +18,7 @@ It returns the simulated output, error, and delay matrix, and is typically used 
 | Name    | Type     | Required | Description |
 |---------|----------|----------|-------------|
 | `model` | struct   | Yes | Identified NARX model structure, e.g. returned by `NonSysID`. |
-| `u`     | vector / matrix | Yes | Input signal(s) used for simulation. Size depends on the number of inputs in the model. |
+| `u`     | vector / matrix | Yes | Input signal(s) used for simulation. The number of columns depends on the number of inputs in the model. |
 | `y`     | vector   | Yes | Actual measured output signal (for comparison with simulated output). |
 | `KSA_h` | int      | Yes | Horizon for **k-step-ahead prediction** in the simulation. |
 
