@@ -12,9 +12,10 @@ authors:
     orcid: 0000-0003-1192-9125
     affiliation: 1
   - name: Zi-Qiang Lang
+    orcid: 0000-0003-3598-089X
     affiliation: 2
   - name: Fei He
-    orcid: 0000-0003-1192-9125
+    orcid: 0000-0001-9176-6674
     affiliation: 1
 affiliations:
   - index: 1
