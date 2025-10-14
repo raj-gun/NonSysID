@@ -1,7 +1,7 @@
 # NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models  
 *An open-source MATLAB package for system identification of ARX, NARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
 
-Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
+Authors: [Rajintha Gunawardena](https://github.com/raj-gun), [Zi-Qiang Lang](https://sheffield.ac.uk/eee/people/academic-staff/zi-qiang-lang), [Fei He](https://github.com/feihelab)
 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2017a-blue)](https://www.mathworks.com/products/matlab.html) 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-blue)](https://www.mathworks.com/products/matlab.html) 
