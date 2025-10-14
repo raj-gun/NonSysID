@@ -2,6 +2,8 @@
 *An open-source MATLAB package for system identification of ARX, NARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
 
 Authors: [Rajintha Gunawardena](https://github.com/raj-gun)<sup>1</sup>, [Zi-Qiang Lang](https://sheffield.ac.uk/eee/people/academic-staff/zi-qiang-lang)<sup>2</sup>, [Fei He](https://github.com/feihelab)<sup>1</sup>
+1. Centre for Computational Science and Mathematical Modelling, Coventry University, Coventry CV15FB, UK.
+2. School of Electrical and Electronic Engineering, The University of Sheffield, Western Bank, Sheffield S10 2TN, UK.
 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2017a-blue)](https://www.mathworks.com/products/matlab.html) 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-blue)](https://www.mathworks.com/products/matlab.html) 
