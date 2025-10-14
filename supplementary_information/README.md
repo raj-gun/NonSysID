@@ -1,6 +1,6 @@
 # System identification basics and detailed information regarding the procedures used in the NonSysID package
 
-Authors: Rajintha Gunawardena (https://github.com/raj-gun), Zi-Qiang Lang, Fei He (https://github.com/feihelab)
+Authors: [Rajintha Gunawardena](https://github.com/raj-gun), [Zi-Qiang Lang](https://sheffield.ac.uk/eee/people/academic-staff/zi-qiang-lang), [Fei He](https://github.com/feihelab)
 
 # System identification
 
