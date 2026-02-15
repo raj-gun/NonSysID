@@ -53,23 +53,25 @@ Brief documentation explaining the main functions and a code structure for ident
 
 ## Paper
 
-If you are using the NonSysId package for academic purposes, kindly reference our pre-print paper as follows:
+If you are using the NonSysId package for academic purposes, kindly reference our paper as follows:
 
-**NonSysId: A nonlinear system identification package with improved model term selection for NARMAX models**
+**NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models**
 
 Rajintha Gunawardena, Zi-Qiang Lang, Fei He
 
-DOI: [10.48550/arXiv.2411.16475](https://doi.org/10.48550/arXiv.2411.16475)
+DOI: [10.21105/joss.08028](https://doi.org/10.21105/joss.08028)
 
 ```
-@misc{10.48550/arXiv.2411.16475,
-      title={NonSysId: A nonlinear system identification package with improved model term selection for NARMAX models}, 
-      author={Rajintha Gunawardena and Zi-Qiang Lang and Fei He},
-      year={2024},
-      eprint={2411.16475},
-      archivePrefix={arXiv},
-      primaryClass={eess.SY},
-      url={https://arxiv.org/abs/2411.16475}, 
+@article{Gunawardena2025,
+doi = {10.21105/joss.08028},
+url = {https://doi.org/10.21105/joss.08028},
+year = {2025}, publisher = {The Open Journal},
+volume = {10},
+number = {114},
+pages = {8028},
+author = {Gunawardena, Rajintha and Lang, Zi-Qiang and He, Fei},
+title = {NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models},
+journal = {Journal of Open Source Software}
 }
 ```      
 
