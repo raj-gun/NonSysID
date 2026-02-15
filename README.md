@@ -8,6 +8,7 @@ Authors: [Rajintha Gunawardena](https://github.com/raj-gun)<sup>1</sup>, [Zi-Qia
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2017a-blue)](https://www.mathworks.com/products/matlab.html) 
 [![MATLAB](https://img.shields.io/badge/MATLAB-R2023b-blue)](https://www.mathworks.com/products/matlab.html) 
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-orange.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.08028/status.svg)](https://doi.org/10.21105/joss.08028)
 [![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://doi.org/10.48550/arXiv.2411.16475)
 
 
