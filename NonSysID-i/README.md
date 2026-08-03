@@ -94,10 +94,8 @@ where $`\theta_m`$ is the parameter associated with the model term $`\phi_m(t)`$
 Each $`\phi_m(t)`$ is formed only from lagged inputs. For nonlinear models, the candidate dictionary may include powers and cross-products such as
 
 ```math
-u_1(t-1)^2,
-\qquad
-u_1(t-1)u_2(t-2),
-\qquad
+u_1(t-1)^2, \ \
+u_1(t-1)u_2(t-2), \ \
 u_1(t-2)^2u_2(t-1).
 ```
 
