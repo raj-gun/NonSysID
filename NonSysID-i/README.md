@@ -25,7 +25,7 @@ By eliminating the repeated recursive simulation required for models containing 
 
 `NonSysID_i` uses dedicated input-only functions for candidate-matrix construction, linear and nonlinear iOFR execution, model selection and model simulation. However, it also reuses several established functions from the original `NonSysID` implementation.
 
-The following `NonSysID` functions are called directly by the NonSysID-i functions and must therefore be available on the MATLAB path, e.g. `addpath('<path-to-NonSysID>')`. However, if only `NonSysID-i` needs to be used, the functions mentioned below can be copied into the same folder as `NonSysID-i`.
+The following `NonSysID` functions are called directly by the NonSysID-i functions and must therefore be available on the MATLAB path as shown below after the table. However, if only `NonSysID-i` needs to be used, the functions mentioned below can be copied into the same folder as `NonSysID-i`.
 
 | Function from NonSysID | Used by | Purpose in NonSysID-i |
 |------------------------|---------|------------------------|
