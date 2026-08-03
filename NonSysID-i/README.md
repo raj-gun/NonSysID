@@ -1,8 +1,8 @@
 # `NonSysID_i`
 
-`NonSysID_i` is a dedicated variant of NonSysID for identifying linear and nonlinear input-only models using the iterative Orthogonal Forward Regression (iOFR) algorithm.
+`NonSysID_i` is a dedicated variant of NonSysID for identifying linear and nonlinear input-only models using the iterative Orthogonal Forward Regression (iOFR) algorithm and PRESS-statistic-based term selection.
 
-Its candidate regressors are constructed exclusively from lagged inputs and their nonlinear combinations, without lagged output terms. Consequently, recursive model simulation does not depend on previously predicted outputs. For an ARX-i model, free-run model simulation, one-step-ahead prediction and k-step-ahead prediction are therefore identical.
+Its candidate regressors are constructed exclusively from lagged inputs and their nonlinear combinations, without lagged output terms. Consequently, recursive model simulation does not depend on previously predicted outputs. For an input-only model, free-run model simulation, one-step-ahead prediction and k-step-ahead prediction are therefore identical.
 
 By eliminating the repeated recursive simulation required for models containing lagged outputs, `NonSysID_i` can provide substantially faster system identification for input-only model structures.
 
