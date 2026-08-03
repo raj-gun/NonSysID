@@ -93,16 +93,6 @@ u1(t-2)^2u2(t-1)
 
 Conventional ARX and NARX model simulation may recursively use previously predicted outputs. In contrast, an input-only model contains no output-feedback regressors.
 
-Therefore:
-
-```text
-free-run simulation
-    =
-one-step-ahead prediction
-    =
-k-step-ahead prediction
-```
-
 The prediction horizon supplied through `KSA_h` does not change the predicted output of an input-only model.
 
 This equivalence also avoids repeated recursive simulations during model evaluation, which reduces the computational cost of input-only system identification.
