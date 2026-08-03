@@ -101,26 +101,12 @@ This equivalence also avoids repeated recursive simulations during model evaluat
 
 ## Algorithm—High Level
 
-1. **Input-lag matrix construction**
-   Constructs candidate linear regressors from each measured input over the lag interval `b1:b2`.
-
-2. **Nonlinear dictionary generation**
-   When `nl_ord_max > 1`, generates polynomial powers and interactions from the linear input regressors.
-
-3. **Orthogonal Forward Regression**
-   Applies OFR to rank and select candidate model terms according to their contribution.
-
-4. **PRESS-based model evaluation**
-   Uses the Prediction Error Sum of Squares statistic to assess model generalisation without requiring a separate validation dataset.
-
-5. **Iterative OFR**
-   Optionally repeats OFR from different initial terms to reduce sensitivity to the orthogonalisation path.
-
-6. **Model selection**
-   Selects the preferred linear or nonlinear input-only model using the configured stopping criterion and threshold.
-
-7. **Direct prediction**
-   Evaluates the selected model directly from its input regressors. No recursive output simulation is required.
+1. **Input-lag matrix construction**: Constructs candidate linear regressors based on specified input lags and nonlinearity order.
+2. **Orthogonal Forward Regression (OFR)**: Iteratively adds terms, evaluating contribution at each step.  
+3. **Stopping criteria**: Uses PRESS (Prediction Error Sum of Squares) or BIC (Bayesian Information Criterion), with thresholds in `D1_thresh`.  
+4. **Iteration control**: Optional multiple iOFR iterations until convergence (`x_iOFR`).  
+5. **Performance enhancements**: RCT acceleration and parallelisation options.
+7. **Direct prediction**: Evaluates the selected model directly from its input regressors. No recursive output simulation is required.
 
 For more information about the underlying NonSysID algorithms, refer to the [`supplementary information`](/supplimentray_information/README.md).
 
