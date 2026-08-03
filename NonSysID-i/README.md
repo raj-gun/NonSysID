@@ -252,6 +252,3 @@ These values are also identical for an input-only model.
 * For small problems, parallel-pool startup overhead may outweigh the computational benefit.
 * The same input-lag range `b1:b2` is currently applied to every input.
 
----
-* `iOFRs_lin_SysID_i`
-* `iOFRs_nl_SysID_i`
