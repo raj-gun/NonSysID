@@ -37,16 +37,14 @@ The following `NonSysID` functions are called directly by the NonSysID-i functio
 | `ac_cc_model_valid_nl` | `OFR_nl_i` | Performs nonlinear correlation-based residual analysis for candidate nonlinear models. |
 | `mod_val_stats` | `OFR_nl_i` | Summarises the nonlinear residual-validation results and produces the model-validation statistics. |
 
-These functions are reused without introducing separate `_i` copies because their underlying operations are also applicable to input-only models. The input-only behaviour is instead implemented in the dedicated NonSysID-i functions that construct and process regressors without lagged output terms.
-
-Consequently, NonSysID-i should be installed alongside NonSysID, and both sets of functions must be accessible from the MATLAB path. For example:
+Therefore, when using `NonSysID-i`, `NonSysID` functions must be accessible from the MATLAB path. For example:
 
 ```matlab
-addpath('NonSysID');
-addpath('NonSysID-i');
+addpath('path-to-NonSysID');
+addpath('path-to-NonSysID-i');
 ```
 
-The exact paths should be changed to match the local repository structure.
+However, if only `NonSysID-i` needs to be used, then just the above-mentioned functions can be copied into the same folder as `NonSysID-i`.
 
 ---
 
