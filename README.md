@@ -1,7 +1,7 @@
 # NonSysId: Nonlinear System Identification with Improved Model Term Selection for NARMAX Models  
 *An open-source MATLAB package for system identification of ARX, NARX and (N)ARMAX models, featuring improved term selection and robust long-term simulation capabilities.*
 
-Authors: [Rajintha Gunawardena](https://github.com/raj-gun)<sup>1</sup>, [Zi-Qiang Lang](https://sheffield.ac.uk/eee/people/academic-staff/zi-qiang-lang)<sup>2</sup>, [Fei He](https://github.com/feihelab)<sup>1</sup>
+Authors: [Rajintha Gunawardena](https://www.researchgate.net/profile/Shenal-Gunawardena?ev=hdr_xprf)<sup>1</sup>, [Zi-Qiang Lang](https://sheffield.ac.uk/eee/people/academic-staff/zi-qiang-lang)<sup>2</sup>, [Fei He](https://github.com/feihelab)<sup>1</sup>
 1. Centre for Computational Science and Mathematical Modelling, Coventry University, Coventry CV15FB, UK.
 2. School of Electrical and Electronic Engineering, The University of Sheffield, Western Bank, Sheffield S10 2TN, UK.
 
@@ -21,7 +21,8 @@ Authors: [Rajintha Gunawardena](https://github.com/raj-gun)<sup>1</sup>, [Zi-Qia
 - **Iterative OFR (iOFR)**: Improves term selection by iterating through multiple orthogonalisation paths to produce parsimonious models.  
 - **Simulation-based Model Selection**: Ensures simulation stability and enhances long-term prediction accuracy.  
 - **PRESS-statistic Integration**: Includes a PRESS-statistic based term selection criterion that aims to minimise the leave-one-out cross-validation error. Therefore, the model can be validated without requiring separate validation datasets.  
-- **Reduced Computational Time (RCT)**: Optimized procedures to accelerate model term selection for complex NARX models.  
+- **Reduced Computational Time (RCT)**: Optimized procedures to accelerate model term selection for complex NARX models.
+- - **Custom Householder QR Orthogonalisation**: Replaces the original Gram–Schmidt orthogonalisation in the FROLS/i-FRO procedure with an incremental Householder QR transformation. The customisation reconstructs each normalised candidate orthogonal regressor in the original sample coordinates, ensuring that the sample-wise PRESS-statistic updates remain mathematically equivalent to those in the original formulation. The original back-substitution method is retained for parameter estimation, thereby avoiding matrix inversion within the FROLS/i-FRO algorithm.
 
 ---
 
