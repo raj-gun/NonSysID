@@ -66,6 +66,7 @@ An input-only model represents the output using only present or lagged input inf
 
 An ARX-i model represents the current output exclusively as a function of present or lagged input terms:
 
+``` math
 y(t) =
 f^{P}\left(
 u_1(t-b_1),\ldots,u_1(t-b_2),
@@ -73,6 +74,7 @@ u_1(t-b_1),\ldots,u_1(t-b_2),
 u_{n_u}(t-b_1),\ldots,u_{n_u}(t-b_2)
 \right)
 + \xi(t),
+```
 
 where:
 
