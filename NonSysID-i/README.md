@@ -1,8 +1,8 @@
 # `NonSysID_i`
 
-`NonSysID_i` is a dedicated variant of NonSysID for identifying linear and nonlinear input-only models using the iterative Orthogonal Forward Regression (iOFR) algorithm and PRESS-statistic-based term selection.
+`NonSysID_i` is a dedicated variant of NonSysID for identifying linear and nonlinear input-only (N)ARX models using the iterative Orthogonal Forward Regression (iOFR) algorithm and PRESS-statistic-based term selection.
 
-Its candidate regressors are constructed exclusively from lagged inputs and their nonlinear combinations, without lagged output terms. Consequently, recursive model simulation does not depend on previously predicted outputs. For an input-only model, free-run model simulation, one-step-ahead prediction and k-step-ahead prediction are therefore identical.
+Its candidate regressors are constructed exclusively from lagged inputs and their nonlinear combinations, without lagged output terms. Consequently, recursive model simulation does not depend on previously predicted outputs. For an input-only (N)ARX model, free-run model simulation, one-step-ahead prediction and k-step-ahead prediction are therefore identical.
 
 By eliminating the repeated recursive simulation required for models containing lagged outputs, `NonSysID_i` can provide substantially faster system identification for input-only model structures.
 
@@ -35,7 +35,7 @@ By eliminating the repeated recursive simulation required for models containing 
 | `nl_ord_max` | `int`           | Yes      | Maximum polynomial nonlinearity order. Set to `1` for a linear model dictionary or greater than `1` to include nonlinear input terms.                                 |
 | `is_bias`    | `int` (`0`/`1`) | Yes      | Bias-term option: `0 = exclude bias`, `1 = include bias`.                                                                                                             |
 | `n_inpts`    | `int`           | Yes      | Number of measured input signals. This must equal `size(u,2)`.                                                                                                        |
-| `KSA_h`      | `int`           | Yes      | Nominal k-step-ahead prediction horizon. It is retained for interface compatibility but does not affect input-only model predictions because all prediction modes are identical. |
+| `KSA_h`      | `int`           | Yes      | Nominal k-step-ahead prediction horizon. It is retained for interface compatibility but does not affect input-only (N)ARX model predictions because all prediction modes are identical. |
 | `RCT`        | `int` (`0`–`4`) | Yes      | Reduced Computational Time method: `0 = none`; `1`–`4` select the corresponding RCT method.                                                                           |
 | `x_iOFR`     | `logical[2]`    | Yes      | Enables multiple iOFR iterations. `x_iOFR(1)` applies to linear identification and `x_iOFR(2)` applies to nonlinear identification.                                   |
 | `stp_cri`    | `cell{2}`       | Yes      | Stopping criteria for linear and nonlinear identification, such as `'PRESS_thresh'` or `'BIC_thresh'`.                                                                |
@@ -50,7 +50,7 @@ By eliminating the repeated recursive simulation required for models containing 
 
 | Output             | Type            | Description                                                                                                                               |
 | ------------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`            | `cell`          | Identified input-only model, including lag settings, selected terms, estimated parameters, bias, error statistics and model-selection results. |
+| `model`            | `cell`          | Identified input-only (N)ARX model, including lag settings, selected terms, estimated parameters, bias, error statistics and model-selection results. |
 | `Mod_Val_dat`      | `struct/cell`   | Model-validation and candidate-model information generated during the iOFR procedure.                                                     |
 | `iOFR_table_lin`   | `table/cell`    | iOFR results for candidate linear input-only models.                                                                                           |
 | `iOFR_table_nl`    | `table/cell`    | iOFR results for candidate nonlinear input-only models.                                                                                        |
@@ -60,13 +60,11 @@ By eliminating the repeated recursive simulation required for models containing 
 
 ---
 
-## Input-only Model Structure
-
-## Input-only Model Structure
+## Input-only (N)ARX Model Structure
 
 An input-only model represents the output using only present or lagged input information.
 
-An ARX-i model represents the current output exclusively as a function of present or lagged input terms:
+An input-only (N)ARX model represents the current output exclusively as a function of present or lagged input terms:
 
 ```math
 y(t) =
@@ -81,7 +79,7 @@ u_{n_u}(t-b_1),\ldots,u_{n_u}(t-b_2)
 
 where $`n_u`$ is the number of input signals, $`b_1`$ and $`b_2`$ are the minimum and maximum input lags, $`f^{P}(\cdot)`$ is a linear or polynomially nonlinear mapping, $`\xi(t)`$ is the model residual, and no lagged output terms, such as $`y(t-1)`$, are included.
 
-For a polynomial ARX-i model, the model can be expressed as
+For a polynomial input-only (N)ARX model, the model can be expressed as
 
 ```math
 y(t) =
@@ -103,7 +101,7 @@ u_1(t-1)u_2(t-2),
 u_1(t-2)^2u_2(t-1).
 ```
 
-An example nonlinear ARX-i model is
+An example input-only NARX model is
 
 ```math
 y(t) =
