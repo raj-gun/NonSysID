@@ -64,28 +64,57 @@ By eliminating the repeated recursive simulation required for models containing 
 
 An input-only model represents the output using only present or lagged input information:
 
-[
-y(t) = F\left(
+An ARX-i model represents the current output exclusively as a function of present or lagged input terms:
+
+y(t) =
+f^{P}\left(
 u_1(t-b_1),\ldots,u_1(t-b_2),
 \ldots,
-u_m(t-b_1),\ldots,u_m(t-b_2)
-\right) + e(t),
-]
+u_{n_u}(t-b_1),\ldots,u_{n_u}(t-b_2)
+\right)
++ \xi(t),
 
 where:
 
-* (m) is the number of inputs;
-* (F(\cdot)) may be linear or polynomially nonlinear;
-* no lagged output terms such as (y(t-1)) are included; and
-* (e(t)) represents the model residual.
+$n_u$ is the number of input signals;
+$b_1$ and $b_2$ are the minimum and maximum input lags;
+$f^{P}(\cdot)$ is a linear or polynomially nonlinear mapping;
+$\xi(t)$ is the model residual; and
+no lagged output terms, such as $y(t-1)$, are included.
 
-For nonlinear models, the candidate dictionary may include powers and cross-products of lagged inputs, for example:
+For a polynomial ARX-i model, the model can be expressed as
 
-```text
-u1(t-1)^2
-u1(t-1)u2(t-2)
-u1(t-2)^2u2(t-1)
-```
+y(t) =
+\sum_{m=1}^{M}
+\theta_m \phi_m(t)
++ \xi(t),
+
+where $\theta_m$ is the parameter associated with the model term
+$\phi_m(t)$, and $M$ is the number of selected model terms.
+
+Each $\phi_m(t)$ is formed only from lagged inputs. For nonlinear
+models, the candidate dictionary may include powers and cross-products
+such as
+
+u_1(t-1)^2,
+\qquad
+u_1(t-1)u_2(t-2),
+\qquad
+u_1(t-2)^2u_2(t-1).
+
+An example nonlinear ARX-i model is
+
+y(t) =
+\theta_1 u_1(t-1)
++
+\theta_2 u_2(t-2)
++
+\theta_3 u_1(t-2)u_2(t-3)
++
+\xi(t).
+
+Because the model contains no lagged outputs, its predictions do not
+depend recursively on previously predicted output values.
 
 ---
 
