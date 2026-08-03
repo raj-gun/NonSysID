@@ -28,14 +28,14 @@ By eliminating the repeated recursive simulation required for models containing 
 | `mod_type`   | `char`          | Yes      | Model type. This must be set to `'ARX-i'`.                                                                                                                            |
 | `u`          | `vector/matrix` | Yes      | Input signal or signals used for identification. Each column represents one input, and the number of columns must equal `n_inpts`.                                    |
 | `y`          | `vector`        | Yes      | Measured output signal used as the dependent variable during identification.                                                                                          |
-| `a1`         | `int`           | Yes      | Retained for call compatibility with `NonSysID`. It is not used to construct the ARX-i candidate dictionary.                                                          |
-| `a2`         | `int`           | Yes      | Retained for call compatibility with `NonSysID`. It is not used to construct the ARX-i candidate dictionary.                                                          |
+| `a1`         | `int`           | Yes      | Retained for call compatibility with `NonSysID`. It is not used to construct the input-only candidate dictionary.                                                          |
+| `a2`         | `int`           | Yes      | Retained for call compatibility with `NonSysID`. It is not used to construct the input-only candidate dictionary.                                                          |
 | `b1`         | `int`           | Yes      | Minimum input lag included in the candidate dictionary.                                                                                                               |
 | `b2`         | `int`           | Yes      | Maximum input lag included in the candidate dictionary.                                                                                                               |
 | `nl_ord_max` | `int`           | Yes      | Maximum polynomial nonlinearity order. Set to `1` for a linear model dictionary or greater than `1` to include nonlinear input terms.                                 |
 | `is_bias`    | `int` (`0`/`1`) | Yes      | Bias-term option: `0 = exclude bias`, `1 = include bias`.                                                                                                             |
 | `n_inpts`    | `int`           | Yes      | Number of measured input signals. This must equal `size(u,2)`.                                                                                                        |
-| `KSA_h`      | `int`           | Yes      | Nominal k-step-ahead prediction horizon. It is retained for interface compatibility but does not affect ARX-i predictions because all prediction modes are identical. |
+| `KSA_h`      | `int`           | Yes      | Nominal k-step-ahead prediction horizon. It is retained for interface compatibility but does not affect input-only model predictions because all prediction modes are identical. |
 | `RCT`        | `int` (`0`–`4`) | Yes      | Reduced Computational Time method: `0 = none`; `1`–`4` select the corresponding RCT method.                                                                           |
 | `x_iOFR`     | `logical[2]`    | Yes      | Enables multiple iOFR iterations. `x_iOFR(1)` applies to linear identification and `x_iOFR(2)` applies to nonlinear identification.                                   |
 | `stp_cri`    | `cell{2}`       | Yes      | Stopping criteria for linear and nonlinear identification, such as `'PRESS_thresh'` or `'BIC_thresh'`.                                                                |
@@ -50,19 +50,19 @@ By eliminating the repeated recursive simulation required for models containing 
 
 | Output             | Type            | Description                                                                                                                               |
 | ------------------ | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `model`            | `cell`          | Identified ARX-i model, including lag settings, selected terms, estimated parameters, bias, error statistics and model-selection results. |
+| `model`            | `cell`          | Identified input-only model, including lag settings, selected terms, estimated parameters, bias, error statistics and model-selection results. |
 | `Mod_Val_dat`      | `struct/cell`   | Model-validation and candidate-model information generated during the iOFR procedure.                                                     |
-| `iOFR_table_lin`   | `table/cell`    | iOFR results for candidate linear ARX-i models.                                                                                           |
-| `iOFR_table_nl`    | `table/cell`    | iOFR results for candidate nonlinear ARX-i models.                                                                                        |
+| `iOFR_table_lin`   | `table/cell`    | iOFR results for candidate linear input-only models.                                                                                           |
+| `iOFR_table_nl`    | `table/cell`    | iOFR results for candidate nonlinear input-only models.                                                                                        |
 | `best_mod_ind_lin` | `int`           | Index of the selected linear model.                                                                                                       |
 | `best_mod_ind_nl`  | `int`           | Index of the selected nonlinear model.                                                                                                    |
 | `val_stats`        | `struct` or `0` | Validation statistics for the selected nonlinear model. Returns `0` when no nonlinear model is selected.                                  |
 
 ---
 
-## ARX-i Model Structure
+## Input-only Model Structure
 
-An ARX-i model represents the output using only present or lagged input information:
+An input-only model represents the output using only present or lagged input information:
 
 [
 y(t) = F\left(
@@ -91,7 +91,7 @@ u1(t-2)^2u2(t-1)
 
 ## Prediction Equivalence
 
-Conventional ARX and NARX model simulation may recursively use previously predicted outputs. In contrast, an ARX-i model contains no output-feedback regressors.
+Conventional ARX and NARX model simulation may recursively use previously predicted outputs. In contrast, an input-only model contains no output-feedback regressors.
 
 Therefore:
 
@@ -103,7 +103,7 @@ one-step-ahead prediction
 k-step-ahead prediction
 ```
 
-The prediction horizon supplied through `KSA_h` does not change the predicted output of an ARX-i model.
+The prediction horizon supplied through `KSA_h` does not change the predicted output of an input-only model.
 
 This equivalence also avoids repeated recursive simulations during model evaluation, which reduces the computational cost of input-only system identification.
 
@@ -127,7 +127,7 @@ This equivalence also avoids repeated recursive simulations during model evaluat
    Optionally repeats OFR from different initial terms to reduce sensitivity to the orthogonalisation path.
 
 6. **Model selection**
-   Selects the preferred linear or nonlinear ARX-i model using the configured stopping criterion and threshold.
+   Selects the preferred linear or nonlinear input-only model using the configured stopping criterion and threshold.
 
 7. **Direct prediction**
    Evaluates the selected model directly from its input regressors. No recursive output simulation is required.
@@ -155,7 +155,7 @@ y = 0.7*[0;u1(1:end-1)] ...
 % Configure the model
 mod_type = 'ARX-i';
 
-% Retained for compatibility with NonSysID; not used by ARX-i
+% Retained for compatibility with NonSysID; not used by NonSysID-i
 a1 = 1;
 a2 = 1;
 
@@ -207,7 +207,7 @@ parall = [1,1];
 
 ## Evaluating an Identified Model
 
-Use `model_simulation_i` to evaluate an identified ARX-i model on identification or test data:
+Use `model_simulation_i` to evaluate an identified input-only model on identification or test data:
 
 ```matlab
 k = 20;
@@ -216,7 +216,7 @@ k = 20;
     model_simulation_i(model, u, y, k);
 ```
 
-For ARX-i models:
+For input-only models:
 
 ```matlab
 y_hat(:,1)   % Free-run model simulation
@@ -234,7 +234,7 @@ sse(2)   % Mean-squared one-step prediction error
 sse(3)   % Mean-squared k-step prediction error
 ```
 
-These values are also identical for an ARX-i model.
+These values are also identical for an input-only model.
 
 ---
 
@@ -247,7 +247,7 @@ These values are also identical for an ARX-i model.
 * `nl_ord_max = 1` restricts the candidate dictionary to linear input terms.
 * `nl_ord_max > 1` permits polynomial powers and cross-input nonlinear terms.
 * The candidate dictionary never includes lagged output terms.
-* `KSA_h` does not affect the ARX-i prediction because one-step, k-step and free-run outputs are equivalent.
+* `KSA_h` does not affect the input-only model predictions because one-step, k-step and free-run outputs are equivalent.
 * Parallel processing can reduce identification time for large candidate dictionaries.
 * For small problems, parallel-pool startup overhead may outweigh the computational benefit.
 * The same input-lag range `b1:b2` is currently applied to every input.
