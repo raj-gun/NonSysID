@@ -21,6 +21,35 @@ By eliminating the repeated recursive simulation required for models containing 
 
 ---
 
+## Functions Reused from NonSysID
+
+`NonSysID_i` uses dedicated input-only functions for candidate-matrix construction, linear and nonlinear iOFR execution, model selection and model simulation. However, it also reuses several established functions from the original `NonSysID` implementation.
+
+The following `NonSysID` functions are called directly by the NonSysID-i functions and must therefore be available on the MATLAB path (i.e. addpath('<path-to-NonSysID>') is used):
+
+| Function from NonSysID | Used by | Purpose in NonSysID-i |
+|------------------------|---------|------------------------|
+| `diff_eq_mat` | `info_mat_sysID_i` | Constructs the delayed input matrices from which the input-only information matrix is formed. |
+| `OLS_orthogonalisation_PRESS_frc` | `OFR_lin_i`, `OFR_nl_i` | Performs the core orthogonal forward regression calculations, PRESS-statistic updates, term selection and parameter estimation. NonSysID-i therefore uses the same custom Householder orthogonalisation and back-substitution procedure as NonSysID. |
+| `RCT_sel` | `Sys_ID_iOFRs_PRESS_i` | Generates the nonlinear polynomial candidate terms and applies the selected Reduced Computational Time procedure to reduce the nonlinear candidate dictionary. |
+| `one_step_pred_model_reg` | `NonSysID_i`, `model_simulation_i` | Evaluates the selected linear or nonlinear model from the input-regressor matrix and estimated model parameters. |
+| `ac_cc_model_valid` | `OFR_lin_i` | Performs correlation-based residual analysis for candidate linear models. |
+| `ac_cc_model_valid_nl` | `OFR_nl_i` | Performs nonlinear correlation-based residual analysis for candidate nonlinear models. |
+| `mod_val_stats` | `OFR_nl_i` | Summarises the nonlinear residual-validation results and produces the model-validation statistics. |
+
+These functions are reused without introducing separate `_i` copies because their underlying operations are also applicable to input-only models. The input-only behaviour is instead implemented in the dedicated NonSysID-i functions that construct and process regressors without lagged output terms.
+
+Consequently, NonSysID-i should be installed alongside NonSysID, and both sets of functions must be accessible from the MATLAB path. For example:
+
+```matlab
+addpath('NonSysID');
+addpath('NonSysID-i');
+```
+
+The exact paths should be changed to match the local repository structure.
+
+---
+
 ## Parameters
 
 | Name         | Type            | Required | Description                                                                                                                                                           |
@@ -57,35 +86,6 @@ By eliminating the repeated recursive simulation required for models containing 
 | `best_mod_ind_lin` | `int`           | Index of the selected linear model.                                                                                                       |
 | `best_mod_ind_nl`  | `int`           | Index of the selected nonlinear model.                                                                                                    |
 | `val_stats`        | `struct` or `0` | Validation statistics for the selected nonlinear model. Returns `0` when no nonlinear model is selected.                                  |
-
----
-
-## Functions Reused from NonSysID
-
-`NonSysID_i` uses dedicated input-only functions for candidate-matrix construction, linear and nonlinear iOFR execution, model selection and model simulation. However, it also reuses several established functions from the original `NonSysID` implementation.
-
-The following `NonSysID` functions are called directly by the NonSysID-i functions and must therefore be available on the MATLAB path (i.e. addpath('<path-to-NonSysID>') is used):
-
-| Function from NonSysID | Used by | Purpose in NonSysID-i |
-|------------------------|---------|------------------------|
-| `diff_eq_mat` | `info_mat_sysID_i` | Constructs the delayed input matrices from which the input-only information matrix is formed. |
-| `OLS_orthogonalisation_PRESS_frc` | `OFR_lin_i`, `OFR_nl_i` | Performs the core orthogonal forward regression calculations, PRESS-statistic updates, term selection and parameter estimation. NonSysID-i therefore uses the same custom Householder orthogonalisation and back-substitution procedure as NonSysID. |
-| `RCT_sel` | `Sys_ID_iOFRs_PRESS_i` | Generates the nonlinear polynomial candidate terms and applies the selected Reduced Computational Time procedure to reduce the nonlinear candidate dictionary. |
-| `one_step_pred_model_reg` | `NonSysID_i`, `model_simulation_i` | Evaluates the selected linear or nonlinear model from the input-regressor matrix and estimated model parameters. |
-| `ac_cc_model_valid` | `OFR_lin_i` | Performs correlation-based residual analysis for candidate linear models. |
-| `ac_cc_model_valid_nl` | `OFR_nl_i` | Performs nonlinear correlation-based residual analysis for candidate nonlinear models. |
-| `mod_val_stats` | `OFR_nl_i` | Summarises the nonlinear residual-validation results and produces the model-validation statistics. |
-
-These functions are reused without introducing separate `_i` copies because their underlying operations are also applicable to input-only models. The input-only behaviour is instead implemented in the dedicated NonSysID-i functions that construct and process regressors without lagged output terms.
-
-Consequently, NonSysID-i should be installed alongside NonSysID, and both sets of functions must be accessible from the MATLAB path. For example:
-
-```matlab
-addpath('NonSysID');
-addpath('NonSysID-i');
-```
-
-The exact paths should be changed to match the local repository structure.
 
 ---
 
