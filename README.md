@@ -50,8 +50,8 @@ Authors: [Rajintha Gunawardena](https://www.researchgate.net/profile/Shenal-Guna
 Brief documentation explaining the main functions and a code structure for identifying a model, simulating and validating an identified model is given in the [`doc`](/doc) folder.
 
 ### Examples
-- Basic use of identifying a SISO NARX model from real data, see the example in [`Examples/Electro-mechanical system`](Examples/Electro-mechanical_system/).
-- An example of identifying a MISO NARX model is shown in [`Examples/Hysteresis_model_MISO`](Examples/Hysteresis_model_MISO).
+- Identifying a SISO NARX model from real data, see the example in [`Examples/Electro-mechanical system`](Examples/Electro-mechanical_system/).
+- Identifying a MISO NARX model is shown in [`Examples/Hysteresis_model_MISO`](Examples/Hysteresis_model_MISO).
 
 ## Paper
 
