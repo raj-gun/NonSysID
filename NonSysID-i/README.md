@@ -23,19 +23,25 @@ By eliminating the repeated recursive simulation required for models containing 
 
 ## Functions Reused from NonSysID
 
-`NonSysID_i` uses dedicated input-only functions for candidate-matrix construction, linear and nonlinear iOFR execution, model selection and model simulation. However, it also reuses several established functions from the original `NonSysID` implementation.
+`NonSysID-i` contains dedicated input-only functions for constructing its linear information matrix, executing the linear and nonlinear iOFR procedures, selecting the final model, and evaluating an identified input-only model. It also reuses several established functions from the original `NonSysID` implementation.
 
-The following `NonSysID` functions are called directly by the NonSysID-i functions and must therefore be available on the MATLAB path as shown below after the table. However, if only `NonSysID-i` needs to be used, the functions mentioned below can be copied into the same folder as `NonSysID-i`.
+Some of these functions are called directly by `NonSysID-i`, while others are indirect dependencies called by the reused `NonSysID` functions. For full standalone operation—including linear and nonlinear identification and all RCT options—the following files from the `NonSysID` folder must be available.
 
-| Function from NonSysID | Used by | Purpose in NonSysID-i |
-|------------------------|---------|------------------------|
-| `diff_eq_mat` | `info_mat_sysID_i` | Constructs the delayed input matrices from which the input-only information matrix is formed. |
-| `OLS_orthogonalisation_PRESS_frc` | `OFR_lin_i`, `OFR_nl_i` | Performs the core orthogonal forward regression calculations, PRESS-statistic updates, term selection and parameter estimation. NonSysID-i therefore uses the same custom Householder orthogonalisation and back-substitution procedure as NonSysID. |
-| `RCT_sel` | `Sys_ID_iOFRs_PRESS_i` | Generates the nonlinear polynomial candidate terms and applies the selected Reduced Computational Time procedure to reduce the nonlinear candidate dictionary. |
-| `one_step_pred_model_reg` | `NonSysID_i`, `model_simulation_i` | Evaluates the selected linear or nonlinear model from the input-regressor matrix and estimated model parameters. |
-| `ac_cc_model_valid` | `OFR_lin_i` | Performs correlation-based residual analysis for candidate linear models. |
-| `ac_cc_model_valid_nl` | `OFR_nl_i` | Performs nonlinear correlation-based residual analysis for candidate nonlinear models. |
-| `mod_val_stats` | `OFR_nl_i` | Summarises the nonlinear residual-validation results and produces the model-validation statistics. |
+| Function from NonSysID              | Dependency                                | Used by                                      | Purpose in NonSysID-i                                                                                                            |
+| ----------------------------------- | ----------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `diff_eq_mat.m`                     | Direct                                    | `info_mat_sysID_i`                           | Constructs the delayed input matrices used to form the input-only information matrix.                                            |
+| `OLS_orthogonalisation_PRESS_frc.m` | Direct                                    | `OFR_lin_i`, `OFR_nl_i`                      | Performs the core orthogonal forward regression calculations, PRESS-statistic updates, term selection, and parameter estimation. |
+| `RCT_sel.m`                         | Direct                                    | `Sys_ID_iOFRs_PRESS_i`                       | Constructs the nonlinear candidate dictionary and applies the selected Reduced Computational Time procedure.                     |
+| `one_step_pred_model_reg.m`         | Direct                                    | `NonSysID_i`, `model_simulation_i`           | Evaluates the selected linear or nonlinear model from the input-regressor matrix and estimated model parameters.                 |
+| `ac_cc_model_valid.m`               | Direct                                    | `OFR_lin_i`                                  | Performs correlation-based residual validation for candidate linear models.                                                      |
+| `ac_cc_model_valid_nl.m`            | Direct                                    | `OFR_nl_i`                                   | Performs nonlinear correlation-based residual validation for candidate nonlinear models.                                         |
+| `mod_val_stats.m`                   | Direct                                    | `OFR_nl_i`                                   | Summarises the nonlinear residual-validation results and produces the model-validation statistics.                               |
+| `generate_nl_reg.m`                 | Indirect                                  | `RCT_sel`, `OFR_RCT`                         | Generates the polynomial nonlinear candidate regressors and their term labels.                                                   |
+| `nl_term_comb.m`                    | Indirect                                  | `generate_nl_reg`, `one_step_pred_model_reg` | Generates the unique index combinations required for polynomial nonlinear terms.                                                 |
+| `nl_reg_data_mat.m`                 | Indirect                                  | `generate_nl_reg`, `one_step_pred_model_reg` | Constructs the numerical nonlinear-regressor columns from the selected linear regressors.                                        |
+| `OFR_RCT.m`                         | Indirect; used for `RCT = 2`, `3`, or `4` | `RCT_sel`                                    | Produces the overfitting model used to define the reduced candidate dictionary for the corresponding RCT procedures.             |
+| `OLS_RCT.m`                         | Indirect; used for `RCT = 2`, `3`, or `4` | `OFR_RCT`                                    | Performs the forced OLS-ERR term selection used during the RCT preliminary model construction.                                   |
+
 
 Therefore, when using `NonSysID-i`, `NonSysID` functions must be accessible from the MATLAB path. For example:
 
@@ -43,6 +49,8 @@ Therefore, when using `NonSysID-i`, `NonSysID` functions must be accessible from
 addpath('path-to-NonSysID');
 addpath('path-to-NonSysID-i');
 ```
+
+Alternatively, to use `NonSysID-i` as a self-contained package, copy all the functions listed above from the `NonSysID` folder into the `NonSysID-i` folder.
 
 ---
 
