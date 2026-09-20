@@ -39,8 +39,7 @@ x_iOFR = [true,true];
 stp_cri = {'PRESS_thresh', 'PRESS_thresh'}; 
 % Set value for stopping criteria for [linear model ,nonlinear model]
 % The stopping criteria relates to how many terms are added to the model
-% D1_thresh = [10^(-10),10^(0.9)];
-D1_thresh = [10^(-10),10^(0)];
+D1_thresh = [10^(-10),10^(0.9)];
 
 % Specify if bias/DC off set is required, 0, or not, 1.
 is_bias=0;
