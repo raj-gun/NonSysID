@@ -1,21 +1,27 @@
 function [theta,ms_press_e,ERR,ERR_itr,MS_PRESS_E,MS_PRESS_E2,MS_PRESS_E_itr,alpha,trm_chsn_logic_ind,trm_chsn_ind,ind_orth_wrt,ind_orth_wrt_org] ...
     = OLS_orthogonalisation_PRESS_frc(X,Y,frc_ind,stp_cri,alph,D1_thresh)
 %#codegen
+
+% Householder based implementation of the PRESS based orthogonal forward
+% regression (iFRO) used by NonSysID. Drop in replacement for the original
+% Gram-Schmidt version; identical inputs, outputs and term selection.
 %
-% Householder QR version of OLS_orthogonalisation_PRESS_frc.
+% NOTE ON THE ORTHOGONALISATION -------------------------------------------
+% After m-1 steps the Householder working array holds Rm = H_(m-1)...H_1*Pi,
+% i.e. the deflated regressors expressed in a REFLECTED frame. Inner products
+% and norms survive that change of frame, so an ERR based FROLS can work
+% directly on Rm(m:end,:) and never form the orthogonal regressors at all.
 %
-% The term selection logic is kept the same as the original function:
-% forced regressors are selected first using frc_ind, and once all forced
-% regressors have been selected, the next free regressor is selected using
-% minimum mean-square PRESS error.
+% The PRESS statistic cannot. Em^{i} and PRESS_Wm^{i} are PER-SAMPLE: row t of
+% the reflected array is a mixture of samples, not sample t, and the sub
+% column is (dat_len-m+1) long rather than dat_len. Forming them from
+% Rm(m:end,:) does not error, it simply selects the wrong terms.
 %
-% The Gram-Schmidt block used to form Wm_temp has been replaced by a
-% Householder QR orthogonalisation path.  The accumulated Householder
-% transformations orthogonalise every remaining candidate with respect to
-% all previously selected regressors.  For PRESS, the current orthogonal
-% candidate direction is transformed back to the original data coordinates
-% so that the sample-wise PRESS weighting is evaluated in the same way as
-% in the original implementation.
+% The candidate block is therefore reflected back into the original sample
+% ordering before the PRESS quantities are formed. As a block this costs
+% O(dat_len*n_terms*m) per step, the same order as the alpha_rm^{i} product it
+% replaces, so there is no asymptotic penalty.
+% -------------------------------------------------------------------------
 
 size_X = size(X);
 n_terms = size_X(2);
@@ -24,7 +30,6 @@ frc_ind_len = length(frc_ind);
 n_end = 0;
 
 alpha = zeros(n_terms,n_terms);
-Wm = zeros(size_X);
 ERR = zeros(n_terms,1);
 ERR_itr = 0;%zeros(n_terms,n_terms);
 gm = zeros(n_terms,1);
@@ -41,42 +46,35 @@ ind_orth_wrt = zeros(1,n_terms); %term indecies in order of selection
 sigma = Y'*Y;
 PRESS_W = ones(dat_len,1); % The collective PRESS error weighting of the selected regresors
 
-% Householder QR working copies.  A and Y_hh are transformed in-place by
-% the accumulated Householder reflectors.  perm maps the current columns of
-% A back to the original regressor indices in X.
-A = X;
-Y_hh = Y;
-perm = trm_index;
-V_hh = zeros(dat_len,n_terms); % stored Householder vectors
-beta_hh = zeros(n_terms,1);    % stored Householder scale factors
-
-% Rank tolerance used only to avoid division by zero for numerically
-% dependent candidate regressors.
-rank_tol = max(size_X) * eps(max(1,max(sum(X.^2,1))));
-PRESS_min = 1;
+% ------ Householder working arrays --------------------------------------
+% The orthogonal regressors Wm of the Gram-Schmidt version are never stored;
+% the reflectors that generate them are stored instead, which also saves an
+% (dat_len x n_terms) array.
+Rm = X; % becomes the upper triangular factor R of the selected columns
+Qty = Y; % becomes Q'*Y
+Vm = zeros(size_X); % Householder vectors; the mth reflector occupies rows m:end of column m
+piv = trm_index; % column permutation of Rm, i.e. Rm(:,j) derives from X(:,piv(j))
+d_Rm = zeros(n_terms,1); % diagonal of Rm, i.e. d_Rm(r) = +/- norm( wr )
+% ------------------------------------------------------------------------
 
 %% ------ 1st term selection ---------
+Wm_temp = X; % no reflections have been applied yet, so Wm^{i} = Pi
+lam_temp = diag( Wm_temp' * Wm_temp ); % < wm^{i} , wm^{i} >
+g_temp = ( Wm_temp' * Y ) ./ lam_temp;
+ERR_temp = ( g_temp.^2 ) .* lam_temp ./ sigma;
+error_pred_temp = Y - ( Wm_temp .* g_temp' );
+PRESS_W_temp = PRESS_W - ( (Wm_temp.^2) ./ lam_temp' );
+MS_PRESS_E_temp = (1 / dat_len) .* sum( (error_pred_temp ./ PRESS_W_temp).^2 , 1);
 
-m = 1;
-r_n = 0;
-cand_pos = m:n_terms;
-trm_lft_chsn = perm(cand_pos); % terms that are left to be chosen
-
-[Wm_temp,g_temp,ERR_temp,error_pred_temp,PRESS_W_temp,MS_PRESS_E_temp] = ...
-    local_HH_candidate_eval(A,Y_hh,sigma,m,cand_pos,V_hh,beta_hh,r_n,error_pred_init(Y),PRESS_W,dat_len,rank_tol);
 
 % ------ Select the approriate attributes of the first forced term --------
 
-trm_lft_chsn_frc = (trm_lft_chsn == frc_ind(1));
-frc_local_ind = find(trm_lft_chsn_frc,1);
+ERR(1) = ERR_temp(frc_ind(1)); % ERR value
+gm(1) = g_temp(frc_ind(1)); % Orthogonal parameter
 
-ERR(1) = ERR_temp(frc_local_ind); % ERR value
-Wm(:,1) = Wm_temp(:,frc_local_ind); % Orthogonal regressor
-gm(1) = g_temp(frc_local_ind); % Orthogonal parameter
-
-PRESS_W =  PRESS_W_temp(:,frc_local_ind); % Update PRESS error weighting
-MS_PRESS_E(1) = MS_PRESS_E_temp(frc_local_ind); % Mean Square PRESS Error
-error_pred = error_pred_temp(:,frc_local_ind); % Update the predicted errors
+PRESS_W =  PRESS_W_temp(:,frc_ind(1)); % Update PRESS error weighting
+MS_PRESS_E(1) = MS_PRESS_E_temp(frc_ind(1)); % Mean Square PRESS Error
+error_pred = error_pred_temp(:,frc_ind(1)); % Update the predicted errors
 BIC(1) = dat_len*log((error_pred'*error_pred)/dat_len) + 1*log(dat_len);
 APRESS(1) = ((error_pred'*error_pred)/dat_len) * (1/( 1 - (1*alph/dat_len) ))^2;
 % -------------------------------------------------------------------------
@@ -84,15 +82,29 @@ APRESS(1) = ((error_pred'*error_pred)/dat_len) * (1/( 1 - (1*alph/dat_len) ))^2;
 trm_chsn_ind(frc_ind(1)) = trm_index(frc_ind(1)); % Update the indecies of chosen terms
 trm_chsn_logic_ind(frc_ind(1)) = 1; % Logical array; which terms are chosen
 ind_orth_wrt(1) = frc_ind(1); % terms chosen in the order they are chosen
+trm_lft_chsn = trm_index(~logical(trm_chsn_logic_ind)); % terms that are left to be chosen
+
+% ------ Rotate the chosen regressor into column 1 and deflate ------------
+% A cyclic rotation is used rather than a swap so that the unselected columns
+% retain their ascending library ordering, i.e. piv(m+1:end) is identical to
+% trm_lft_chsn at every step. This matters because min() breaks ties on first
+% occurrence: a swap based pivot would silently reorder the candidate list and
+% so change which of two tied candidates is selected.
+Rm(: , 1:frc_ind(1)) = Rm(: , [frc_ind(1) , 1:(frc_ind(1)-1)]);
+piv(1:frc_ind(1)) = piv([frc_ind(1) , 1:(frc_ind(1)-1)]);
+
+v = house_vec( Rm(1:end , 1) ); % Householder vector that zeros Rm(2:end,1)
+Vm(1:end , 1) = v;
+Rm(1:end , 1:end) = row_house( Rm(1:end , 1:end) , v );
+Qty(1:end) = row_house( Qty(1:end) , v );
 
 alpha(1,1) = 1;
-frc_ind_len_rem = frc_ind_len - 1;
+d_Rm(1) = Rm(1,1);
+% -------------------------------------------------------------------------
 
-% Swap the forced term into the current QR pivot position and update the
-% Householder factorisation for the next iteration.
-chosen_pos = cand_pos(frc_local_ind);
-[A,perm] = local_swap_columns(A,perm,m,chosen_pos);
-[V_hh,beta_hh,A,Y_hh] = local_apply_new_householder(A,Y_hh,V_hh,beta_hh,m,dat_len);
+frc_ind_len_rem = frc_ind_len - 1;
+m = 1;
+PRESS_min = 1;
 %% ----------------------------------
 
 %% ------ Selection other terms ---------
@@ -102,99 +114,94 @@ for m = 2:n_terms  %(frc_ind(end)+1)
     i_n = n_terms-(m-1); % No. of terms left to check
     r_n = m - 1; % r = 1, ... , m-1
 
-    cand_pos = m:n_terms;
-    trm_lft_chsn = perm(cand_pos); % terms that are left to be chosen
-
-    Pi = X(:,trm_lft_chsn); % regressors to be orthogonalised
-
-    % -------------- Evaluate alpha_rm^{i} ----------------
-    % alpha is retained for compatibility with the original function.  The
-    % Householder-transformed A matrix is used for the actual orthogonalisation.
-    Wm_norm = diag( Wm(:, 1:r_n)' * Wm(:, 1:r_n) );
-    Wm_norm(Wm_norm == 0) = eps;
-    alpha_temp = ( Pi' * Wm(:, 1:r_n) ) ./ (Wm_norm)';
-    % -----------------------------------------------------
+    Wm_temp = zeros(dat_len , i_n); % Wm^{i}
 
     % -------------- Evaluate Wm^{i} ----------------
-    % Householder QR equivalent of: Pi - projection onto selected Wm.
-    [Wm_temp,g_temp,ERR_temp,error_pred_temp,PRESS_W_temp,MS_PRESS_E_temp] = ...
-        local_HH_candidate_eval(A,Y_hh,sigma,m,cand_pos,V_hh,beta_hh,r_n,error_pred,PRESS_W,dat_len,rank_tol);
+    % The deflated candidate regressors are already held in Rm(m:end,m:end),
+    % but in the frame defined by H_(m-1)...H_1. Reflecting that block back,
+    %     Wm^{i} = H_1*...*H_(m-1) * [ 0_(m-1) ; Rm(m:end,m:end) ] ,
+    % recovers, to machine precision, exactly the Wm^{i} that the Gram-Schmidt
+    % version formed as Pi - sum_r alpha_rm^{i}*wr. Each H_r is symmetric and
+    % its own inverse, so the reflectors are simply re-applied in reverse order.
+    % This is the step that makes the per-sample PRESS quantities below valid.
+    Wm_temp(m:end , :) = Rm(m:end , m:end);
+    for r = r_n:-1:1
+        v = Vm(r:end , r);
+        Wm_temp(r:end , :) = Wm_temp(r:end , :) - ( (2/(v'*v)).*v ) * ( v' * Wm_temp(r:end , :) );
+    end
     % -----------------------------------------------
 
+    % -------------- Evaluate < wm^{i} , wm^{i} > ----------------
+    lam_temp = diag( Wm_temp' * Wm_temp );
+    % ------------------------------------------------------------
+
     % -------------- Evaluate gm^{i} ----------------
-    % g_temp is evaluated inside local_HH_candidate_eval using the
-    % Householder-transformed candidate residuals.
+    g_temp = ( Wm_temp' * Y ) ./ lam_temp;
     % -----------------------------------------------
 
     % -------------- Evaluate [ERRm]^{i} ----------------
-    % ERR_temp is evaluated inside local_HH_candidate_eval.
+    ERR_temp = ( g_temp.^2 ) .* lam_temp ./ sigma;
     % ---------------------------------------------------
 
     % --------------- Evaluate Em^{i} -----------------
-    % error_pred_temp is evaluated inside local_HH_candidate_eval.
+    error_pred_temp = error_pred - ( Wm_temp .* g_temp' );
     % -------------------------------------------------
 
     % --------------- Evaluate PRESS_Wm^{i} -----------------
-    % PRESS_W_temp is evaluated inside local_HH_candidate_eval.
+    PRESS_W_temp = PRESS_W - ( (Wm_temp.^2) ./ lam_temp' );
     % -------------------------------------------------------
 
     % --------------- Evaluate Jm^{i} -----------------
-    % MS_PRESS_E_temp is evaluated inside local_HH_candidate_eval.
+    MS_PRESS_E_temp = (1 / dat_len) .* sum( (error_pred_temp ./ PRESS_W_temp).^2 , 1);
     % -------------------------------------------------
 
     if frc_ind_len_rem == 0 % if all forced parameters are choosen
-
         [~,min_press_ind] = min(MS_PRESS_E_temp);%max(ERR_temp);
-
-        ERR(m) = ERR_temp(min_press_ind);
-        Wm(:,m) = Wm_temp(:,min_press_ind);
-        gm(m) = g_temp(min_press_ind);
-        alpha(1:r_n,m) = alpha_temp(min_press_ind,:);
-        alpha(m,m) = 1;
-
-        PRESS_W =  PRESS_W_temp(:,min_press_ind); % Update PRESS error weighting
-        MS_PRESS_E(m) = MS_PRESS_E_temp(min_press_ind); % Mean Square PRESS Error
-        error_pred = error_pred_temp(:,min_press_ind); % Update the predicted errors
-        BIC(m) = dat_len*log((error_pred'*error_pred)/dat_len) + m*log(dat_len);
-        APRESS(m) = ((error_pred'*error_pred)/dat_len) * (1/( 1 - (m*alph/dat_len) ))^2;
-
-        trm_chsn_ind( trm_lft_chsn(min_press_ind) ) = trm_lft_chsn(min_press_ind);
-        trm_chsn_logic_ind( trm_lft_chsn(min_press_ind) ) = 1;
-        ind_orth_wrt(m) = trm_lft_chsn(min_press_ind);
-
-        chosen_local_ind = min_press_ind;
-
     else % if forced parameters are still left
-
-        trm_lft_chsn_frc = (trm_lft_chsn == frc_ind(m));
-        frc_local_ind = find(trm_lft_chsn_frc,1);
-
-        ERR(m) = ERR_temp(frc_local_ind);
-        Wm(:,m) = Wm_temp(:,frc_local_ind);
-        gm(m) = g_temp(frc_local_ind);
-        alpha(1:r_n,m) = alpha_temp(frc_local_ind,:);
-        alpha(m,m) = 1;
-
-        PRESS_W =  PRESS_W_temp(:,frc_local_ind); % Update PRESS error weighting
-        MS_PRESS_E(m) = MS_PRESS_E_temp(frc_local_ind); % Mean Square PRESS Error
-        error_pred = error_pred_temp(:,frc_local_ind); % Update the predicted errors
-        BIC(m) = dat_len*log((error_pred'*error_pred)/dat_len) + m*log(dat_len);
-        APRESS(m) = ((error_pred'*error_pred)/dat_len) * (1/( 1 - (m*alph/dat_len) ))^2;
-
-        trm_chsn_ind( trm_lft_chsn(frc_local_ind) ) = trm_lft_chsn(frc_local_ind);
-        trm_chsn_logic_ind( trm_lft_chsn(frc_local_ind) ) = 1;
-        ind_orth_wrt(m) = trm_lft_chsn(frc_local_ind);
+        min_press_ind = find( trm_lft_chsn == frc_ind(m) , 1 );
         frc_ind_len_rem = frc_ind_len_rem - 1;
-
-        chosen_local_ind = frc_local_ind;
-
     end
 
-    % Swap the selected term into the current QR pivot position and update
-    % the Householder factorisation for all following candidates.
-    chosen_pos = cand_pos(chosen_local_ind);
-    [A,perm] = local_swap_columns(A,perm,m,chosen_pos);
-    [V_hh,beta_hh,A,Y_hh] = local_apply_new_householder(A,Y_hh,V_hh,beta_hh,m,dat_len);
+    % ------ Select the approriate attributes of the chosen term -------
+    % Unlike the Gram-Schmidt version the two branches above share this block:
+    % the deflation that follows must be carried out once and once only.
+    ERR(m) = ERR_temp(min_press_ind);
+    gm(m) = g_temp(min_press_ind);
+
+    PRESS_W =  PRESS_W_temp(:,min_press_ind); % Update PRESS error weighting
+    MS_PRESS_E(m) = MS_PRESS_E_temp(min_press_ind); % Mean Square PRESS Error
+    error_pred = error_pred_temp(:,min_press_ind); % Update the predicted errors
+    BIC(m) = dat_len*log((error_pred'*error_pred)/dat_len) + m*log(dat_len);
+    APRESS(m) = ((error_pred'*error_pred)/dat_len) * (1/( 1 - (m*alph/dat_len) ))^2;
+
+    trm_chsn_ind( trm_lft_chsn(min_press_ind) ) = trm_lft_chsn(min_press_ind);
+    trm_chsn_logic_ind( trm_lft_chsn(min_press_ind) ) = 1;
+    ind_orth_wrt(m) = trm_lft_chsn(min_press_ind);
+    trm_lft_chsn = trm_index(~logical(trm_chsn_logic_ind));
+    % -------------------------------------------------------------------
+
+    % ------ Rotate the chosen regressor into column m and deflate ------
+    trm_chsn_col = (m-1) + min_press_ind; % its current column in Rm
+    Rm(: , m:trm_chsn_col) = Rm(: , [trm_chsn_col , m:(trm_chsn_col-1)]);
+    piv(m:trm_chsn_col) = piv([trm_chsn_col , m:(trm_chsn_col-1)]);
+
+    v = house_vec( Rm(m:end , m) ); % Householder vector that zeros Rm(m+1:end,m)
+    Vm(m:end , m) = v;
+    Rm(m:end , m:end) = row_house( Rm(m:end , m:end) , v );
+    Qty(m:end) = row_house( Qty(m:end) , v );
+    % -------------------------------------------------------------------
+
+    % -------------- Evaluate alpha_rm ----------------
+    % alpha_rm = < pm , wr > / < wr , wr >, which in the triangular factor is
+    % simply Rm(r,m)/Rm(r,r): wr = qr*Rm(r,r) gives < pm , wr > = Rm(r,r)*Rm(r,m)
+    % and < wr , wr > = Rm(r,r)^2. Rows 1:r_n of column m are already final
+    % before this step (the mth reflection only touches rows m:end), so alpha
+    % is filled in column by column exactly as in the Gram-Schmidt version.
+    % Element-wise scalar divisions only; no matrix inverse is formed.
+    alpha(1:r_n,m) = Rm(1:r_n,m) ./ d_Rm(1:r_n);
+    alpha(m,m) = 1;
+    d_Rm(m) = Rm(m,m);
+    % -------------------------------------------------
 
     PRESS_min = 1;
     if m > 2 % stopping criteria invoked only after two terms are selected
@@ -226,7 +233,6 @@ if PRESS_min == 1
 end
 
 gm = gm(1:(m-n_end));
-Wm = Wm(:,1:(m-n_end));
 alpha = alpha(1:(m-n_end),1:(m-n_end));
 theta = zeros((m-n_end),1);
 
@@ -245,11 +251,9 @@ if n_end ~=0
 end
 %% ------ Form final parameters ---------
 
-% Form the final parameter vector using the original alpha/gm
-% back-substitution method.
 theta(end) = gm(end);
 for i = (m-1-n_end):-1:1
-    theta(i) = gm(i) - alpha(i,(i+1):end) * theta((i+1):end);
+    theta(i) = gm(i) - alpha(i , (i+1):end ) * theta((i+1):end);
 end
 
 %%
@@ -257,132 +261,23 @@ ind_orth_wrt = ind_orth_wrt(logical(ind_orth_wrt));
 ind_orth_wrt_org = ind_orth_wrt_org(logical(ind_orth_wrt_org));
 end
 
-function e = error_pred_init(Y)
-% Helper used only to keep the first-term code close to the original style.
-e = Y;
+%% ------ Householder vector ---------
+function v = house_vec(x)
+% Returns v, with v(1) = 1, such that ( I - 2*v*v'/(v'*v) )*x = -s*norm(x)*e1.
+% The sign is taken explicitly: the usual v(1) = x(1) + sign(x(1))*norm(x)
+% divides by zero whenever x(1) is exactly zero, since sign(0) = 0 in MATLAB.
+nu = norm(x,2);
+v = x;
+if nu > 0
+    if x(1) >= 0; s = 1; else; s = -1; end
+    v = v ./ ( x(1) + s*nu );
+end
+v(1) = 1;
 end
 
-function [Wm_temp,g_temp,ERR_temp,error_pred_temp,PRESS_W_temp,MS_PRESS_E_temp] = ...
-    local_HH_candidate_eval(A,Y_hh,sigma,m,cand_pos,V_hh,beta_hh,r_n,error_pred,PRESS_W,dat_len,rank_tol)
-% Evaluate the candidate orthogonal regressors using the accumulated
-% Householder QR factorisation.
-
-    i_n = length(cand_pos);
-    Z = A(m:end,cand_pos); % candidate residuals in Householder coordinates
-    den = sum(Z.^2,1); % squared norm of each candidate residual
-    valid_ind = den > rank_tol;
-
-    Q_temp = zeros(dat_len,i_n);
-    if any(valid_ind)
-        Q_temp(m:end,valid_ind) = Z(:,valid_ind) ./ sqrt(den(valid_ind));
-    end
-
-    % Transform the normalised candidate directions back to the original
-    % data coordinates.  This is needed only for PRESS_W and error_pred.
-    Q_temp = local_apply_previous_householders(Q_temp,V_hh,beta_hh,r_n);
-
-    sqrt_den = zeros(1,i_n);
-    sqrt_den(valid_ind) = sqrt(den(valid_ind));
-    Wm_temp = Q_temp .* sqrt_den;
-
-    c_temp = Z' * Y_hh(m:end);
-    g_temp = zeros(i_n,1);
-    ERR_temp = zeros(i_n,1);
-
-    if any(valid_ind)
-        g_temp(valid_ind) = c_temp(valid_ind) ./ den(valid_ind)';
-        ERR_temp(valid_ind) = (c_temp(valid_ind).^2) ./ (den(valid_ind)' .* sigma);
-    end
-
-    % --------------- Evaluate Em^{i} -----------------
-    error_pred_temp = error_pred - ( Wm_temp .* g_temp' );
-    % -------------------------------------------------
-
-    % --------------- Evaluate PRESS_Wm^{i} -----------------
-    PRESS_W_temp = PRESS_W - ( Q_temp.^2 );
-    % -------------------------------------------------------
-
-    % --------------- Evaluate Jm^{i} -----------------
-    MS_PRESS_E_temp = (1 / dat_len) .* sum( (error_pred_temp ./ PRESS_W_temp).^2 , 1);
-    MS_PRESS_E_temp(~valid_ind) = inf;
-    % -------------------------------------------------
-end
-
-function Q_temp = local_apply_previous_householders(Q_temp,V_hh,beta_hh,n_prev)
-% Map vectors from Householder coordinates back to the original data
-% coordinates.  Since A = Hn_prev*...*H2*H1*X, the inverse mapping is
-% H1*H2*...*Hn_prev and must be applied in reverse loop order.
-
-    for j = n_prev:-1:1
-        beta = beta_hh(j);
-        if beta ~= 0
-            v = V_hh(j:end,j);
-            Q_temp(j:end,:) = Q_temp(j:end,:) - beta .* v * ( v' * Q_temp(j:end,:) );
-        end
-    end
-end
-
-function [A,perm] = local_swap_columns(A,perm,left_ind,right_ind)
-% Swap columns in the transformed regressor matrix and the original-index map.
-
-    if left_ind ~= right_ind
-        A(:,[left_ind right_ind]) = A(:,[right_ind left_ind]);
-        perm([left_ind right_ind]) = perm([right_ind left_ind]);
-    end
-end
-
-function [V_hh,beta_hh,A,Y_hh] = local_apply_new_householder(A,Y_hh,V_hh,beta_hh,m,dat_len)
-% Generate and apply the next Householder reflector.
-
-    x = A(m:end,m);
-    [v,beta] = local_householder_vector(x);
-
-    V_hh(m:end,m) = v;
-    beta_hh(m) = beta;
-
-    if beta ~= 0
-        A(m:end,m:end) = A(m:end,m:end) - beta .* v * ( v' * A(m:end,m:end) );
-        Y_hh(m:end) = Y_hh(m:end) - beta .* v * ( v' * Y_hh(m:end) );
-    end
-
-    % Clean numerical round-off below the diagonal of the selected column.
-    if m < dat_len
-        A(m+1:end,m) = 0;
-    end
-end
-
-function [v,beta] = local_householder_vector(x)
-% Compute a Householder vector v and scale beta such that
-% H = I - beta*v*v' transforms x to a multiple of e1.
-
-    n_x = length(x);
-    v = zeros(n_x,1);
-    v(1) = 1;
-
-    if n_x == 1
-        beta = 0;
-        return;
-    end
-
-    x_1 = x(1);
-    x_tail = x(2:end);
-    sigma_tail = x_tail' * x_tail;
-
-    if sigma_tail == 0
-        if x_1 >= 0
-            beta = 0;
-        else
-            beta = 2;
-        end
-    else
-        mu = sqrt(x_1*x_1 + sigma_tail);
-        if x_1 <= 0
-            v_1 = x_1 - mu;
-        else
-            v_1 = -sigma_tail / (x_1 + mu);
-        end
-
-        v(2:end) = x_tail / v_1;
-        beta = 2 * v_1 * v_1 / (sigma_tail + v_1 * v_1);
-    end
+%% ------ Apply a Householder reflection from the left ---------
+function A = row_house(A,v)
+% A <- ( I - 2*v*v'/(v'*v) )*A , formed as a rank one update so that the
+% reflector is never built explicitly.
+A = A - ( (2/(v'*v)).*v ) * ( v' * A );
 end
