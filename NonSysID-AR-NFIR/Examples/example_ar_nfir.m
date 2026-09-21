@@ -1,7 +1,7 @@
 %% Clear workspace and add NonSysID and NonSysID-AR-NFIR to the search path
 close all;clear;clc
 addpath('C:\Users\rajin\Github\NonSysID\NonSysID\');
-addpath('C:\Users\rajin\WORK\NonSysID-AR-NFIR\NonSysID-AR-NFIR\');
+addpath('C:\Users\rajin\Github\NonSysID\NonSysID-AR-NFIR\');
 %% Generate data from the system
 % Simple MATLAB script to simulate the AR-NFIR NARX model
 % $$y(t) = 0.2y(t-1)^3 - 0.5y(t-2) + u(t-1) + 0.5u(t-2) + 0.25u(t-1)u(t-2) - 0.3u(t-1)^3$$
