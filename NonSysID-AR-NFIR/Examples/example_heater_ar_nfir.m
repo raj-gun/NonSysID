@@ -1,7 +1,7 @@
 %% Clear workspace and add NonSysID and NonSysID-AR-NFIR to the search path
 close all;clear;clc
-addpath('C:\Users\rajin\Github\NonSysID\NonSysID\');
-addpath('C:\Users\rajin\WORK\NonSysID-AR-NFIR\NonSysID-AR-NFIR\');
+addpath('\...\NonSysID\');
+addpath('\...\NonSysID-AR-NFIR\');
 %% Generate data from the system
 % Simple MATLAB script to simulate the Hammerstein model of an electrical heater, an AR-NFIR NARX model
 % $$y(t) = 1.205445y(t-1) - 0.30877507y(t-2) + 0.0048842u(t-1) + 0.041685u(t-1)^2 + 0.00051436u(t-2) + 0.0043899u(t-2)^2$$
@@ -70,6 +70,9 @@ if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NA
     disp('AR-NFIR NARX model:'); 
     tbl_NARX = join(iOFR_table_nl{best_mod_ind_nl,10},iOFR_table_nl{best_mod_ind_nl,1});disp(tbl_NARX);
 end
+
+disp('Basic term cluster analysis:');
+clstr_table = trm_clstr(iOFR_table_lin,iOFR_table_nl,best_mod_ind_lin,best_mod_ind_nl,1); % Basic term cluster analysis
 %% Simulate model and correlation based validation
 [sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
 
