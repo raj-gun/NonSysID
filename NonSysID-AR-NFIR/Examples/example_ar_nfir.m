@@ -70,6 +70,8 @@ if best_mod_ind_nl~=0 % If a NARX model was identified, then display the best NA
     disp('AR-NFIR NARX model:'); 
     tbl_NARX = join(iOFR_table_nl{best_mod_ind_nl,10},iOFR_table_nl{best_mod_ind_nl,1});disp(tbl_NARX);
 end
+
+clstr_table = trm_clstr(iOFR_table_lin,iOFR_table_nl,best_mod_ind_lin,best_mod_ind_nl,1);
 %% Simulate model and correlation based validation
 [sse, y_hat, error, U_delay_mat_sim] = model_simulation(model,u,y,KSA_h);
 
