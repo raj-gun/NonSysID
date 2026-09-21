@@ -135,7 +135,7 @@ An AR-NFIR NARX model separates the output-lagged and the input-lagged terms int
 y(t) = \hat{f}^{ \ N_p^{AR}}\left(Y\right) + \overline{f}^{ \ N_p^{NFIR}}\left(U\right) + \xi(t),
 ```
 
-where $`\hat{f}^{N_p^{AR}}(\cdot)`$ is the (N)AR part, a polynomial function of the output-lagged terms only with a maximum polynomial degree $`N_p^{AR}`$ (`nl_ord_AR`), and $`\overline{f}^{N_p^{NFIR}}(\cdot)`$ is the NFIR part, a polynomial function of the input-lagged terms only with a maximum polynomial degree $`N_p^{NFIR}`$ (`nl_ord_NFIR`).
+where $`\hat{f}^{ \ N_p^{AR}}(\cdot)`$ is the (N)AR part, a polynomial function of the output-lagged terms only with a maximum polynomial degree $`N_p^{AR}`$ (`nl_ord_AR`), and $`\overline{f}^{ \ N_p^{NFIR}}(\cdot)`$ is the NFIR part, a polynomial function of the input-lagged terms only with a maximum polynomial degree $`N_p^{NFIR}`$ (`nl_ord_NFIR`).
 
 For a polynomial AR-NFIR NARX model, the model can be expressed as
 
