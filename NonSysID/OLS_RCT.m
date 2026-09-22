@@ -22,6 +22,22 @@ function [theta,ms_press_e,ERR,ERR_itr,MS_PRESS_E,MS_PRESS_E_itr,alpha,trm_chsn_
 % ordering before the PRESS quantities are formed. As a block this costs
 % O(dat_len*n_terms*m) per step, the same order as the alpha_rm^{i} product it
 % replaces, so there is no asymptotic penalty.
+%
+% The reflect back is applied as ONE block, not one reflector at a time. The
+% Gram-Schmidt version avoided a loop over r = 1,...,m-1 because the wr are
+% mutually orthogonal: every alpha_rm^{i} could be formed at once from Pi, and
+% the projections summed in a single matrix product,
+%     Wm^{i} = Pi - W * D^(-1) * W' * Pi ,   D = diag( < wr , wr > ).
+% Reflectors do not commute, so their product is not a sum. It does however
+% have the compact WY form (Schreiber and Van Loan, 1989),
+%     H_1*...*H_(m-1) = I - V * T * V' ,
+% where V holds the Householder vectors and T is (m-1)x(m-1) upper triangular.
+% T plays the role of D^(-1): the Householder vectors are not orthogonal, so
+% the diagonal becomes triangular. T gains one column per selected term at a
+% cost of O(dat_len*m), after which Wm^{i} is three matrix products with no
+% loop over r. This is the arithmetic LAPACK uses to apply blocks of
+% reflectors (DLARFT/DLARFB); it is backward stable, so the orthogonality that
+% the Householder version was introduced for is retained.
 % -------------------------------------------------------------------------
 
 size_X = size(X);
@@ -55,6 +71,7 @@ Qty = Y; % becomes Q'*Y
 Vm = zeros(size_X); % Householder vectors; the mth reflector occupies rows m:end of column m
 piv = trm_index; % column permutation of Rm, i.e. Rm(:,j) derives from X(:,piv(j))
 d_Rm = zeros(n_terms,1); % diagonal of Rm, i.e. d_Rm(r) = +/- norm( wr )
+Tm = zeros(n_terms,n_terms); % compact WY factor; H_1*...*H_m = I - Vm(:,1:m)*Tm(1:m,1:m)*Vm(:,1:m)'
 % ------------------------------------------------------------------------
 
 %% ------ 1st term selection ---------
@@ -99,6 +116,7 @@ Qty(1:end) = row_house( Qty(1:end) , v );
 
 alpha(1,1) = 1;
 d_Rm(1) = Rm(1,1);
+Tm(1,1) = 2/(v'*v); % H_1 = I - Vm(:,1)*Tm(1,1)*Vm(:,1)'
 % -------------------------------------------------------------------------
 
 frc_ind_len_rem = frc_ind_len - 1;
@@ -120,13 +138,16 @@ for m = 2:n_terms  %(frc_ind(end)+1)
     %     Wm^{i} = H_1*...*H_(m-1) * [ 0_(m-1) ; Rm(m:end,m:end) ] ,
     % recovers, to machine precision, exactly the Wm^{i} that the Gram-Schmidt
     % version formed as Pi - sum_r alpha_rm^{i}*wr. Each H_r is symmetric and
-    % its own inverse, so the reflectors are simply re-applied in reverse order.
+    % its own inverse, so the inverse of H_(m-1)*...*H_1 is H_1*...*H_(m-1).
     % This is the step that makes the per-sample PRESS quantities below valid.
+    %
+    % The product is applied in one go through the compact WY form (see the
+    % note at the top of the file), in place of looping r = r_n:-1:1 over the
+    % reflectors:
+    %     Wm^{i} = Z - Vm*Tm*( Vm'*Z ) ,   Z = [ 0_(m-1) ; Rm(m:end,m:end) ].
+    % Rows 1:r_n of Z are zero, so Vm'*Z needs only rows m:end of Vm.
     Wm_temp(m:end , :) = Rm(m:end , m:end);
-    for r = r_n:-1:1
-        v = Vm(r:end , r);
-        Wm_temp(r:end , :) = Wm_temp(r:end , :) - ( (2/(v'*v)).*v ) * ( v' * Wm_temp(r:end , :) );
-    end
+    Wm_temp = Wm_temp - Vm(: , 1:r_n) * ( Tm(1:r_n , 1:r_n) * ( Vm(m:end , 1:r_n)' * Rm(m:end , m:end) ) );
     % -----------------------------------------------
 
     % -------------- Evaluate < wm^{i} , wm^{i} > ----------------
@@ -187,6 +208,15 @@ for m = 2:n_terms  %(frc_ind(end)+1)
     Rm(m:end , m:end) = row_house( Rm(m:end , m:end) , v );
     Qty(m:end) = row_house( Qty(m:end) , v );
     % -------------------------------------------------------------------
+
+    % -------------- Update the compact WY factor Tm ----------------
+    % ( I - V*T*V' )*( I - tau*v*v' ) = I - [V , v]*[T , -tau*T*V'*v ; 0 , tau]*[V , v]'
+    % so appending the mth reflector (tau = 2/(v'*v)) appends one column to Tm.
+    % v occupies rows m:end of Vm(:,m), hence only those rows of Vm are needed.
+    tau = 2/(v'*v);
+    Tm(1:r_n , m) = -tau .* ( Tm(1:r_n , 1:r_n) * ( Vm(m:end , 1:r_n)' * v ) );
+    Tm(m , m) = tau;
+    % ----------------------------------------------------------------
 
     % -------------- Evaluate alpha_rm ----------------
     % alpha_rm = < pm , wr > / < wr , wr >, which in the triangular factor is
